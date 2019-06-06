@@ -1,0 +1,43 @@
+{
+    "name": "gdevilbat/sparda-cms-appearance-module",
+    "description": "",
+    "authors": [
+        {
+            "name": "M.Aldi Nur Ibrahim",
+            "email": "maldinuribrahim@gmail.com"
+        }
+    ],
+    "require": {
+        "gdevilbat/sparda-cms-core-module": "^5.7.2",
+        "gdevilbat/sparda-cms-taxonomy-module": "^2.0",
+        "gdevilbat/sparda-cms-post-module": "^1.2"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Gdevilbat\\SpardaCMS\\Modules\\Appearance\\Providers\\AppearanceServiceProvider"
+            ],
+            "aliases": {
+                
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Gdevilbat\\SpardaCMS\\Modules\\Appearance\\": ""
+        },
+        "exclude-from-classmap": [
+            "/preprocessor/"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+          "Gdevilbat\\SpardaCMS\\Modules\\Appearance\\Tests\\": "Tests"
+        }
+    },
+    "archive": {
+        "exclude": ["/Tests", "/preprocessor"]
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
