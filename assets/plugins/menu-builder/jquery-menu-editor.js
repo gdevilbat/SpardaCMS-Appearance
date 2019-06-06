@@ -1222,7 +1222,7 @@ function MenuEditor(idSelector, options) {
         var $elem = (level === 0) ? $main : $('<ul>').addClass('pl-0').css('padding-top', '10px');
         $.each(arrayItem, function (k, v) {
             var isParent = (typeof (v.children) !== "undefined") && ($.isArray(v.children));
-            var itemObject = {text: "", term_id: "", parent_id: "", icon: "empty", target: "_self", title: ""};
+            var itemObject = {text: "", term_id: "", parent_id: "", post_id: "", icon: "empty", target: "_self", title: ""};
             var temp = $.extend({}, v);
             if (isParent){ 
                 delete temp['children'];

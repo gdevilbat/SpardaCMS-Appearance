@@ -44,6 +44,9 @@
                                 <div class="form-group">
                                     <label for="target">Target</label>
                                     <select name="taxonomy" class="form-control item-menu" id="taxonomy">
+                                        @foreach($posts as $post)
+                                            <option data-post-id="{{$post->id}}" value="{{$post->post_title}}">{{$post->post_title}}</option>
+                                        @endforeach
                                         @foreach ($taxonomies as $taxonomy)
                                             <option data-term-id="{{$taxonomy->term_id}}" data-parent-id="{{$taxonomy->parent_id}}" value="{{$taxonomy->term->name}}">{{$taxonomy->term->name}}</option>
                                             @if(Route::current()->getController()->getChild($taxonomy)->taxonomyChildrens->count() > 0)
@@ -91,6 +94,10 @@
                                 <div class="form-group">
                                     <label for="parent_id">Parent ID</label>
                                     <input type="text" name="parent_id" class="form-control item-menu" id="parent_id" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="post_id">Post ID</label>
+                                    <input type="text" name="post_id" class="form-control item-menu" id="post_id" readonly>
                                 </div>
                             </form>
                         </div>
@@ -188,6 +195,7 @@
                 $("#text").val($("[name='taxonomy']").val());
                 $("#term_id").val($("#taxonomy option:selected").attr('data-term-id'));
                 $("#parent_id").val($("#taxonomy option:selected").attr('data-parent-id'));
+                $("#post_id").val($("#taxonomy option:selected").attr('data-post-id'));
             });
             /* ====================================== */
 

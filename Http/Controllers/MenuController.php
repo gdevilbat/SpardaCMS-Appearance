@@ -10,6 +10,8 @@ use Gdevilbat\SpardaCMS\Modules\Core\Http\Controllers\CoreController;
 use Gdevilbat\SpardaCMS\Modules\Taxonomy\Entities\Terms as Terms_m;
 use Gdevilbat\SpardaCMS\Modules\Taxonomy\Entities\TermTaxonomy as TermTaxonomy_m;
 use Gdevilbat\SpardaCMS\Modules\Taxonomy\Entities\TermMeta as TermMeta_m;
+use Gdevilbat\SpardaCMS\Modules\Post\Entities\Post as Post_m;
+use Gdevilbat\SpardaCMS\Modules\Post\Entities\PostMeta as PostMeta_m;
 use Gdevilbat\SpardaCMS\Modules\Core\Repositories\Repository;
 
 use Auth;
@@ -34,6 +36,8 @@ class MenuController extends CoreController
      */
     public function index()
     {
+        $this->data['posts'] = Post_m::where(['post_type' => 'page', 'post_status' => 'publish'])->get();
+
         $this->data['taxonomies'] = TermTaxonomy_m::with(['term'])
                                 ->where(function($query){
                                     $query->where('taxonomy', 'category');                                        
@@ -55,109 +59,148 @@ class MenuController extends CoreController
      */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'menu' => 'required',
-            'menu.*.term_id' => 'required'
-        ]);
-
-        if ($validator->fails()) {
-            return $validator->errors();
-        }
-
         $menus = $request->input('menu');
 
         $taxonomy = $this->term_taxonomy_m->where('taxonomy', 'navbar')->delete();
 
-        foreach ($menus as $key => $value) 
+        if(!empty($menus))
         {
-            $taxonomy = $this->term_taxonomy_m->where(['term_id' => $value['term_id'], 'taxonomy' => 'navbar'])->first();
-            if(empty($taxonomy))
+            foreach ($menus as $key => $value) 
             {
-                $taxonomy = new $this->term_taxonomy_m;
-                $taxonomy->created_by = Auth::id();
-            }
+                /*=======================================
+                =            Taxonomies Menu            =
+                =======================================*/
+                
+                    if(!empty($value['term_id']))
+                    {
+                        $taxonomy = $this->term_taxonomy_m->where(['term_id' => $value['term_id'], 'taxonomy' => 'navbar'])->first();
+                        if(empty($taxonomy))
+                        {
+                            $taxonomy = new $this->term_taxonomy_m;
+                            $taxonomy->created_by = Auth::id();
+                        }
 
-            $taxonomy->term_id = $value['term_id'];
-            $taxonomy->taxonomy = 'navbar';
-            $taxonomy->menu_order = $key;
-            $taxonomy->parent_id = null;
-            $taxonomy->modified_by = Auth::id();
-            $taxonomy->save();
+                        $taxonomy->term_id = $value['term_id'];
+                        $taxonomy->taxonomy = 'navbar';
+                        $taxonomy->menu_order = $key;
+                        $taxonomy->parent_id = null;
+                        $taxonomy->modified_by = Auth::id();
+                        $taxonomy->save();
 
-            $metas = ['menu_text' => $value['text'], 'menu_title' => $value['title'], 'menu_target' => $value['target']];
+                        $metas = ['menu_text' => $value['text'], 'menu_title' => $value['title'], 'menu_target' => $value['target']];
 
-            foreach ($metas as $key_meta => $value_meta) 
-            {
-                $termmeta = $this->term_meta_m->where(['term_id' => $value['term_id'], 'meta_key' => $key_meta])->first();
-                if(empty($termmeta))
-                {
-                    $termmeta = new $this->term_meta_m;
-                }
+                        foreach ($metas as $key_meta => $value_meta) 
+                        {
+                            $termmeta = $this->term_meta_m->where(['term_id' => $value['term_id'], 'meta_key' => $key_meta])->first();
+                            if(empty($termmeta))
+                            {
+                                $termmeta = new $this->term_meta_m;
+                            }
 
-                $termmeta->meta_key = $key_meta;
-                $termmeta->meta_value = $value_meta;
-                $termmeta->term_id = $value['term_id'];
-                $termmeta->save();
-            }
+                            $termmeta->meta_key = $key_meta;
+                            $termmeta->meta_value = $value_meta;
+                            $termmeta->term_id = $value['term_id'];
+                            $termmeta->save();
+                        }
 
 
-            if(array_key_exists('children', $value))
-            {
-                $this->saveChildren($value['children'], $taxonomy->term_id);
+                        if(array_key_exists('children', $value))
+                        {
+                            $this->saveChildren($value['children'], $taxonomy->term_id);
+                        }
+                    }
+                
+                /*=====  End of Taxonomies Menu  ======*/
+
+                /*=================================
+                =            Post Menu            =
+                =================================*/
+                
+                    if(!empty($value['post_id']))
+                    {
+                        $post = Post_m::find($value['post_id']);
+                        $post->menu_order = $key;
+                        $post->save();
+
+                        $metas = ['menu_text' => $value['text'], 'menu_title' => $value['title'], 'menu_target' => $value['target']];
+
+                        foreach ($metas as $key_meta => $value_meta) 
+                        {
+                            $post = PostMeta_m::where(['post_id' => $value['post_id'], 'meta_key' => $key_meta])->first();
+                            if(empty($post))
+                            {
+                                $post = new PostMeta_m;
+                            }
+
+                            $post->meta_key = $key_meta;
+                            $post->meta_value = $value_meta;
+                            $post->post_id = $value['post_id'];
+                            $post->save();
+                        }
+                    }
+                
+                /*=====  End of Post Menu  ======*/
             }
         }
+
 
         return 1;
     }
 
     private function saveChildren($children, $parent_id)
     {
-        $validator = Validator::make($children, [
-            'menu.*.term_id' => 'required'
-        ]);
-
-        if ($validator->fails()) {
-            return $validator->errors();
-        }
-
         $menus = $children;
 
         foreach ($menus as $key => $value) 
         {
-            $taxonomy = $this->term_taxonomy_m->where(['term_id' => $value['term_id'], 'taxonomy' => 'navbar'])->first();
-            if(empty($taxonomy))
-            {
-                $taxonomy = new $this->term_taxonomy_m;
-                $taxonomy->created_by = Auth::id();
-            }
-
-            $taxonomy->term_id = $value['term_id'];
-            $taxonomy->taxonomy = 'navbar';
-            $taxonomy->menu_order = $key;
-            $taxonomy->parent_id = $parent_id;
-            $taxonomy->modified_by = Auth::id();
-            $taxonomy->save();
-
-            $metas = ['menu_text' => $value['text'], 'menu_title' => $value['title'], 'menu_target' => $value['target']];
-
-            foreach ($metas as $key_meta => $value_meta) 
-            {
-                $termmeta = $this->term_meta_m->where(['term_id' => $value['term_id'], 'meta_key' => $key_meta])->first();
-                if(empty($termmeta))
+            /*=======================================
+            =            Taxonomies Menu            =
+            =======================================*/
+            
+                if(!empty($value['term_id']))
                 {
-                    $termmeta = new $this->term_meta_m;
+                    if($parent_id == $value['parent_id'])
+                    {
+                        $taxonomy = $this->term_taxonomy_m->where(['term_id' => $value['term_id'], 'taxonomy' => 'navbar'])->first();
+                        if(empty($taxonomy))
+                        {
+                            $taxonomy = new $this->term_taxonomy_m;
+                            $taxonomy->created_by = Auth::id();
+                        }
+
+                        $taxonomy->term_id = $value['term_id'];
+                        $taxonomy->taxonomy = 'navbar';
+                        $taxonomy->menu_order = $key;
+                        $taxonomy->parent_id = $parent_id;
+                        $taxonomy->modified_by = Auth::id();
+                        $taxonomy->save();
+
+                        $metas = ['menu_text' => $value['text'], 'menu_title' => $value['title'], 'menu_target' => $value['target']];
+
+                        foreach ($metas as $key_meta => $value_meta) 
+                        {
+                            $termmeta = $this->term_meta_m->where(['term_id' => $value['term_id'], 'meta_key' => $key_meta])->first();
+                            if(empty($termmeta))
+                            {
+                                $termmeta = new $this->term_meta_m;
+                            }
+
+                            $termmeta->meta_key = $key_meta;
+                            $termmeta->meta_value = $value_meta;
+                            $termmeta->term_id = $value['term_id'];
+                            $termmeta->save();
+                        }
+                        
+
+                        if(array_key_exists('children', $value))
+                        {
+                            $this->saveChildren($value['children'], $taxonomy->term_id);
+                        }
+                    }
                 }
-
-                $termmeta->meta_key = $key_meta;
-                $termmeta->meta_value = $value_meta;
-                $termmeta->term_id = $value['term_id'];
-                $termmeta->save();
-            }
-
-            if(array_key_exists('children', $value))
-            {
-                $this->saveChildren($value['children'], $taxonomy->term_id);
-            }
+            
+            /*=====  End of Taxonomies Menu  ======*/
+            
         }
     }
 
@@ -195,14 +238,14 @@ class MenuController extends CoreController
         $model = $object->load(['taxonomyChildrens' => function($query){
                     $query->where('taxonomy', 'navbar')
                            ->orderBy('menu_order');
-                },'taxonomyChildrens.term.termMetas']);
+                },'taxonomyChildrens.term.termMeta']);
 
         return $model;
     }
 
     private function getNavbars()
     {
-        $model = TermTaxonomy_m::with('term.termMetas')
+        $model = TermTaxonomy_m::with('term.termMeta')
                                 ->where('taxonomy', 'navbar')
                                 ->whereDoesntHave('taxonomyParents', function($query){
                                     $query->where('taxonomy', 'navbar');
@@ -214,11 +257,12 @@ class MenuController extends CoreController
 
         foreach ($model as $key_parent => $value_parent) 
         {
-            $navbar[$key_parent]['text'] = !empty($value_parent->term->termMetas->where('meta_key', 'menu_text')->first()) ? $value_parent->term->termMetas->where('meta_key', 'menu_text')->first()->meta_value : '';
+            $navbar[$key_parent]['text'] = !empty($value_parent->term->termMeta->where('meta_key', 'menu_text')->first()) ? $value_parent->term->termMeta->where('meta_key', 'menu_text')->first()->meta_value : $value_parent->term->name;
             $navbar[$key_parent]['term_id'] = $value_parent->term_id;
             $navbar[$key_parent]['parent_id'] = $value_parent->parent_id;
-            $navbar[$key_parent]['title'] = !empty($value_parent->term->termMetas->where('meta_key', 'menu_title')->first()) ? $value_parent->term->termMetas->where('meta_key', 'menu_title')->first()->meta_value : '';
-            $navbar[$key_parent]['target'] = !empty($value_parent->term->termMetas->where('meta_key', 'menu_target')->first()) ? $value_parent->term->termMetas->where('meta_key', 'menu_target')->first()->meta_value : '';
+            $navbar[$key_parent]['menu_order'] = $value_parent->menu_order;
+            $navbar[$key_parent]['title'] = !empty($value_parent->term->termMeta->where('meta_key', 'menu_title')->first()) ? $value_parent->term->termMeta->where('meta_key', 'menu_title')->first()->meta_value : '';
+            $navbar[$key_parent]['target'] = !empty($value_parent->term->termMeta->where('meta_key', 'menu_target')->first()) ? $value_parent->term->termMeta->where('meta_key', 'menu_target')->first()->meta_value : '';
 
             if($this->loadNavbarChild($value_parent)->taxonomyChildrens->count() > 0)
             {
@@ -226,8 +270,30 @@ class MenuController extends CoreController
             }
         }
 
-        return $navbar;
-        
+        $model = Post_m::with('postMeta')
+                           ->where(['post_type' => 'page', 'post_status' => 'publish'])
+                           ->orderBy('menu_order')
+                           ->get();
+
+        $post = [];
+
+        foreach ($model as $key_parent => $value_parent) 
+        {
+            $post[$key_parent]['text'] = !empty($value_parent->postMeta->where('meta_key', 'menu_text')->first()) ? $value_parent->postMeta->where('meta_key', 'menu_text')->first()->meta_value : $value_parent->post->title;
+            $post[$key_parent]['post_id'] = $value_parent->id;
+            $post[$key_parent]['menu_order'] = $value_parent->menu_order;
+            $post[$key_parent]['title'] = !empty($value_parent->postMeta->where('meta_key', 'menu_title')->first()) ? $value_parent->postMeta->where('meta_key', 'menu_title')->first()->meta_value : '';
+            $post[$key_parent]['target'] = !empty($value_parent->postMeta->where('meta_key', 'menu_target')->first()) ? $value_parent->postMeta->where('meta_key', 'menu_target')->first()->meta_value : '';
+        }
+
+        foreach ($post as $value) 
+        {
+            array_push($navbar, $value);
+        }
+
+        $navbar = collect($navbar)->sortBy('menu_order')->toArray();
+
+        return array_values($navbar);        
     }
 
     public function getNavbarsChild($object)
@@ -238,11 +304,12 @@ class MenuController extends CoreController
 
         foreach ($model->taxonomyChildrens as $key_parent => $value_parent) 
         {
-            $navbar[$key_parent]['text'] = !empty($value_parent->term->termMetas->where('meta_key', 'menu_text')->first()) ? $value_parent->term->termMetas->where('meta_key', 'menu_text')->first()->meta_value : '';
+            $navbar[$key_parent]['text'] = !empty($value_parent->term->termMeta->where('meta_key', 'menu_text')->first()) ? $value_parent->term->termMeta->where('meta_key', 'menu_text')->first()->meta_value : $value_parent->term->name;
             $navbar[$key_parent]['term_id'] = $value_parent->term_id;
             $navbar[$key_parent]['parent_id'] = $value_parent->parent_id;
-            $navbar[$key_parent]['title'] = !empty($value_parent->term->termMetas->where('meta_key', 'menu_title')->first()) ? $value_parent->term->termMetas->where('meta_key', 'menu_title')->first()->meta_value : '';
-             $navbar[$key_parent]['target'] = !empty($value_parent->term->termMetas->where('meta_key', 'menu_target')->first()) ? $value_parent->term->termMetas->where('meta_key', 'menu_target')->first()->meta_value : '';
+            $navbar[$key_parent]['menu_order'] = $value_parent->menu_order;
+            $navbar[$key_parent]['title'] = !empty($value_parent->term->termMeta->where('meta_key', 'menu_title')->first()) ? $value_parent->term->termMeta->where('meta_key', 'menu_title')->first()->meta_value : '';
+            $navbar[$key_parent]['target'] = !empty($value_parent->term->termMeta->where('meta_key', 'menu_target')->first()) ? $value_parent->term->termMeta->where('meta_key', 'menu_target')->first()->meta_value : '';
 
             if($this->loadNavbarChild($value_parent)->taxonomyChildrens->count() > 0)
             {

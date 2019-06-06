@@ -9,7 +9,7 @@
     ],
     "require": {
         "gdevilbat/sparda-cms-core-module": "^5.7.2",
-        "gdevilbat/sparda-cms-taxonomy-module": "^2.0",
+        "gdevilbat/sparda-cms-taxonomy-module": "^2.1",
         "gdevilbat/sparda-cms-post-module": "^1.2"
     },
     "extra": {
