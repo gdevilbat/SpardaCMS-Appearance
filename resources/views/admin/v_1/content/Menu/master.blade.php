@@ -45,7 +45,7 @@
                                     <label for="target">Target</label>
                                     <select name="taxonomy" class="form-control item-menu select2" id="taxonomy">
                                         @foreach($posts as $post)
-                                            <option data-post-id="{{$post->id}}" value="{{$post->post_title}}">{{$post->post_title}} -- Page</option>
+                                            <option data-post-id="{{$post->id}}" value="{{$post->post_title}}">{{$post->post_title}} -- Post/Page</option>
                                         @endforeach
                                         @foreach ($taxonomies as $taxonomy)
                                             <option data-term-id="{{$taxonomy->term_id}}" data-parent-id="{{$taxonomy->parent_id}}" value="{{$taxonomy->term->name}}">{{$taxonomy->term->name}} -- Taxonomy</option>

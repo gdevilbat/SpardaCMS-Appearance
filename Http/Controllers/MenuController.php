@@ -36,7 +36,12 @@ class MenuController extends CoreController
      */
     public function index()
     {
-        $this->data['posts'] = Post_m::where(['post_type' => 'page', 'post_status' => 'publish'])->get();
+        $this->data['posts'] = Post_m::where(function($query){
+                                            $query->where('post_type', 'page')
+                                                  ->orWhere('post_type', 'post');
+                                        })
+                                        ->where('post_status', 'publish')
+                                        ->get();
 
         $this->data['taxonomies'] = TermTaxonomy_m::with(['term'])
                                 ->where(function($query){
@@ -274,7 +279,11 @@ class MenuController extends CoreController
         }
 
         $model = Post_m::with('postMeta')
-                           ->where(['post_type' => 'page', 'post_status' => 'publish'])
+                           ->where(function($query){
+                                            $query->where('post_type', 'page')
+                                                  ->orWhere('post_type', 'post');
+                            })
+                           ->where('post_status', 'publish')
                            ->orderBy('menu_order')
                            ->get();
 
@@ -282,7 +291,7 @@ class MenuController extends CoreController
 
         foreach ($model as $key_parent => $value_parent) 
         {
-            $post[$key_parent]['text'] = !empty($value_parent->postMeta->where('meta_key', 'menu_text')->first()) ? $value_parent->postMeta->where('meta_key', 'menu_text')->first()->meta_value : $value_parent->post->title;
+            $post[$key_parent]['text'] = !empty($value_parent->postMeta->where('meta_key', 'menu_text')->first()) ? $value_parent->postMeta->where('meta_key', 'menu_text')->first()->meta_value : $value_parent->post_title;
             $post[$key_parent]['post_id'] = $value_parent->id;
             $post[$key_parent]['menu_order'] = $value_parent->menu_order;
             $post[$key_parent]['title'] = !empty($value_parent->postMeta->where('meta_key', 'menu_title')->first()) ? $value_parent->postMeta->where('meta_key', 'menu_title')->first()->meta_value : '';
