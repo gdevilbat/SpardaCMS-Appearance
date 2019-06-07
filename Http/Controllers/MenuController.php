@@ -73,40 +73,43 @@ class MenuController extends CoreController
                 
                     if(!empty($value['term_id']))
                     {
-                        $taxonomy = $this->term_taxonomy_m->where(['term_id' => $value['term_id'], 'taxonomy' => 'navbar'])->first();
-                        if(empty($taxonomy))
+                        if(empty($value['parent_id']))
                         {
-                            $taxonomy = new $this->term_taxonomy_m;
-                            $taxonomy->created_by = Auth::id();
-                        }
-
-                        $taxonomy->term_id = $value['term_id'];
-                        $taxonomy->taxonomy = 'navbar';
-                        $taxonomy->menu_order = $key;
-                        $taxonomy->parent_id = null;
-                        $taxonomy->modified_by = Auth::id();
-                        $taxonomy->save();
-
-                        $metas = ['menu_text' => $value['text'], 'menu_title' => $value['title'], 'menu_target' => $value['target']];
-
-                        foreach ($metas as $key_meta => $value_meta) 
-                        {
-                            $termmeta = $this->term_meta_m->where(['term_id' => $value['term_id'], 'meta_key' => $key_meta])->first();
-                            if(empty($termmeta))
+                            $taxonomy = $this->term_taxonomy_m->where(['term_id' => $value['term_id'], 'taxonomy' => 'navbar'])->first();
+                            if(empty($taxonomy))
                             {
-                                $termmeta = new $this->term_meta_m;
+                                $taxonomy = new $this->term_taxonomy_m;
+                                $taxonomy->created_by = Auth::id();
                             }
 
-                            $termmeta->meta_key = $key_meta;
-                            $termmeta->meta_value = $value_meta;
-                            $termmeta->term_id = $value['term_id'];
-                            $termmeta->save();
-                        }
+                            $taxonomy->term_id = $value['term_id'];
+                            $taxonomy->taxonomy = 'navbar';
+                            $taxonomy->menu_order = $key;
+                            $taxonomy->parent_id = null;
+                            $taxonomy->modified_by = Auth::id();
+                            $taxonomy->save();
+
+                            $metas = ['menu_text' => $value['text'], 'menu_title' => $value['title'], 'menu_target' => $value['target']];
+
+                            foreach ($metas as $key_meta => $value_meta) 
+                            {
+                                $termmeta = $this->term_meta_m->where(['term_id' => $value['term_id'], 'meta_key' => $key_meta])->first();
+                                if(empty($termmeta))
+                                {
+                                    $termmeta = new $this->term_meta_m;
+                                }
+
+                                $termmeta->meta_key = $key_meta;
+                                $termmeta->meta_value = $value_meta;
+                                $termmeta->term_id = $value['term_id'];
+                                $termmeta->save();
+                            }
 
 
-                        if(array_key_exists('children', $value))
-                        {
-                            $this->saveChildren($value['children'], $taxonomy->term_id);
+                            if(array_key_exists('children', $value))
+                            {
+                                $this->saveChildren($value['children'], $taxonomy->term_id);
+                            }
                         }
                     }
                 

@@ -43,12 +43,12 @@
                             <form class="form-horizontal">
                                 <div class="form-group">
                                     <label for="target">Target</label>
-                                    <select name="taxonomy" class="form-control item-menu" id="taxonomy">
+                                    <select name="taxonomy" class="form-control item-menu select2" id="taxonomy">
                                         @foreach($posts as $post)
-                                            <option data-post-id="{{$post->id}}" value="{{$post->post_title}}">{{$post->post_title}}</option>
+                                            <option data-post-id="{{$post->id}}" value="{{$post->post_title}}">{{$post->post_title}} -- Page</option>
                                         @endforeach
                                         @foreach ($taxonomies as $taxonomy)
-                                            <option data-term-id="{{$taxonomy->term_id}}" data-parent-id="{{$taxonomy->parent_id}}" value="{{$taxonomy->term->name}}">{{$taxonomy->term->name}}</option>
+                                            <option data-term-id="{{$taxonomy->term_id}}" data-parent-id="{{$taxonomy->parent_id}}" value="{{$taxonomy->term->name}}">{{$taxonomy->term->name}} -- Taxonomy</option>
                                             @if(Route::current()->getController()->getChild($taxonomy)->taxonomyChildrens->count() > 0)
                                                 @include('appearance::admin.'.$theme_cms->value.'.partials.taxonomy_child', ['taxonomy' => $taxonomy])
                                             @endif
