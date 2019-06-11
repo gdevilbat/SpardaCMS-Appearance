@@ -19,6 +19,8 @@ use Validator;
 
 class MenuController extends CoreController
 {
+    protected $taxonomy_menu = ['category'];
+
     public function __construct()
     {
         parent::__construct();
@@ -45,10 +47,10 @@ class MenuController extends CoreController
 
         $this->data['taxonomies'] = TermTaxonomy_m::with(['term'])
                                 ->where(function($query){
-                                    $query->where('taxonomy', 'category');                                        
+                                    $query->whereIn('taxonomy', $this->taxonomy_menu);                                        
                                 })
                                 ->whereDoesntHave('taxonomyParents', function($query){
-                                    $query->where('taxonomy', 'category');                                        
+                                    $query->whereIn('taxonomy', $this->taxonomy_menu);                                        
                                 })
                                 ->get();
 
@@ -233,7 +235,7 @@ class MenuController extends CoreController
     public function getChild($object)
     {
         $model = $object->load(['taxonomyChildrens' => function($query){
-                    $query->where('taxonomy', 'category');
+                    $query->whereIn('taxonomy', $this->taxonomy_menu);
                 }, 'taxonomyChildrens.parent','taxonomyChildrens.term']);
 
         return $model;
@@ -264,7 +266,7 @@ class MenuController extends CoreController
             $navbar[$key_parent]['text'] = !empty($value_parent->term->termMeta->where('meta_key', 'menu_text')->first()) ? $value_parent->term->termMeta->where('meta_key', 'menu_text')->first()->meta_value : $value_parent->term->name;
             $navbar[$key_parent]['term_id'] = $value_parent->term_id;
             $navbar[$key_parent]['parent_id'] = $value_parent->parent_id;
-            $navbar[$key_parent]['slug'] = 'category/'.$value_parent->term->slug;
+            $navbar[$key_parent]['slug'] = $this->getTaxonomyType($value_parent->term->slug).'/'.$value_parent->term->slug;
             $navbar[$key_parent]['menu_order'] = !empty($value_parent->term->termMeta->where('meta_key', 'menu_order')->first()) ? $value_parent->term->termMeta->where('meta_key', 'menu_order')->first()->meta_value : 0;
             $navbar[$key_parent]['title'] = !empty($value_parent->term->termMeta->where('meta_key', 'menu_title')->first()) ? $value_parent->term->termMeta->where('meta_key', 'menu_title')->first()->meta_value : '';
             $navbar[$key_parent]['target'] = !empty($value_parent->term->termMeta->where('meta_key', 'menu_target')->first()) ? $value_parent->term->termMeta->where('meta_key', 'menu_target')->first()->meta_value : '';
@@ -316,17 +318,64 @@ class MenuController extends CoreController
             $navbar[$key_parent]['text'] = !empty($value_parent->term->termMeta->where('meta_key', 'menu_text')->first()) ? $value_parent->term->termMeta->where('meta_key', 'menu_text')->first()->meta_value : $value_parent->term->name;
             $navbar[$key_parent]['term_id'] = $value_parent->term_id;
             $navbar[$key_parent]['parent_id'] = $value_parent->parent_id;
-            $navbar[$key_parent]['slug'] = 'category/'.$parent_slug.'/'.$value_parent->term->slug;
+            $navbar[$key_parent]['slug'] = $this->getTaxonomyType($parent_slug.'/'.$value_parent->term->slug).'/'.$parent_slug.'/'.$value_parent->term->slug;
             $navbar[$key_parent]['menu_order'] = !empty($value_parent->term->termMeta->where('meta_key', 'menu_order')->first()) ? $value_parent->term->termMeta->where('meta_key', 'menu_order')->first()->meta_value : 0;
             $navbar[$key_parent]['title'] = !empty($value_parent->term->termMeta->where('meta_key', 'menu_title')->first()) ? $value_parent->term->termMeta->where('meta_key', 'menu_title')->first()->meta_value : '';
             $navbar[$key_parent]['target'] = !empty($value_parent->term->termMeta->where('meta_key', 'menu_target')->first()) ? $value_parent->term->termMeta->where('meta_key', 'menu_target')->first()->meta_value : '';
 
             if($this->loadNavbarChild($value_parent)->taxonomyChildrens->count() > 0)
             {
-                $navbar[$key_parent]['children'] = $this->getNavbarsChild($value_parent, $value_parent->term->slug);
+                $navbar[$key_parent]['children'] = $this->getNavbarsChild($value_parent, $parent_slug.'/'.$value_parent->term->slug);
             }
         }
 
         return $navbar;
+    }
+
+    public function getTaxonomyObject($slug)
+    {
+        $slug = explode('/', $slug);
+        $slug_array = collect($slug)->reverse();
+
+        $slug = $slug_array->shift();
+
+        $taxonomy = $this->term_taxonomy_m->whereIn('taxonomy', $this->taxonomy_menu)
+                                          ->whereHas('term', function($query) use ($slug){
+                                            $query->where('slug', $slug);
+                                          });
+
+        /*=================================================
+        =            Get Taxonomy Relationship            =
+        =================================================*/
+        
+            $parent = [];
+
+            foreach ($slug_array as $key => $value) 
+            {
+                array_push($parent, 'taxonomyParents');
+            }
+
+            $parent = implode('.', $parent);
+        
+            if(!empty($parent))
+            {
+                $taxonomy = $taxonomy->whereHas($parent.'.term', function($query) use ($slug_array){
+                                        $query->where('slug', $slug_array->last());
+                                    });
+            }
+        /*=====  End of Get Taxonomy Relationship  ======*/
+        
+        $taxonomy = $taxonomy->first();
+
+        return $taxonomy;
+    }
+
+    private function getTaxonomyType($slug)
+    {
+        $taxonomy = $this->getTaxonomyObject($slug);
+
+        $type = $taxonomy->taxonomy;
+
+        return $type;
     }
 }
