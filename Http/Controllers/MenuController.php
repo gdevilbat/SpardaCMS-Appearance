@@ -39,8 +39,7 @@ class MenuController extends CoreController
     public function index()
     {
         $this->data['posts'] = Post_m::where(function($query){
-                                            $query->where('post_type', 'page')
-                                                  ->orWhere('post_type', 'post');
+                                            $query->where('post_type', 'page');
                                         })
                                         ->where('post_status', 'publish')
                                         ->get();
@@ -279,8 +278,7 @@ class MenuController extends CoreController
 
         $model = Post_m::with('postMeta')
                            ->where(function($query){
-                                            $query->where('post_type', 'page')
-                                                  ->orWhere('post_type', 'post');
+                                            $query->where('post_type', 'page');
                             })
                            ->where('post_status', 'publish')
                            ->get();
