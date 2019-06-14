@@ -240,60 +240,12 @@ class MenuController extends CoreController
         return $model;
     }
 
-    private function loadNavbarChild($object)
-    {
-        $model = $object->load(['taxonomyChildrens' => function($query){
-                    $query->where('taxonomy', 'navbar');
-                },'taxonomyChildrens.term.termMeta']);
-
-        return $model;
-    }
-
     public function getNavbars()
     {
-        $model = TermTaxonomy_m::with('term.termMeta')
-                                ->where('taxonomy', 'navbar')
-                                ->whereDoesntHave('taxonomyParents', function($query){
-                                    $query->where('taxonomy', 'navbar');
-                                })
-                                ->get();
 
-        $navbar = [];
+        $navbar = $this->getTaxonomyNavbar();
 
-        foreach ($model as $key_parent => $value_parent) 
-        {
-            $navbar[$key_parent]['text'] = !empty($value_parent->term->termMeta->where('meta_key', 'menu_text')->first()) ? $value_parent->term->termMeta->where('meta_key', 'menu_text')->first()->meta_value : $value_parent->term->name;
-            $navbar[$key_parent]['term_id'] = $value_parent->term_id;
-            $navbar[$key_parent]['parent_id'] = $value_parent->parent_id;
-            $navbar[$key_parent]['slug'] = $this->getTaxonomyType($value_parent->term->slug).'/'.$value_parent->term->slug;
-            $navbar[$key_parent]['menu_order'] = !empty($value_parent->term->termMeta->where('meta_key', 'menu_order')->first()) ? $value_parent->term->termMeta->where('meta_key', 'menu_order')->first()->meta_value : 0;
-            $navbar[$key_parent]['title'] = !empty($value_parent->term->termMeta->where('meta_key', 'menu_title')->first()) ? $value_parent->term->termMeta->where('meta_key', 'menu_title')->first()->meta_value : '';
-            $navbar[$key_parent]['target'] = !empty($value_parent->term->termMeta->where('meta_key', 'menu_target')->first()) ? $value_parent->term->termMeta->where('meta_key', 'menu_target')->first()->meta_value : '';
-
-            if($this->loadNavbarChild($value_parent)->taxonomyChildrens->count() > 0)
-            {
-                $navbar[$key_parent]['children'] = $this->getNavbarsChild($value_parent, $value_parent->term->slug);
-            }
-        }
-
-        $model = Post_m::with('postMeta')
-                           ->where(function($query){
-                                            $query->where('post_type', 'page');
-                            })
-                           ->where('post_status', 'publish')
-                           ->get();
-
-        $post = [];
-
-        foreach ($model as $key_parent => $value_parent) 
-        {
-            $post[$key_parent]['text'] = !empty($value_parent->postMeta->where('meta_key', 'menu_text')->first()) ? $value_parent->postMeta->where('meta_key', 'menu_text')->first()->meta_value : $value_parent->post_title;
-            $post[$key_parent]['post_id'] = $value_parent->id;
-            $post[$key_parent]['slug'] = $value_parent->post_slug;
-            $post[$key_parent]['menu_order'] = $value_parent->menu_order;
-            $post[$key_parent]['title'] = !empty($value_parent->postMeta->where('meta_key', 'menu_title')->first()) ? $value_parent->postMeta->where('meta_key', 'menu_title')->first()->meta_value : '';
-            $post[$key_parent]['target'] = !empty($value_parent->postMeta->where('meta_key', 'menu_target')->first()) ? $value_parent->postMeta->where('meta_key', 'menu_target')->first()->meta_value : '';
-        }
+        $post = $this->getPostNavbar();
 
         foreach ($post as $value) 
         {
@@ -328,6 +280,73 @@ class MenuController extends CoreController
         }
 
         return $navbar;
+    }
+
+    private function loadNavbarChild($object)
+    {
+        $model = $object->load(['taxonomyChildrens' => function($query){
+                    $query->where('taxonomy', 'navbar');
+                },'taxonomyChildrens.term.termMeta']);
+
+        return $model;
+    }
+
+    public function getTaxonomyNavbar()
+    {
+        $model = TermTaxonomy_m::with('term.termMeta')
+                                ->where('taxonomy', 'navbar')
+                                ->whereDoesntHave('taxonomyParents', function($query){
+                                    $query->where('taxonomy', 'navbar');
+                                })
+                                ->get();
+
+        $navbar = [];
+
+        foreach ($model as $key_parent => $value_parent) 
+        {
+            $navbar[$key_parent]['text'] = !empty($value_parent->term->termMeta->where('meta_key', 'menu_text')->first()) ? $value_parent->term->termMeta->where('meta_key', 'menu_text')->first()->meta_value : $value_parent->term->name;
+            $navbar[$key_parent]['term_id'] = $value_parent->term_id;
+            $navbar[$key_parent]['parent_id'] = $value_parent->parent_id;
+            $navbar[$key_parent]['slug'] = $this->getTaxonomyType($value_parent->term->slug).'/'.$value_parent->term->slug;
+            $navbar[$key_parent]['menu_order'] = !empty($value_parent->term->termMeta->where('meta_key', 'menu_order')->first()) ? $value_parent->term->termMeta->where('meta_key', 'menu_order')->first()->meta_value : 0;
+            $navbar[$key_parent]['title'] = !empty($value_parent->term->termMeta->where('meta_key', 'menu_title')->first()) ? $value_parent->term->termMeta->where('meta_key', 'menu_title')->first()->meta_value : '';
+            $navbar[$key_parent]['target'] = !empty($value_parent->term->termMeta->where('meta_key', 'menu_target')->first()) ? $value_parent->term->termMeta->where('meta_key', 'menu_target')->first()->meta_value : '';
+
+            if($this->loadNavbarChild($value_parent)->taxonomyChildrens->count() > 0)
+            {
+                $navbar[$key_parent]['children'] = $this->getNavbarsChild($value_parent, $value_parent->term->slug);
+            }
+        }
+
+        $navbar = collect($navbar)->sortBy('menu_order')->toArray();
+
+        return array_values($navbar);
+    }
+
+    public function getPostNavbar()
+    {
+        $model = Post_m::with('postMeta')
+                           ->where(function($query){
+                                            $query->where('post_type', 'page');
+                            })
+                           ->where('post_status', 'publish')
+                           ->get();
+
+        $post = [];
+
+        foreach ($model as $key_parent => $value_parent) 
+        {
+            $post[$key_parent]['text'] = !empty($value_parent->postMeta->where('meta_key', 'menu_text')->first()) ? $value_parent->postMeta->where('meta_key', 'menu_text')->first()->meta_value : $value_parent->post_title;
+            $post[$key_parent]['post_id'] = $value_parent->id;
+            $post[$key_parent]['slug'] = $value_parent->post_slug;
+            $post[$key_parent]['menu_order'] = $value_parent->menu_order;
+            $post[$key_parent]['title'] = !empty($value_parent->postMeta->where('meta_key', 'menu_title')->first()) ? $value_parent->postMeta->where('meta_key', 'menu_title')->first()->meta_value : '';
+            $post[$key_parent]['target'] = !empty($value_parent->postMeta->where('meta_key', 'menu_target')->first()) ? $value_parent->postMeta->where('meta_key', 'menu_target')->first()->meta_value : '';
+        }
+
+        $post = collect($post)->sortBy('menu_order')->toArray();
+
+        return array_values($post);
     }
 
     public function getTaxonomyObject($slug)
