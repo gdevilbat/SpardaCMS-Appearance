@@ -5,6 +5,8 @@ namespace Gdevilbat\SpardaCMS\Modules\Appearance\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factory;
 
+use Gdevilbat\SpardaCMS\Modules\Appearance\Http\Middleware\MenuGenerator;
+
 class AppearanceServiceProvider extends ServiceProvider
 {
     /**
@@ -26,6 +28,8 @@ class AppearanceServiceProvider extends ServiceProvider
         $this->registerViews();
         $this->registerFactories();
         $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
+
+        $this->app['router']->aliasMiddleware('appearance.navbars', MenuGenerator::class);
     }
 
     /**
