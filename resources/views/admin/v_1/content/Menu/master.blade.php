@@ -58,7 +58,7 @@
                             </form>
                         </div>
                     <div class="card-footer">
-                        <button type="button" id="btnEditItem" class="btn btn-success"><i class="fas fa-pen"></i> Edit Item</button>
+                        <a href="javascript:void(0)" id="btnEditItem" class="btn btn-success"><i class="fas fa-pen"></i> Edit Item</a>
                     </div>
                 </div>
                 <div class="card border-primary mb-3">
@@ -103,7 +103,7 @@
                         </div>
                     <div class="card-footer">
                         <button type="button" id="btnUpdate" class="btn btn-primary" disabled><i class="fas fa-sync-alt"></i> Update</button>
-                        <button type="button" id="btnAdd" class="btn btn-success"><i class="fas fa-plus"></i> Add</button>
+                        <a href="javascript:void(0)" id="btnAdd" class="btn btn-success"><i class="fas fa-plus"></i> Add</a>
                     </div>
                 </div>
             </div>
@@ -112,8 +112,9 @@
                 <div class="card mb-3">
                     <div class="card-header"><h5 class="float-left">Menu</h5>
                         <div class="float-right">
-                            <button type="button" id="btnSave" class="btn btn-danger">
-                                 Save Menu</button>
+                            <a href="javascript:void(0)" id="btnSave" class="btn btn-danger">
+                                 Save Menu
+                             </a>
                         </div>
                     </div>
                     <div class="card-body">

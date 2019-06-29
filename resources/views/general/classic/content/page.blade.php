@@ -1,4 +1,4 @@
-@extends('blog::general.'.$theme_public->value.'.templates.parent')
+@extends('appearance::general.'.$theme_public->value.'.templates.parent')
 
 @section('content')
     <section>
