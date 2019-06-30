@@ -337,7 +337,7 @@ class MenuController extends CoreController
         foreach ($model as $key_parent => $value_parent) 
         {
             $post[$key_parent]['text'] = !empty($value_parent->postMeta->where('meta_key', 'menu_text')->first()) ? $value_parent->postMeta->where('meta_key', 'menu_text')->first()->meta_value : $value_parent->post_title;
-            $post[$key_parent]['post_id'] = $value_parent->id;
+            $post[$key_parent]['post_id'] = $value_parent->getKey();
             $post[$key_parent]['slug'] = $value_parent->post_slug;
             $post[$key_parent]['menu_order'] = $value_parent->menu_order;
             $post[$key_parent]['title'] = !empty($value_parent->postMeta->where('meta_key', 'menu_title')->first()) ? $value_parent->postMeta->where('meta_key', 'menu_title')->first()->meta_value : '';
