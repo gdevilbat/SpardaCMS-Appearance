@@ -128,7 +128,7 @@
                               <li class="border-right">
                                 <span class="pr-1">Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved <i class="icofont icofont-heart-alt" aria-hidden="true"></i></span>
                               </li>
-                              @foreach ($post_navbars as $navbar)
+                              @foreach ($page_navbars as $navbar)
                                   <li>
                                     <a class="nav-link py-0 px-1" href="{{isset($navbar->slug) ? url($navbar->slug) : 'javascript:void(0)'}}" target="{{$navbar->target}}" title="{{$navbar->title}}">{{$navbar->text}}</a>
                                   </li>

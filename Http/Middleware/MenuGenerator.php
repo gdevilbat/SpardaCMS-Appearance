@@ -21,12 +21,12 @@ class MenuGenerator
         $menu = new MenuController;
 
         $navbars = json_decode(json_encode($menu->getNavbars()));
-        $post_navbars = json_decode(json_encode($menu->getPostNavbar()));
+        $page_navbars = json_decode(json_encode($menu->getPageNavbar()));
 
         \View::share(
                 [
                 'navbars' => $navbars,
-                'post_navbars' => $post_navbars,
+                'page_navbars' => $page_navbars,
             ]
         );
 

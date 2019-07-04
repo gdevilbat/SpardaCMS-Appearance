@@ -4,7 +4,7 @@
 	</div>
     <hr class="w-75 ml-1">
 	<ul class="nav navbar-nav ml-3">
-      @foreach ($category_widget as $navbar)
+      @foreach (Route::current()->getController()->getCategoryWidget() as $navbar)
           @if(isset($navbar->children))
             <li class="dropdown">
               <a href="{{isset($navbar->slug) ? url($navbar->slug) : 'javascript:void(0)'}}" target="{{$navbar->target}}" title="{{$navbar->title}}" class="dropdown-toggle nav-link" aria-haspopup="true" aria-expanded="false">

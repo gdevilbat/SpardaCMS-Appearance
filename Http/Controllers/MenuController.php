@@ -245,9 +245,9 @@ class MenuController extends CoreController
 
         $navbar = $this->getTaxonomyNavbar();
 
-        $post = $this->getPostNavbar();
+        $page = $this->getPageNavbar();
 
-        foreach ($post as $value) 
+        foreach ($page as $value) 
         {
             array_push($navbar, $value);
         }
@@ -323,7 +323,7 @@ class MenuController extends CoreController
         return array_values($navbar);
     }
 
-    public function getPostNavbar()
+    public function getPageNavbar()
     {
         $model = Post_m::with('postMeta')
                            ->where(function($query){
@@ -356,7 +356,8 @@ class MenuController extends CoreController
 
         $slug = $slug_array->shift();
 
-        $taxonomy = $this->term_taxonomy_m->whereIn('taxonomy', $this->taxonomy_menu)
+        $taxonomy = $this->term_taxonomy_m::with('term')
+                                          ->whereIn('taxonomy', $this->taxonomy_menu)
                                           ->whereHas('term', function($query) use ($slug){
                                             $query->where('slug', $slug);
                                           });
