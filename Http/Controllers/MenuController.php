@@ -12,6 +12,7 @@ use Gdevilbat\SpardaCMS\Modules\Taxonomy\Entities\TermTaxonomy as TermTaxonomy_m
 use Gdevilbat\SpardaCMS\Modules\Taxonomy\Entities\TermMeta as TermMeta_m;
 use Gdevilbat\SpardaCMS\Modules\Post\Entities\Post as Post_m;
 use Gdevilbat\SpardaCMS\Modules\Post\Entities\PostMeta as PostMeta_m;
+use Gdevilbat\SpardaCMS\Modules\Core\Entities\Setting as Setting_m;
 use Gdevilbat\SpardaCMS\Modules\Core\Repositories\Repository;
 
 use Auth;
@@ -20,7 +21,7 @@ use Config;
 
 class MenuController extends CoreController
 {
-    protected $taxonomy_menu = ['category'];
+    protected $taxonomy_menu;
 
     public function __construct()
     {
@@ -31,6 +32,11 @@ class MenuController extends CoreController
         $this->term_meta_repository = new Repository(new TermMeta_m);
         $this->term_taxonomy_m = new TermTaxonomy_m;
         $this->term_taxonomy_repository = new Repository(new TermTaxonomy_m);
+        $this->setting_m = new Setting_m;
+        $this->setting_repository = new Repository(new Setting_m);
+
+        $taxonomy_menu = $this->setting_repository->findByAttributes(['name' => 'taxonomy_menu'])->value;
+        $this->taxonomy_menu = explode(',', $taxonomy_menu);
     }
 
     /**
@@ -232,6 +238,50 @@ class MenuController extends CoreController
         //
     }
 
+    public function updateTaxonomyMenu(Request $request)
+    {
+        $data = $request->except('_token', '_method');
+
+        foreach ($data as $key => $value) 
+        {
+            $length = strlen(json_encode($value));
+            if($length > 65535)
+            {
+                $validator->errors()->add($key, $key.' Max Lenght 65,535 Characters');
+
+                return redirect()->back()
+                            ->withErrors($validator)
+                            ->withInput();
+            }
+        }
+
+        $settings = $this->setting_repository->all();
+        foreach ($data as $key => $value) 
+        {
+            $filtered = $settings->where('name', $key);
+            if($filtered->count() > 0)
+            {
+                $setting = $this->setting_m->where('name', $key);
+                if(!$setting->update(['value' => json_encode($value)]))
+                {
+                    return redirect()->back()->with('global_message',['status' => 400, 'message' => 'Failed To Update '.$key]);
+                }
+            }
+            else
+            {
+                $setting = new $this->setting_m;
+                $setting['name'] = $key;
+                $setting['value'] = $value;
+                if(!$setting->save())
+                {
+                    return redirect()->back()->with('global_message',['status' => 400, 'message' => 'Failed To Create '.$key]);
+                }
+            }
+        }
+
+        return redirect()->back()->with('global_message',['status' => 200, 'message' => 'Success To Update Setting']);
+    }
+
     public function getChild($object)
     {
         $model = $object->load(['taxonomyChildrens' => function($query){
@@ -414,7 +464,7 @@ class MenuController extends CoreController
     {
         $taxonomy = $this->getTaxonomyObject($slug);
 
-        $type = $taxonomy->taxonomy;
+        $type = !empty($taxonomy) ? $taxonomy->taxonomy : 'undefined';
 
         return $type;
     }

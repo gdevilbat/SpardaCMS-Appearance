@@ -21,6 +21,7 @@ Route::group(['prefix' => 'control', 'middleware' => 'core.menu'], function() {
 	        =============================================*/
 	        
 			    Route::get('master', 'MenuController@index')->middleware('can:menu-appearance')->name('menu');
+			    Route::put('taxonomy', 'MenuController@updateTaxonomyMenu')->middleware('can:menu-appearance')->name('menu');
 			    Route::post('form', 'MenuController@store')->middleware('can:create-appearance')->name('menu');
 			    Route::delete('form', 'MenuController@destroy')->name('menu');
 

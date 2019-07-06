@@ -2,6 +2,7 @@
 
 @section('page_level_css')
     {{Html::style(module_asset_url('appearance:assets/plugins/bootstrap-iconpicker/css/bootstrap-iconpicker.min.css'))}}
+    {{Html::style(module_asset_url('core:assets/metronic-v5/global/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css'))}}
 @endsection
 
 @section('title_dashboard', ' Menu')
@@ -37,6 +38,22 @@
         <div class="row">
 
             <div class="col-md-5">
+                <div class="card border-success mb-3">
+                    <form action="{{action('\Gdevilbat\SpardaCMS\Modules\Appearance\Http\Controllers\MenuController@updateTaxonomyMenu')}}" method="post" accept-charset="utf-8">
+                        <div class="card-header bg-success text-white">Taxonomy For Menu</div>
+                        <div class="card-body">
+                                <div class="form-group">
+                                    <label for="target">Taxonomy Name</label>
+                                    <input type="text" class="form-control m-input" name="taxonomy_menu" placeholder="Taxonomy Menu" value="{{old('taxonomy_menu') ? old('taxonomy_menu') : ($settings->where('name','taxonomy_menu')->count() > 0 ? $settings->where('name','taxonomy_menu')->flatten()->first()->value : '')}}" data-role="tagsinput">
+                                </div>
+                                {{csrf_field()}}
+                                {{method_field('PUT')}}
+                        </div>
+                        <div class="card-footer d-flex justify-content-end">
+                            <button type="submit" class="btn btn-warning">Update</button>
+                        </div>
+                    </form>
+                </div>
                 <div class="card border-success mb-3">
                     <div class="card-header bg-success text-white">Select Menu</div>
                         <div class="card-body">
@@ -135,6 +152,7 @@
 @section('page_level_js')
     {{Html::script(module_asset_url('appearance:assets/plugins/bootstrap-iconpicker/js/iconset/fontawesome5-3-1.min.js'))}}
     {{Html::script(module_asset_url('appearance:assets/plugins/bootstrap-iconpicker/js/bootstrap-iconpicker.min.js'))}}
+    {{Html::script(module_asset_url('core:assets/metronic-v5/global/plugins/bootstrap-tagsinput/bootstrap-tagsinput.min.js'))}}
     {{Html::script(module_asset_url('appearance:assets/plugins/menu-builder/jquery-menu-editor.js?v='.filemtime(module_asset_path('appearance:assets/plugins/menu-builder/jquery-menu-editor.js'))))}}
 @endsection
 
