@@ -29,7 +29,11 @@ class MenuTest extends DuskTestCase
                     ->clickLink('Add')
                     ->clickLink('Save Menu')
                     ->waitForReload()
-                    ->AssertSeeIn('#myEditor', 'Uncategorized');
+                    ->AssertSeeIn('#myEditor', 'Uncategorized')
+                    ->script('document.getElementsByName("taxonomy_menu")[0].value = "'.$faker->word.'"');
+
+            $browser->press('Submit')
+                    ->assertSee('Success To Update Setting');
         });
     }
 }

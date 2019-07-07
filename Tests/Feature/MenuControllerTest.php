@@ -28,6 +28,28 @@ class MenuControllerTest extends TestCase
                          ->assertSuccessful(); // Return Valid
     }
 
+    public function updateTaxonomyMenu()
+    {
+        $response = $this->get(action('\Gdevilbat\SpardaCMS\Modules\Appearance\Http\Controllers\MenuController@index'));
+
+        $response->assertStatus(302)
+                 ->assertRedirect(action('\Gdevilbat\SpardaCMS\Modules\Core\Http\Controllers\Auth\LoginController@showLoginForm')); //Return Not Valid, User Not Login
+
+        $user = \App\User::find(1);
+
+        $faker = \Faker\Factory::create();
+        $slug = $faker->word;
+
+        $response = $this->actingAs($user)
+                         ->from(action('\Gdevilbat\SpardaCMS\Modules\Appearance\Http\Controllers\MenuController@index'))
+                         ->post(action('\Gdevilbat\SpardaCMS\Modules\Appearance\Http\Controllers\MenuController@store'), [
+                                'taxonomy_menu' => $slug
+                            ])
+                         ->assertSuccessful();
+
+        $this->assertDatabaseHas(\Gdevilbat\SpardaCMS\Modules\Core\Entities\SettingController::getTableName(), ['name' => 'taxonomy_menu', 'value' => json_encode($slug)]);
+    }
+
     /**
      * A basic test example.
      *

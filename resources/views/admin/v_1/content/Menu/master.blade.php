@@ -36,6 +36,25 @@
     <div class="col-sm-12">
 
         <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-5 pl-0">
+                    @if (!empty(session('global_message')))
+                        <div class="alert {{session('global_message')['status'] == 200 ? 'alert-info' : 'alert-warning' }} alert-dismissible fade show">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
+                            {{session('global_message')['message']}}
+                        </div>
+                    @endif
+                    @if (count($errors) > 0)
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                </div>
+            </div>
 
             <div class="col-md-5">
                 <div class="card border-success mb-3">
@@ -50,7 +69,7 @@
                                 {{method_field('PUT')}}
                         </div>
                         <div class="card-footer d-flex justify-content-end">
-                            <button type="submit" class="btn btn-warning">Update</button>
+                            <button type="submit" class="btn btn-warning">Submit</button>
                         </div>
                     </form>
                 </div>
