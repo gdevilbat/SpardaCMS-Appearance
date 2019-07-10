@@ -41,7 +41,7 @@
     {{Html::style(module_asset_url('appearance:resources/views/general/'.$theme_public->value.'/css/style.css'))}}
     {{Html::style(module_asset_url('appearance:resources/views/general/'.$theme_public->value.'/css/responsive.css'))}}
 
-    {{Html::style(module_asset_url('appearance:resources/views/general/'.$theme_public->value.'/css/classic.css?v='.filemtime(module_asset_path('appearance:resources/views/general/'.$theme_public->value.'/css/classic.css'))))}}
+    {{Html::style(module_asset_url('appearance:resources/views/general/'.$theme_public->value.'/css/classic.css').'?id='.filemtime(module_asset_path('appearance:resources/views/general/'.$theme_public->value.'/css/classic.css')))}}
     @yield('page_style_css')
 
 
@@ -168,7 +168,7 @@
     {{Html::script(module_asset_url('appearance:resources/views/general/'.$theme_public->value.'/js/wow.min.js'))}}
     <!--Main-active-JS-->
     {{Html::script(module_asset_url('appearance:resources/views/general/'.$theme_public->value.'/js/main.js'))}}
-    {{Html::script(module_asset_url('appearance:resources/views/general/'.$theme_public->value.'/js/classic.js?v='.filemtime(module_asset_path('appearance:resources/views/general/'.$theme_public->value.'/js/classic.js'))))}}
+    {{Html::script(module_asset_url('appearance:resources/views/general/'.$theme_public->value.'/js/classic.js').'?id='.filemtime(module_asset_path('appearance:resources/views/general/'.$theme_public->value.'/js/classic.js')))}}
 
     @yield('page_script_js')
 </body>
