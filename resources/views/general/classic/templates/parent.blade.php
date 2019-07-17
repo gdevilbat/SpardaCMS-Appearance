@@ -8,7 +8,7 @@
     <meta name="author" content="gdevilbat">
     <title>@yield('title', env('APP_NAME')) - {{!empty($settings->where('name','global')->flatten()[0]->value['meta_title']) ? $settings->where('name','global')->flatten()[0]->value['meta_title'] : 'SpardaCMS'}}</title>
     @section('meta_tag')
-      <meta name="description" content="{{!empty($settings->where('name','global')->flatten()[0]->value['meta_description']) ? $settings->where('name','global')->flatten()[0]->value['meta_description'] : 'The Best Place To Find The Best Pampering Place'}}" />
+      <meta name="description" content="{{!empty($settings->where('name','global')->flatten()[0]->value['meta_description']) ? $settings->where('name','global')->flatten()[0]->value['meta_description'] : 'SpardaCMS for Connecting Business and Technology'}}" />
       <meta name="keywords" content="{{!empty($settings->where('name','global')->flatten()[0]->value['meta_keyword']) ? $settings->where('name','global')->flatten()[0]->value['meta_keyword'] : env('APP_NAME')}}" />
       <meta property="og:type" content="website" />
       <meta property="og:title" content="{{!empty($settings->where('name','global')->flatten()[0]->value['fb_share_title']) ? $settings->where('name','global')->flatten()[0]->value['fb_share_title'] : env('APP_NAME')}}" />
@@ -18,11 +18,11 @@
       <meta property="og:url"           content="{{url()->full()}}" />
       <meta property="og:image:width" content="1024" />
       <meta property="og:image:height" content="1024" />
+      <meta property="webcrawlers" content="all" />
+      <meta property="spiders" content="all" />
+      <meta property="robots" content="all" />
     @show
     <link rel="icon" type="image/png" sizes="1024x1024" href="{{asset(!empty($settings->where('name','global')->flatten()->first()->value['favicon']) ? $settings->where('name','global')->flatten()->first()->value['favicon'] : config('app.name'))}}">
-    <meta property="webcrawlers" content="all" />
-    <meta property="spiders" content="all" />
-    <meta property="robots" content="all" />
     <meta name="google-site-verification" content="{{!empty($settings->where('name','global')->flatten()->first()->value['google_site_verification']) ? $settings->where('name','global')->flatten()->first()->value['google_site_verification'] : ''}}" />
 
     <!-- Place favicon.ico in the root directory -->

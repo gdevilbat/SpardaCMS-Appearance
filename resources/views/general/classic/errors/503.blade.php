@@ -1,5 +1,11 @@
 @extends('appearance::general.'.$theme_public->value.'.templates.parent')
 
+@section('meta_tag')
+  <meta property="webcrawlers" content="NOINDEX, NOFOLLOW" />
+  <meta property="spiders" content="NOINDEX, NOFOLLOW" />
+  <meta property="robots" content="NOINDEX, NOFOLLOW" />
+@endsection
+
 @section('content')
     <section>
         <div class="container">
