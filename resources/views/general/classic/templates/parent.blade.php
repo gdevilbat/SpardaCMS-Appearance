@@ -80,7 +80,7 @@
             </div>
             <div class="col-12">
               <div class="d-flex float-lg-left">
-                <img src="{{empty($settings->where('name','global')->flatten()->first()->value['logo']) ? module_asset_url('core:assets/images/Spartan.png') : url($settings->where('name','global')->flatten()->first()->value['logo'])}}" alt="logo">
+                <img class="img-logo" src="{{empty($settings->where('name','global')->flatten()->first()->value['logo']) ? module_asset_url('core:assets/images/Spartan.png') : url($settings->where('name','global')->flatten()->first()->value['logo'])}}" alt="logo">
                 <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                   <i class="fas fa-bars"></i>
                 </button>
