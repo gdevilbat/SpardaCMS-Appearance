@@ -172,7 +172,7 @@
     {{Html::script(module_asset_url('appearance:assets/plugins/bootstrap-iconpicker/js/iconset/fontawesome5-3-1.min.js'))}}
     {{Html::script(module_asset_url('appearance:assets/plugins/bootstrap-iconpicker/js/bootstrap-iconpicker.min.js'))}}
     {{Html::script(module_asset_url('core:assets/metronic-v5/global/plugins/bootstrap-tagsinput/bootstrap-tagsinput.min.js'))}}
-    {{Html::script(module_asset_url('appearance:assets/plugins/menu-builder/jquery-menu-editor.js'.'?v='.filemtime(module_asset_path('appearance:assets/plugins/menu-builder/jquery-menu-editor.js'))))}}
+    {{Html::script(module_asset_url('appearance:assets/plugins/menu-builder/jquery-menu-editor.js').'?v='.filemtime(module_asset_path('appearance:assets/plugins/menu-builder/jquery-menu-editor.js')))}}
 @endsection
 
 @section('page_script_js')
