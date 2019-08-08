@@ -74,7 +74,7 @@
             <div class="col-12">
                 <div id="search-box" class="collapse">
                     <form action="#">
-                        <input type="search" class="form-control" placeholder="What do you want to know?">
+                        <input type="search" class="form-control mb-1" placeholder="What do you want to know?">
                     </form>
                 </div>
             </div>

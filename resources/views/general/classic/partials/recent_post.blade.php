@@ -10,7 +10,13 @@
 	                <img src="{{url('public/storage/'.$recent_post->postMeta->where('meta_key', 'feature_image')->first()->meta_value)}}" class="align-self-center" alt=""> 
 	            @endif
 	        </div>
-	        <h5><a href="{{url($recent_post->created_at->format('Y').'/'.$recent_post->created_at->format('m').'/'.$recent_post->post_slug.'.html')}}">{{$recent_post->post_title}}</a></h5>
+	        <h5>
+	        	@if($recent_post->post_type == 'post')
+		        	<a href="{{url($recent_post->created_at->format('Y').'/'.$recent_post->created_at->format('m').'/'.$recent_post->post_slug.'.html')}}">{{$recent_post->post_title}}</a>
+	        	@else
+		        	<a href="{{url($recent_post->post_type.'/'.$recent_post->post_slug)}}">{{$recent_post->post_title}}</a>
+	        	@endif
+	        </h5>
 	        <div class="blog-list-meta"> <i class="icofont icofont-ui-calendar"></i> {{$recent_post->created_at->format('d/M/Y')}}</div>
 	        {!!$recent_post->post_excerpt!!}
 	    </div>
