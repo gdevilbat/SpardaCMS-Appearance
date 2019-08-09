@@ -26,7 +26,13 @@
                                                             @endif
                                                         </div>
                                                         <div class="blog-details">
-                                                            <h4><a href="{{action('\Gdevilbat\SpardaCMS\Modules\Blog\Http\Controllers\BlogController@blog', ['year' => $post->created_at->format('Y'), 'month' => $post->created_at->format('m'), 'slug' => $post->post_slug])}}">{{$post->post_title.', '. $post->created_at->format('d M Y')}}</a></h4>
+                                                            <h4>
+                                                                @if($post->post_type == 'post')
+                                                                    <a href="{{url($post->created_at->format('Y').'/'.$post->created_at->format('m').'/'.$post->post_slug.'.html')}}">{{$post->post_title}}</a>
+                                                                @else
+                                                                    <a href="{{url($post->post_type.'/'.$post->post_slug)}}">{{$post->post_title}}</a>
+                                                                @endif
+                                                            </h4>
                                                             <p>{{$post->post_excerpt}}</p>
                                                         </div>
                                                     </div>
@@ -40,7 +46,13 @@
                                                                 <img src="{{url('public/storage/'.$post->postMeta->where('meta_key', 'feature_image')->first()->meta_value)}}" alt=""> 
                                                                 @endif
                                                             </div>
-                                                            <h5><a href="{{action('\Gdevilbat\SpardaCMS\Modules\Blog\Http\Controllers\BlogController@blog', ['year' => $post->created_at->format('Y'), 'month' => $post->created_at->format('m'), 'slug' => $post->post_slug])}}">{{$post->post_title}}</a></h5>
+                                                            <h5>
+                                                                @if($post->post_type == 'post')
+                                                                    <a href="{{url($post->created_at->format('Y').'/'.$post->created_at->format('m').'/'.$post->post_slug.'.html')}}">{{$post->post_title}}</a>
+                                                                @else
+                                                                    <a href="{{url($post->post_type.'/'.$post->post_slug)}}">{{$post->post_title}}</a>
+                                                                @endif
+                                                            </h5>
                                                             <div class="blog-list-meta"> <i class="icofont icofont-ui-calendar"></i> {{$post->created_at->format('d M Y')}}</div>
                                                             <p>{{$post->post_excerpt}}</p>
                                                         </div>
@@ -65,7 +77,13 @@
                                                                 <img src="{{url('public/storage/'.$post->postMeta->where('meta_key', 'feature_image')->first()->meta_value)}}" alt=""> 
                                                                 @endif
                                                             </div>
-                                                            <h5><a href="{{action('\Gdevilbat\SpardaCMS\Modules\Blog\Http\Controllers\BlogController@blog', ['year' => $post->created_at->format('Y'), 'month' => $post->created_at->format('m'), 'slug' => $post->post_slug])}}">{{$post->post_title}}</a></h5>
+                                                            <h5>
+                                                                @if($post->post_type == 'post')
+                                                                    <a href="{{url($post->created_at->format('Y').'/'.$post->created_at->format('m').'/'.$post->post_slug.'.html')}}">{{$post->post_title}}</a>
+                                                                @else
+                                                                    <a href="{{url($post->post_type.'/'.$post->post_slug)}}">{{$post->post_title}}</a>
+                                                                @endif
+                                                            </h5>
                                                             <div class="blog-list-meta"> <i class="icofont icofont-ui-calendar"></i> {{$post->created_at->format('d M Y')}}</div>
                                                             <p>{{$post->post_excerpt}}</p>
                                                         </div>
@@ -80,7 +98,13 @@
                                                             @endif
                                                         </div>
                                                         <div class="blog-details">
-                                                            <h4><a href="{{action('\Gdevilbat\SpardaCMS\Modules\Blog\Http\Controllers\BlogController@blog', ['year' => $post->created_at->format('Y'), 'month' => $post->created_at->format('m'), 'slug' => $post->post_slug])}}">{{$post->post_title.', '. $post->created_at->format('d M Y')}}</a></h4>
+                                                            <h4>
+                                                                @if($post->post_type == 'post')
+                                                                    <a href="{{url($post->created_at->format('Y').'/'.$post->created_at->format('m').'/'.$post->post_slug.'.html')}}">{{$post->post_title}}</a>
+                                                                @else
+                                                                    <a href="{{url($post->post_type.'/'.$post->post_slug)}}">{{$post->post_title}}</a>
+                                                                @endif
+                                                            </h4>
                                                             <p>{{$post->post_excerpt}}</p>
                                                         </div>
                                                     </div>
