@@ -16,9 +16,9 @@
                             <section id="blog-area">
                                 <div class="container">
                                     <div class="row">
-                                        @foreach ($posts as $post)
-                                            @if($loop->index == 0)
-                                                <div class="col-xs-12 col-md-6 wow fadeInUp">
+                                        <?php $recent_post = $posts->take(1); ?>
+                                        <div class="col-xs-12 col-md-6 wow fadeInUp">
+                                            @foreach ($recent_post as $post)
                                                     <div class="blog-box">
                                                         <div class="blog-image">
                                                             @if(!empty($post) && !empty($post->postMeta->where('meta_key', 'feature_image')->first()) && $post->postMeta->where('meta_key', 'feature_image')->first()->meta_value != null)
@@ -36,30 +36,32 @@
                                                             <p>{{$post->post_excerpt}}</p>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            @else
-                                                <div class="col-xs-12 col-md-6">
-                                                    <div class="blog-lists">
-                                                        <div class="blog-list wow fadeInUp" data-wow-delay="0.2s">
-                                                            <div class="blog-list-image">
-                                                                @if(!empty($post) && !empty($post->postMeta->where('meta_key', 'feature_image')->first()) && $post->postMeta->where('meta_key', 'feature_image')->first()->meta_value != null)
-                                                                <img src="{{url('public/storage/'.$post->postMeta->where('meta_key', 'feature_image')->first()->meta_value)}}" alt=""> 
-                                                                @endif
-                                                            </div>
-                                                            <h5>
-                                                                @if($post->post_type == 'post')
-                                                                    <a href="{{url($post->created_at->format('Y').'/'.$post->created_at->format('m').'/'.$post->post_slug.'.html')}}">{{$post->post_title}}</a>
-                                                                @else
-                                                                    <a href="{{url($post->post_type.'/'.$post->post_slug)}}">{{$post->post_title}}</a>
-                                                                @endif
-                                                            </h5>
-                                                            <div class="blog-list-meta"> <i class="icofont icofont-ui-calendar"></i> {{$post->created_at->format('d M Y')}}</div>
-                                                            <p>{{$post->post_excerpt}}</p>
+                                            @endforeach
+                                        </div>
+
+                                        <?php $recent_post = $posts->slice(1); ?>
+                                        <div class="col-xs-12 col-md-6 wow fadeInUp">
+                                            @foreach ($recent_post as $post)
+                                                <div class="blog-lists">
+                                                    <div class="blog-list wow fadeInUp" data-wow-delay="0.2s">
+                                                        <div class="blog-list-image">
+                                                            @if(!empty($post) && !empty($post->postMeta->where('meta_key', 'feature_image')->first()) && $post->postMeta->where('meta_key', 'feature_image')->first()->meta_value != null)
+                                                            <img src="{{url('public/storage/'.$post->postMeta->where('meta_key', 'feature_image')->first()->meta_value)}}" alt=""> 
+                                                            @endif
                                                         </div>
+                                                        <h5>
+                                                            @if($post->post_type == 'post')
+                                                                <a href="{{url($post->created_at->format('Y').'/'.$post->created_at->format('m').'/'.$post->post_slug.'.html')}}">{{$post->post_title}}</a>
+                                                            @else
+                                                                <a href="{{url($post->post_type.'/'.$post->post_slug)}}">{{$post->post_title}}</a>
+                                                            @endif
+                                                        </h5>
+                                                        <div class="blog-list-meta"> <i class="icofont icofont-ui-calendar"></i> {{$post->created_at->format('d M Y')}}</div>
+                                                        <p>{{$post->post_excerpt}}</p>
                                                     </div>
                                                 </div>
-                                            @endif
-                                        @endforeach
+                                            @endforeach
+                                        </div>
                                     </div>
                                 </div>
                             </section>
@@ -67,30 +69,33 @@
                             <section id="blog-area" class="bg-white">
                                 <div class="container">
                                     <div class="row">
-                                        @foreach ($posts as $post)
-                                            @if($loop->index == 0)
-                                                <div class="col-xs-12 col-md-6">
-                                                    <div class="blog-lists">
-                                                        <div class="blog-list wow fadeInUp" data-wow-delay="0.2s">
-                                                            <div class="blog-list-image">
-                                                                @if(!empty($post) && !empty($post->postMeta->where('meta_key', 'feature_image')->first()) && $post->postMeta->where('meta_key', 'feature_image')->first()->meta_value != null)
-                                                                <img src="{{url('public/storage/'.$post->postMeta->where('meta_key', 'feature_image')->first()->meta_value)}}" alt=""> 
-                                                                @endif
-                                                            </div>
-                                                            <h5>
-                                                                @if($post->post_type == 'post')
-                                                                    <a href="{{url($post->created_at->format('Y').'/'.$post->created_at->format('m').'/'.$post->post_slug.'.html')}}">{{$post->post_title}}</a>
-                                                                @else
-                                                                    <a href="{{url($post->post_type.'/'.$post->post_slug)}}">{{$post->post_title}}</a>
-                                                                @endif
-                                                            </h5>
-                                                            <div class="blog-list-meta"> <i class="icofont icofont-ui-calendar"></i> {{$post->created_at->format('d M Y')}}</div>
-                                                            <p>{{$post->post_excerpt}}</p>
+                                        <?php $recent_post = $posts->take(3); ?>
+                                        <div class="col-xs-12 col-md-6 wow fadeInUp">
+                                            @foreach ($recent_post as $post)
+                                                <div class="blog-lists">
+                                                    <div class="blog-list wow fadeInUp" data-wow-delay="0.2s">
+                                                        <div class="blog-list-image">
+                                                            @if(!empty($post) && !empty($post->postMeta->where('meta_key', 'feature_image')->first()) && $post->postMeta->where('meta_key', 'feature_image')->first()->meta_value != null)
+                                                            <img src="{{url('public/storage/'.$post->postMeta->where('meta_key', 'feature_image')->first()->meta_value)}}" alt=""> 
+                                                            @endif
                                                         </div>
+                                                        <h5>
+                                                            @if($post->post_type == 'post')
+                                                                <a href="{{url($post->created_at->format('Y').'/'.$post->created_at->format('m').'/'.$post->post_slug.'.html')}}">{{$post->post_title}}</a>
+                                                            @else
+                                                                <a href="{{url($post->post_type.'/'.$post->post_slug)}}">{{$post->post_title}}</a>
+                                                            @endif
+                                                        </h5>
+                                                        <div class="blog-list-meta"> <i class="icofont icofont-ui-calendar"></i> {{$post->created_at->format('d M Y')}}</div>
+                                                        <p>{{$post->post_excerpt}}</p>
                                                     </div>
                                                 </div>
-                                            @else
-                                                <div class="col-xs-12 col-md-6 wow fadeInUp">
+                                            @endforeach
+                                        </div>
+
+                                        <?php $recent_post = $posts->slice(3); ?>
+                                        <div class="col-xs-12 col-md-6 wow fadeInUp">
+                                            @foreach ($recent_post as $post)
                                                     <div class="blog-box">
                                                         <div class="blog-image">
                                                             @if(!empty($post) && !empty($post->postMeta->where('meta_key', 'feature_image')->first()) && $post->postMeta->where('meta_key', 'feature_image')->first()->meta_value != null)
@@ -108,9 +113,8 @@
                                                             <p>{{$post->post_excerpt}}</p>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            @endif
-                                        @endforeach
+                                            @endforeach
+                                        </div>
                                     </div>
                                 </div>
                             </section>
