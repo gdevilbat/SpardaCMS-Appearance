@@ -13,7 +13,7 @@
                     <?php $group_posts = $posts->chunk(4) ?>
                     @foreach ($group_posts as $posts)
                         @if($loop->iteration % 2 > 0)
-                            <section id="blog-area">
+                            <section id="blog-area my-1">
                                 <div class="container">
                                     <div class="row">
                                         <?php $recent_post = $posts->take(1); ?>
@@ -66,9 +66,32 @@
                                 </div>
                             </section>
                         @else
-                            <section id="blog-area" class="bg-white">
+                            <section id="blog-area my-1" class="bg-white">
                                 <div class="container">
-                                    <div class="row">
+                                    <div class="row flex-row-reverse">
+                                        <?php $recent_post = $posts->slice(3); ?>
+                                        <div class="col-xs-12 col-md-6 wow fadeInUp">
+                                            @foreach ($recent_post as $post)
+                                                    <div class="blog-box">
+                                                        <div class="blog-image">
+                                                            @if(!empty($post) && !empty($post->postMeta->where('meta_key', 'feature_image')->first()) && $post->postMeta->where('meta_key', 'feature_image')->first()->meta_value != null)
+                                                                <img src="{{url('public/storage/'.$post->postMeta->where('meta_key', 'feature_image')->first()->meta_value)}}" alt=""> 
+                                                            @endif
+                                                        </div>
+                                                        <div class="blog-details">
+                                                            <h4>
+                                                                @if($post->post_type == 'post')
+                                                                    <a href="{{url($post->created_at->format('Y').'/'.$post->created_at->format('m').'/'.$post->post_slug.'.html')}}">{{$post->post_title}}</a>
+                                                                @else
+                                                                    <a href="{{url($post->post_type.'/'.$post->post_slug)}}">{{$post->post_title}}</a>
+                                                                @endif
+                                                            </h4>
+                                                            <p>{{$post->post_excerpt}}</p>
+                                                        </div>
+                                                    </div>
+                                            @endforeach
+                                        </div>
+
                                         <?php $recent_post = $posts->take(3); ?>
                                         <div class="col-xs-12 col-md-6 wow fadeInUp">
                                             @foreach ($recent_post as $post)
@@ -90,29 +113,6 @@
                                                         <p>{{$post->post_excerpt}}</p>
                                                     </div>
                                                 </div>
-                                            @endforeach
-                                        </div>
-
-                                        <?php $recent_post = $posts->slice(3); ?>
-                                        <div class="col-xs-12 col-md-6 wow fadeInUp">
-                                            @foreach ($recent_post as $post)
-                                                    <div class="blog-box">
-                                                        <div class="blog-image">
-                                                            @if(!empty($post) && !empty($post->postMeta->where('meta_key', 'feature_image')->first()) && $post->postMeta->where('meta_key', 'feature_image')->first()->meta_value != null)
-                                                                <img src="{{url('public/storage/'.$post->postMeta->where('meta_key', 'feature_image')->first()->meta_value)}}" alt=""> 
-                                                            @endif
-                                                        </div>
-                                                        <div class="blog-details">
-                                                            <h4>
-                                                                @if($post->post_type == 'post')
-                                                                    <a href="{{url($post->created_at->format('Y').'/'.$post->created_at->format('m').'/'.$post->post_slug.'.html')}}">{{$post->post_title}}</a>
-                                                                @else
-                                                                    <a href="{{url($post->post_type.'/'.$post->post_slug)}}">{{$post->post_title}}</a>
-                                                                @endif
-                                                            </h4>
-                                                            <p>{{$post->post_excerpt}}</p>
-                                                        </div>
-                                                    </div>
                                             @endforeach
                                         </div>
                                     </div>
