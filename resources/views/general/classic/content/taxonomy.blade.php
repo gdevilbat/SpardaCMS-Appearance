@@ -70,7 +70,7 @@
                 </div>
             </section>
         @else
-            <section id="blog-area" class="py-2" class="bg-light">
+            <section id="blog-area" class="py-2 bg-light">
                 <div class="container">
                     <div class="row flex-row-reverse">
                         <?php $recent_post = $posts->take(1); ?>
