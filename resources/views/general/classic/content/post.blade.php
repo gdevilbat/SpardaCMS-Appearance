@@ -28,7 +28,7 @@
                         @endforeach
                     </div>
                     @if(!empty($post) && !empty($post->postMeta->where('meta_key', 'feature_image')->first()) && $post->postMeta->where('meta_key', 'feature_image')->first()->meta_value != null)
-                        <img src="{{url('public/storage/'.$post->postMeta->where('meta_key', 'feature_image')->first()->meta_value)}}" alt=""> 
+                        <img class="magnificier" src="{{url('public/storage/'.$post->postMeta->where('meta_key', 'feature_image')->first()->meta_value)}}" alt=""> 
                     @endif
                     {!!$post->post_content!!}
                     <div class="my-2 d-flex">
@@ -45,4 +45,20 @@
             </div>
         </div>
     </section>
+@endsection
+
+@section('page_level_js')
+    {{Html::script(module_asset_url('appearance:resources/views/general/'.$theme_public->value.'/js/plugin/jquery.zoom.min.js'))}}
+@endsection
+
+@section('page_script_js')
+    <script type="text/javascript">
+        $(document).ready(function(){
+          $('img.magnificier')
+            .wrap('<span style="display:inline-block"></span>')
+            .css('display', 'block')
+            .parent()
+            .zoom();
+        });
+    </script>
 @endsection
