@@ -63,9 +63,9 @@
 
 <body class="d-flex flex-column">
     <!--Preloader-->
-    <div class="preloader">
+    <!-- <div class="preloader">
         <div class="spinner"></div>
-    </div>
+    </div> -->
 
     <!-- Mainmenu-Area -->
     <nav class="navbar navbar-expand-lg navbar-fixed-top mainmenu-area">
