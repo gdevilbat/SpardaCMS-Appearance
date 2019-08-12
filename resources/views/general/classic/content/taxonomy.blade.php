@@ -13,7 +13,7 @@
                     <?php $group_posts = $posts->chunk(4) ?>
                     @foreach ($group_posts as $posts)
                         @if($loop->iteration % 2 > 0)
-                            <section id="blog-area" class="my-1">
+                            <section id="blog-area" class="py-2">
                                 <div class="container">
                                     <div class="row">
                                         <?php $recent_post = $posts->take(1); ?>
@@ -66,7 +66,7 @@
                                 </div>
                             </section>
                         @else
-                            <section id="blog-area" class="my-1" class="bg-white">
+                            <section id="blog-area" class="py-2" class="bg-white">
                                 <div class="container">
                                     <div class="row flex-row-reverse">
                                         <?php $recent_post = $posts->take(1); ?>
