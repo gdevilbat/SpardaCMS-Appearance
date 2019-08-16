@@ -70,3 +70,31 @@
 	max-width: 100%;
 	max-height: 50px;
 }
+
+.ellipsis{
+	overflow: hidden;
+	height: 50px;
+	line-height: 25px;
+	& > *:first-child{
+		float: right;
+		width: 100%;
+		margin-left: -5px;
+	}
+	&:after{
+
+		box-sizing: content-box;
+		-webkit-box-sizing: content-box;
+		-moz-box-sizing: content-box;
+
+		float: right; position: relative;
+		top: -25px; left: 100%; 
+		width: 3em; margin-left: -3em;
+		padding-right: 5px;
+		
+		text-align: right;
+
+	  
+		  background-size: 100% 100%;
+	  /* 512x1 image, gradient for IE9. Transparent at 0% -> white at 50% -> white at 100%.*/
+	}
+}
