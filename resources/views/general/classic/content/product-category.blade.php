@@ -60,7 +60,7 @@
                                                 <a href="{{url($post->post_type.'/'.$post->post_slug)}}">{{$post->post_title}}</a>
                                             @endif
                                         </div>
-                                        <div class="blog-list-meta"> <i class="icofont icofont-ui-calendar"></i> {{$post->created_at->format('d M Y')}}</div>
+                                        <div class="blog-list-meta"> <i class="fa fa-money-bill-wave"></i> Rp. {{number_format($post->productMeta->product_price)}}</div>
                                         <p>{{$post->post_excerpt}}</p>
                                     </div>
                                 </div>
@@ -113,7 +113,7 @@
                                                 <a href="{{url($post->post_type.'/'.$post->post_slug)}}">{{$post->post_title}}</a>
                                             @endif
                                         </div>
-                                        <div class="blog-list-meta"> <i class="icofont icofont-ui-calendar"></i> {{$post->created_at->format('d M Y')}}</div>
+                                        <div class="blog-list-meta"> <i class="fa fa-money-bill-wave"></i> Rp. {{number_format($post->productMeta->product_price)}}</div>
                                         <p>{{$post->post_excerpt}}</p>
                                     </div>
                                 </div>
