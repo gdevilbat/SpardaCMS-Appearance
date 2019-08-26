@@ -1,5 +1,9 @@
 @extends('appearance::general.'.$theme_public->value.'.templates.parent')
 
+@section('title')
+    {{(!empty($post) && !empty($post->postMeta->where('meta_key', 'meta_title')->first()) && $post->postMeta->where('meta_key', 'meta_title')->first()->meta_value != null) ? $post->postMeta->where('meta_key', 'meta_title')->first()->meta_value : (!empty($settings->where('name','global')->flatten()[0]->value['meta_title']) ? $settings->where('name','global')->flatten()[0]->value['meta_title'] : 'SpardaCMS')}}
+@endsection
+
 @section('content')
     <section>
         <div class="container">
