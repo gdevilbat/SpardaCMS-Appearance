@@ -11,7 +11,7 @@
                 <div class="col-12">
                     <div>
                           <center><h2 class="title">{{$taxonomy->term->name}}</h2></center>
-                          <center><p>{{$taxonomy->term->term}}</p></center>
+                          <center><p>{{$taxonomy->description}}</p></center>
                     </div>
                 </div>
             </div>
@@ -30,7 +30,9 @@
                                     <div class="blog-box">
                                         <div class="blog-image">
                                             @if(!empty($post) && !empty($post->postMeta->where('meta_key', 'feature_image')->first()) && $post->postMeta->where('meta_key', 'feature_image')->first()->meta_value != null)
-                                                <img src="{{url('public/storage/'.$post->postMeta->where('meta_key', 'feature_image')->first()->meta_value)}}" alt=""> 
+                                                <a href="{{url($post->post_type.'/'.$post->post_slug)}}" title="{{$post->post_title}}">
+                                                    <img src="{{url('public/storage/'.$post->postMeta->where('meta_key', 'feature_image')->first()->meta_value)}}" alt=""> 
+                                                </a> 
                                             @endif
                                         </div>
                                         <div class="blog-details">
@@ -54,7 +56,9 @@
                                     <div class="blog-list wow fadeInUp" data-wow-delay="0.2s">
                                         <div class="blog-list-image">
                                             @if(!empty($post) && !empty($post->postMeta->where('meta_key', 'feature_image')->first()) && $post->postMeta->where('meta_key', 'feature_image')->first()->meta_value != null)
-                                            <img src="{{url('public/storage/'.$post->postMeta->where('meta_key', 'feature_image')->first()->meta_value)}}" alt=""> 
+                                                <a href="{{url($post->post_type.'/'.$post->post_slug)}}" title="{{$post->post_title}}">
+                                                    <img src="{{url('public/storage/'.$post->postMeta->where('meta_key', 'feature_image')->first()->meta_value)}}" alt=""> 
+                                                </a> 
                                             @endif
                                         </div>
                                         <div class="ellipsis mb-2" style="font-size: 1.3rem">
@@ -83,7 +87,9 @@
                                     <div class="blog-box">
                                         <div class="blog-image">
                                             @if(!empty($post) && !empty($post->postMeta->where('meta_key', 'feature_image')->first()) && $post->postMeta->where('meta_key', 'feature_image')->first()->meta_value != null)
-                                                <img src="{{url('public/storage/'.$post->postMeta->where('meta_key', 'feature_image')->first()->meta_value)}}" alt=""> 
+                                                <a href="{{url($post->post_type.'/'.$post->post_slug)}}" title="{{$post->post_title}}">
+                                                    <img src="{{url('public/storage/'.$post->postMeta->where('meta_key', 'feature_image')->first()->meta_value)}}" alt=""> 
+                                                </a> 
                                             @endif
                                         </div>
                                         <div class="blog-details">
@@ -107,7 +113,9 @@
                                     <div class="blog-list wow fadeInUp" data-wow-delay="0.2s">
                                         <div class="blog-list-image">
                                             @if(!empty($post) && !empty($post->postMeta->where('meta_key', 'feature_image')->first()) && $post->postMeta->where('meta_key', 'feature_image')->first()->meta_value != null)
-                                            <img src="{{url('public/storage/'.$post->postMeta->where('meta_key', 'feature_image')->first()->meta_value)}}" alt=""> 
+                                                <a href="{{url($post->post_type.'/'.$post->post_slug)}}" title="{{$post->post_title}}">
+                                                    <img src="{{url('public/storage/'.$post->postMeta->where('meta_key', 'feature_image')->first()->meta_value)}}" alt=""> 
+                                                </a> 
                                             @endif
                                         </div>
                                         <div class="ellipsis mb-2" style="font-size: 1.3rem">
