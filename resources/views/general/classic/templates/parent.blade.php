@@ -68,7 +68,7 @@
     </div> -->
 
     <!-- Mainmenu-Area -->
-    <nav class="navbar navbar-expand-lg navbar-fixed-top mainmenu-area">
+    <nav class="navbar navbar-spy navbar-expand-lg navbar-fixed-top mainmenu-area">
       <div class="container">
         <div class="w-100">
             <div class="col-12">
