@@ -30,9 +30,11 @@
                                     <div class="blog-box">
                                         <div class="blog-image">
                                             @if(!empty($post) && !empty($post->postMeta->where('meta_key', 'feature_image')->first()) && $post->postMeta->where('meta_key', 'feature_image')->first()->meta_value != null)
-                                                <a href="{{url($post->post_type.'/'.$post->post_slug)}}" title="{{$post->post_title}}">
-                                                    <img src="{{url('public/storage/'.$post->postMeta->where('meta_key', 'feature_image')->first()->meta_value)}}" alt=""> 
-                                                </a>
+                                                <div class="w-100 transparent-layer" style="background-image: url({{url('public/storage/'.$post->postMeta->where('meta_key', 'feature_image')->first()->meta_value)}})">
+                                                    <a href="{{url($post->post_type.'/'.$post->post_slug)}}" title="{{$post->post_title}}">
+                                                        <img src="{{module_asset_url('appearance:assets/images/rectangle-50-25.png')}}" class="w-100" alt=""> 
+                                                    </a> 
+                                                </div>
                                             @endif
                                         </div>
                                         <div class="blog-details">
@@ -56,9 +58,11 @@
                                     <div class="blog-list wow fadeInUp" data-wow-delay="0.2s">
                                         <div class="blog-list-image">
                                             @if(!empty($post) && !empty($post->postMeta->where('meta_key', 'feature_image')->first()) && $post->postMeta->where('meta_key', 'feature_image')->first()->meta_value != null)
-                                                <a href="{{url($post->post_type.'/'.$post->post_slug)}}" title="{{$post->post_title}}">
-                                                    <img src="{{url('public/storage/'.$post->postMeta->where('meta_key', 'feature_image')->first()->meta_value)}}" alt=""> 
-                                                </a>
+                                                <div class="w-100 transparent-layer" style="background-image: url({{url('public/storage/'.$post->postMeta->where('meta_key', 'feature_image')->first()->meta_value)}})">
+                                                    <a href="{{url($post->post_type.'/'.$post->post_slug)}}" title="{{$post->post_title}}">
+                                                        <img src="{{module_asset_url('appearance:assets/images/square-layer.png')}}" class="w-100" alt=""> 
+                                                    </a> 
+                                                </div>
                                             @endif
                                         </div>
                                         <div class="ellipsis mb-2" style="font-size: 1.3rem">
@@ -87,9 +91,11 @@
                                     <div class="blog-box">
                                         <div class="blog-image">
                                             @if(!empty($post) && !empty($post->postMeta->where('meta_key', 'feature_image')->first()) && $post->postMeta->where('meta_key', 'feature_image')->first()->meta_value != null)
-                                                <a href="{{url($post->post_type.'/'.$post->post_slug)}}" title="{{$post->post_title}}">
-                                                    <img src="{{url('public/storage/'.$post->postMeta->where('meta_key', 'feature_image')->first()->meta_value)}}" alt=""> 
-                                                </a> 
+                                                <div class="w-100 transparent-layer" style="background-image: url({{url('public/storage/'.$post->postMeta->where('meta_key', 'feature_image')->first()->meta_value)}})">
+                                                    <a href="{{url($post->post_type.'/'.$post->post_slug)}}" title="{{$post->post_title}}">
+                                                        <img src="{{module_asset_url('appearance:assets/images/rectangle-50-25.png')}}" class="w-100" alt=""> 
+                                                    </a> 
+                                                </div> 
                                             @endif
                                         </div>
                                         <div class="blog-details">
@@ -113,9 +119,11 @@
                                     <div class="blog-list wow fadeInUp" data-wow-delay="0.2s">
                                         <div class="blog-list-image">
                                             @if(!empty($post) && !empty($post->postMeta->where('meta_key', 'feature_image')->first()) && $post->postMeta->where('meta_key', 'feature_image')->first()->meta_value != null)
-                                                <a href="{{url($post->post_type.'/'.$post->post_slug)}}" title="{{$post->post_title}}">
-                                                    <img src="{{url('public/storage/'.$post->postMeta->where('meta_key', 'feature_image')->first()->meta_value)}}" alt=""> 
-                                                </a> 
+                                                <div class="w-100 transparent-layer" style="background-image: url({{url('public/storage/'.$post->postMeta->where('meta_key', 'feature_image')->first()->meta_value)}})">
+                                                    <a href="{{url($post->post_type.'/'.$post->post_slug)}}" title="{{$post->post_title}}">
+                                                        <img src="{{module_asset_url('appearance:assets/images/square-layer.png')}}" class="w-100" alt=""> 
+                                                    </a> 
+                                                </div> 
                                             @endif
                                         </div>
                                         <div class="ellipsis mb-2" style="font-size: 1.3rem">
