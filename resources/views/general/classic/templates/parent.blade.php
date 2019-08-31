@@ -28,16 +28,13 @@
     <!-- Place favicon.ico in the root directory -->
     <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
     <link rel="shortcut icon" type="image/ico" href="images/favicon.ico" />
+
     <!-- Plugin-CSS -->
-    {{Html::style(module_asset_url('appearance:assets/css/app.css'))}}
-    {{Html::style(module_asset_url('appearance:resources/views/general/classic/css/owl.carousel.min.css'))}}
-    {{Html::style(module_asset_url('appearance:resources/views/general/classic/css/owl.theme.default.min.css'))}}
-    {{Html::style(module_asset_url('appearance:resources/views/general/classic/css/icofont.css'))}}
-    {{Html::style(module_asset_url('appearance:resources/views/general/classic/css/magnific-popup.css'))}}
-    {{Html::style(module_asset_url('appearance:resources/views/general/classic/css/animate.css'))}}
-    {{Html::style(module_asset_url('appearance:assets/fontawesome/css/all.min.css'))}}
+    @include('appearance::general/classic/partials/page_style')
+    
     <!-- Main-Stylesheets -->
     @yield('page_level_css')
+
     {{Html::style(module_asset_url('appearance:resources/views/general/classic/css/normalize.css'))}}
     {{Html::style(module_asset_url('appearance:resources/views/general/classic/css/style.css'))}}
     {{Html::style(module_asset_url('appearance:resources/views/general/classic/css/responsive.css'))}}
@@ -69,80 +66,17 @@
     </div> -->
 
     <!-- Mainmenu-Area -->
-    <nav class="navbar navbar-spy navbar-expand-lg navbar-fixed-top mainmenu-area">
-      <div class="container">
-        <div class="w-100">
-            <div class="col-12">
-                <div id="search-box" class="collapse">
-                    <form action="#">
-                        <input type="search" class="form-control mb-1" placeholder="What do you want to know?">
-                    </form>
-                </div>
-            </div>
-            <div class="col-12">
-              <div class="d-flex float-lg-left">
-                <img class="img-logo" src="{{empty($settings->where('name','global')->flatten()->first()->value['logo']) ? module_asset_url('core:assets/images/Spartan.png') : url($settings->where('name','global')->flatten()->first()->value['logo'])}}" alt="logo">
-                <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                  <i class="fas fa-bars"></i>
-                </button>
-              </div>
-              <div class="collapse navbar-collapse px-3 px-lg-0" id="navbarSupportedContent">
-                <ul class="nav navbar-nav ml-auto">
-                  @foreach ($navbars as $navbar)
-                      @if(isset($navbar->children))
-                        <li class="dropdown">
-                          <a href="{{isset($navbar->slug) ? url($navbar->slug) : 'javascript:void(0)'}}" target="{{$navbar->target}}" title="{{$navbar->title}}" class="dropdown-toggle nav-link" aria-haspopup="true" aria-expanded="false">
-                            {{$navbar->text}}
-                          </a>
-                          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            @include('appearance::general.classic.partials.navbar_child', ['navbars' => $navbar->children])
-                          </ul>
-                        </li>
-                      @else
-                        <li>
-                          <a class="nav-link" href="{{isset($navbar->slug) ? url($navbar->slug) : 'javascript:void(0)'}}" target="{{$navbar->target}}" title="{{$navbar->title}}">{{$navbar->text}}</a>
-                        </li>
-                      @endif
-                    @endforeach
-                    <li><a class="nav-link" href="#search-box" data-toggle="collapse"><i class="icofont icofont-search-alt-2"></i></a></li>
-                </ul>
-              </div>
-          </div>
-        </div>
-      </div>
-    </nav>
+      @include('appearance::general/classic/partials/navbar')
     <!-- Mainmenu-Area-/ -->
 
+    <!-- Header-Area -->
+      @include('appearance::general/classic/partials/header')
+    <!-- Header-Area -->
 
     @yield('content')
 
     <!-- Footer-Area -->
-    <footer class="footer-area mt-auto">
-        <div class="footer-bottom">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                        <div class="copyright d-flex justify-content-center">
-                          <nav class="navbar-expand-lg">
-                            <ul class="nav ml-auto">
-                              <li class="border-right">
-                                <span class="pr-1">Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved <i class="icofont icofont-heart-alt" aria-hidden="true"></i></span>
-                              </li>
-                              @foreach ($page_navbars as $navbar)
-                                  <li>
-                                    <a class="nav-link py-0 px-1" href="{{isset($navbar->slug) ? url($navbar->slug) : 'javascript:void(0)'}}" target="{{$navbar->target}}" title="{{$navbar->title}}">{{$navbar->text}}</a>
-                                  </li>
-                              @endforeach
-                            </ul>
-                          </nav>
-                        </div>
-                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
+      @include('appearance::general/classic/partials/footer')
     <!-- Footer-Area / -->
 
      {{-- Javascript Core --}}
@@ -156,17 +90,10 @@
     {{Html::script(module_asset_url('appearance:assets/fontawesome/js/all.min.js'))}}
     <!--Plugin-JS-->
 
+    @include('appearance::general/classic/partials/page_script')
+
     @yield('page_level_js')
-    {{Html::script(module_asset_url('appearance:resources/views/general/classic/js/owl.carousel.min.js'))}}
-    {{Html::script(module_asset_url('appearance:resources/views/general/classic/js/appear.js'))}}
-    {{Html::script(module_asset_url('appearance:resources/views/general/classic/js/bars.js'))}}
-    {{Html::script(module_asset_url('appearance:resources/views/general/classic/js/counterup.min.js'))}}
-    {{Html::script(module_asset_url('appearance:resources/views/general/classic/js/easypiechart.min.js'))}}
-    {{Html::script(module_asset_url('appearance:resources/views/general/classic/js/mixitup.min.js'))}}
-    {{Html::script(module_asset_url('appearance:resources/views/general/classic/js/contact-form.js'))}}
-    {{Html::script(module_asset_url('appearance:resources/views/general/classic/js/scrollUp.min.js'))}}
-    {{Html::script(module_asset_url('appearance:resources/views/general/classic/js/magnific-popup.min.js'))}}
-    {{Html::script(module_asset_url('appearance:resources/views/general/classic/js/wow.min.js'))}}
+    
     <!--Main-active-JS-->
     {{Html::script(module_asset_url('appearance:resources/views/general/classic/js/main.js'))}}
     {{Html::script(module_asset_url('appearance:resources/views/general/classic/js/classic.js').'?id='.filemtime(module_asset_path('appearance:resources/views/general/classic/js/classic.js')))}}

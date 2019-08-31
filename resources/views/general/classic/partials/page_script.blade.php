@@ -1,0 +1,10 @@
+{{Html::script(module_asset_url('appearance:resources/views/general/classic/js/owl.carousel.min.js'))}}
+{{Html::script(module_asset_url('appearance:resources/views/general/classic/js/appear.js'))}}
+{{Html::script(module_asset_url('appearance:resources/views/general/classic/js/bars.js'))}}
+{{Html::script(module_asset_url('appearance:resources/views/general/classic/js/counterup.min.js'))}}
+{{Html::script(module_asset_url('appearance:resources/views/general/classic/js/easypiechart.min.js'))}}
+{{Html::script(module_asset_url('appearance:resources/views/general/classic/js/mixitup.min.js'))}}
+{{Html::script(module_asset_url('appearance:resources/views/general/classic/js/contact-form.js'))}}
+{{Html::script(module_asset_url('appearance:resources/views/general/classic/js/scrollUp.min.js'))}}
+{{Html::script(module_asset_url('appearance:resources/views/general/classic/js/magnific-popup.min.js'))}}
+{{Html::script(module_asset_url('appearance:resources/views/general/classic/js/wow.min.js'))}}
