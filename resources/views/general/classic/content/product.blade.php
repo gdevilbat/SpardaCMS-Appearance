@@ -48,7 +48,18 @@
                             </div>
                         </div>
                     <hr>
-                    <h3 class="amount font-italic">Rp. {{number_format($post->productMeta->product_price)}}</h3>
+                    <div class="d-flex w-100">
+                        <h3 class="amount font-italic">Rp. {{number_format($post->productMeta->product_price)}}</h3>
+                        <div class="btn-group ml-auto" role="group">
+                            @if(!empty($post->tokopedia_slug))
+                                <a href="{{url('https://tokopedia.com/sparda-store/'.$post->tokopedia_slug)}}" class="text-reset" title="" target="_blank">
+                                    <button id="btnGroupDrop1" type="button" class="btn btn-danger p-1 rounded-0" aria-haspopup="true" aria-expanded="false" style="height: 40px; font-size: .9em">
+                                      <i class="fas fa-shopping-cart"></i> Buy Now
+                                    </button>
+                                </a>
+                            @endif
+                       </div>
+                    </div>
                     {!!$post->post_content!!}
                     <div class="my-2 d-flex">
                         <span>TAGS : </span>
