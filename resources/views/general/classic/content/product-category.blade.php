@@ -45,6 +45,7 @@
                                                     <a href="{{url($post->post_type.'/'.$post->post_slug)}}">{{$post->post_title}}</a>
                                                 @endif
                                             </h4>
+                                            <div class="mb-1"><i class="fa fa-money-bill-wave"></i> Rp. {{number_format($post->productMeta->product_price)}}</div>
                                             <p>{{$post->post_excerpt}}</p>
                                         </div>
                                     </div>
@@ -106,6 +107,7 @@
                                                     <a href="{{url($post->post_type.'/'.$post->post_slug)}}">{{$post->post_title}}</a>
                                                 @endif
                                             </h4>
+                                            <div class="mb-1"><i class="fa fa-money-bill-wave"></i> Rp. {{number_format($post->productMeta->product_price)}}</div>
                                             <p>{{$post->post_excerpt}}</p>
                                         </div>
                                     </div>

@@ -45,6 +45,7 @@
                                                     <a href="{{url($post->post_type.'/'.$post->post_slug)}}">{{$post->post_title}}</a>
                                                 @endif
                                             </h4>
+                                            <div class="mb-1"> <i class="icofont icofont-ui-calendar"></i> {{$post->created_at->format('d M Y')}}</div>
                                             <p>{{$post->post_excerpt}}</p>
                                         </div>
                                     </div>
@@ -106,6 +107,7 @@
                                                     <a href="{{url($post->post_type.'/'.$post->post_slug)}}">{{$post->post_title}}</a>
                                                 @endif
                                             </h4>
+                                            <div class="mb-1"> <i class="icofont icofont-ui-calendar"></i> {{$post->created_at->format('d M Y')}}</div>
                                             <p>{{$post->post_excerpt}}</p>
                                         </div>
                                     </div>
