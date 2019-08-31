@@ -30,22 +30,23 @@
     <link rel="shortcut icon" type="image/ico" href="images/favicon.ico" />
     <!-- Plugin-CSS -->
     {{Html::style(module_asset_url('appearance:assets/css/app.css'))}}
-    {{Html::style(module_asset_url('appearance:resources/views/general/'.$theme_public->value.'/css/owl.carousel.min.css'))}}
-    {{Html::style(module_asset_url('appearance:resources/views/general/'.$theme_public->value.'/css/icofont.css'))}}
-    {{Html::style(module_asset_url('appearance:resources/views/general/'.$theme_public->value.'/css/magnific-popup.css'))}}
-    {{Html::style(module_asset_url('appearance:resources/views/general/'.$theme_public->value.'/css/animate.css'))}}
+    {{Html::style(module_asset_url('appearance:resources/views/general/classic/css/owl.carousel.min.css'))}}
+    {{Html::style(module_asset_url('appearance:resources/views/general/classic/css/owl.theme.default.min.css'))}}
+    {{Html::style(module_asset_url('appearance:resources/views/general/classic/css/icofont.css'))}}
+    {{Html::style(module_asset_url('appearance:resources/views/general/classic/css/magnific-popup.css'))}}
+    {{Html::style(module_asset_url('appearance:resources/views/general/classic/css/animate.css'))}}
     {{Html::style(module_asset_url('appearance:assets/fontawesome/css/all.min.css'))}}
     <!-- Main-Stylesheets -->
     @yield('page_level_css')
-    {{Html::style(module_asset_url('appearance:resources/views/general/'.$theme_public->value.'/css/normalize.css'))}}
-    {{Html::style(module_asset_url('appearance:resources/views/general/'.$theme_public->value.'/css/style.css'))}}
-    {{Html::style(module_asset_url('appearance:resources/views/general/'.$theme_public->value.'/css/responsive.css'))}}
+    {{Html::style(module_asset_url('appearance:resources/views/general/classic/css/normalize.css'))}}
+    {{Html::style(module_asset_url('appearance:resources/views/general/classic/css/style.css'))}}
+    {{Html::style(module_asset_url('appearance:resources/views/general/classic/css/responsive.css'))}}
 
-    {{Html::style(module_asset_url('appearance:resources/views/general/'.$theme_public->value.'/css/classic.css').'?id='.filemtime(module_asset_path('appearance:resources/views/general/'.$theme_public->value.'/css/classic.css')))}}
+    {{Html::style(module_asset_url('appearance:resources/views/general/classic/css/classic.css').'?id='.filemtime(module_asset_path('appearance:resources/views/general/classic/css/classic.css')))}}
     @yield('page_style_css')
 
 
-    {{Html::script(module_asset_url('appearance:resources/views/general/'.$theme_public->value.'/js/vendor/modernizr-2.8.3.min.js'))}}
+    {{Html::script(module_asset_url('appearance:resources/views/general/classic/js/vendor/modernizr-2.8.3.min.js'))}}
 
     <!--[if lt IE 9]>
         <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -94,7 +95,7 @@
                             {{$navbar->text}}
                           </a>
                           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            @include('appearance::general.'.$theme_public->value.'.partials.navbar_child', ['navbars' => $navbar->children])
+                            @include('appearance::general.classic.partials.navbar_child', ['navbars' => $navbar->children])
                           </ul>
                         </li>
                       @else
@@ -156,19 +157,19 @@
     <!--Plugin-JS-->
 
     @yield('page_level_js')
-    {{Html::script(module_asset_url('appearance:resources/views/general/'.$theme_public->value.'/js/owl.carousel.min.js'))}}
-    {{Html::script(module_asset_url('appearance:resources/views/general/'.$theme_public->value.'/js/appear.js'))}}
-    {{Html::script(module_asset_url('appearance:resources/views/general/'.$theme_public->value.'/js/bars.js'))}}
-    {{Html::script(module_asset_url('appearance:resources/views/general/'.$theme_public->value.'/js/counterup.min.js'))}}
-    {{Html::script(module_asset_url('appearance:resources/views/general/'.$theme_public->value.'/js/easypiechart.min.js'))}}
-    {{Html::script(module_asset_url('appearance:resources/views/general/'.$theme_public->value.'/js/mixitup.min.js'))}}
-    {{Html::script(module_asset_url('appearance:resources/views/general/'.$theme_public->value.'/js/contact-form.js'))}}
-    {{Html::script(module_asset_url('appearance:resources/views/general/'.$theme_public->value.'/js/scrollUp.min.js'))}}
-    {{Html::script(module_asset_url('appearance:resources/views/general/'.$theme_public->value.'/js/magnific-popup.min.js'))}}
-    {{Html::script(module_asset_url('appearance:resources/views/general/'.$theme_public->value.'/js/wow.min.js'))}}
+    {{Html::script(module_asset_url('appearance:resources/views/general/classic/js/owl.carousel.min.js'))}}
+    {{Html::script(module_asset_url('appearance:resources/views/general/classic/js/appear.js'))}}
+    {{Html::script(module_asset_url('appearance:resources/views/general/classic/js/bars.js'))}}
+    {{Html::script(module_asset_url('appearance:resources/views/general/classic/js/counterup.min.js'))}}
+    {{Html::script(module_asset_url('appearance:resources/views/general/classic/js/easypiechart.min.js'))}}
+    {{Html::script(module_asset_url('appearance:resources/views/general/classic/js/mixitup.min.js'))}}
+    {{Html::script(module_asset_url('appearance:resources/views/general/classic/js/contact-form.js'))}}
+    {{Html::script(module_asset_url('appearance:resources/views/general/classic/js/scrollUp.min.js'))}}
+    {{Html::script(module_asset_url('appearance:resources/views/general/classic/js/magnific-popup.min.js'))}}
+    {{Html::script(module_asset_url('appearance:resources/views/general/classic/js/wow.min.js'))}}
     <!--Main-active-JS-->
-    {{Html::script(module_asset_url('appearance:resources/views/general/'.$theme_public->value.'/js/main.js'))}}
-    {{Html::script(module_asset_url('appearance:resources/views/general/'.$theme_public->value.'/js/classic.js').'?id='.filemtime(module_asset_path('appearance:resources/views/general/'.$theme_public->value.'/js/classic.js')))}}
+    {{Html::script(module_asset_url('appearance:resources/views/general/classic/js/main.js'))}}
+    {{Html::script(module_asset_url('appearance:resources/views/general/classic/js/classic.js').'?id='.filemtime(module_asset_path('appearance:resources/views/general/classic/js/classic.js')))}}
 
     @yield('page_script_js')
 </body>

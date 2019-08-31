@@ -1,4 +1,4 @@
-@extends('appearance::general.'.$theme_public->value.'.templates.parent')
+@extends('appearance::general.templates.parent')
 
 @section('title')
     {{!empty($taxonomy->term->name) ? $taxonomy->term->name : (!empty($settings->where('name','global')->flatten()[0]->value['meta_title']) ? $settings->where('name','global')->flatten()[0]->value['meta_title'] : 'SpardaCMS')}}

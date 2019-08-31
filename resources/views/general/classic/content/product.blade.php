@@ -1,7 +1,11 @@
-@extends('appearance::general.'.$theme_public->value.'.templates.parent')
+@extends('appearance::general.classic.templates.parent')
 
 @section('title')
     {{(!empty($post) && !empty($post->postMeta->where('meta_key', 'meta_title')->first()) && $post->postMeta->where('meta_key', 'meta_title')->first()->meta_value != null) ? $post->postMeta->where('meta_key', 'meta_title')->first()->meta_value : (!empty($settings->where('name','global')->flatten()[0]->value['meta_title']) ? $settings->where('name','global')->flatten()[0]->value['meta_title'] : 'SpardaCMS')}}
+@endsection
+
+@section('page_level_css')
+
 @endsection
 
 @section('content')
@@ -32,9 +36,19 @@
                         @endforeach
                     </div>
                     @if(!empty($post) && !empty($post->postMeta->where('meta_key', 'feature_image')->first()) && $post->postMeta->where('meta_key', 'feature_image')->first()->meta_value != null)
-                        <img class="magnificier" src="{{url('public/storage/'.$post->postMeta->where('meta_key', 'feature_image')->first()->meta_value)}}" alt=""> 
+                        <img class="img-header d-none d-lg-block" id="magnificier" src="{{url('public/storage/'.$post->postMeta->where('meta_key', 'feature_image')->first()->meta_value)}}" alt=""> 
+                        <img class="img-header d-lg-none" id="magnificier" src="{{url('public/storage/'.$post->postMeta->where('meta_key', 'feature_image')->first()->meta_value)}}" alt=""> 
                     @endif
-                    <h3 class="amount">Rp. {{number_format($post->productMeta->product_price)}}</h3>
+                    <hr>
+                        <div class="col-12">
+                            <div class="owl-carousel owl-theme">
+                                @foreach ($post->galleries as $gallery)
+                                    <div class="item"><img class="img-fluid" src="{{url($gallery->photo)}}" alt=""> </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    <hr>
+                    <h3 class="amount font-italic">Rp. {{number_format($post->productMeta->product_price)}}</h3>
                     {!!$post->post_content!!}
                     <div class="my-2 d-flex">
                         <span>TAGS : </span>
@@ -44,8 +58,8 @@
                     </div>
                 </div>
                 <div class="col-lg-5">
-                    @include('appearance::general.'.$theme_public->value.'.partials.recent_product')
-                    @include('appearance::general.'.$theme_public->value.'.partials.category_widget')
+                    @include('appearance::general.classic.partials.recent_product')
+                    @include('appearance::general.classic.partials.category_widget')
                 </div>
             </div>
         </div>
@@ -53,17 +67,50 @@
 @endsection
 
 @section('page_level_js')
-    {{Html::script(module_asset_url('appearance:resources/views/general/'.$theme_public->value.'/js/plugin/jquery.zoom.min.js'))}}
+    {{Html::script(module_asset_url('appearance:resources/views/general/classic/js/plugin/jquery.zoom.min.js'))}}
 @endsection
 
 @section('page_script_js')
     <script type="text/javascript">
         $(document).ready(function(){
-          $('img.magnificier')
+            $('#magnificier')
             .wrap('<span style="display:inline-block"></span>')
             .css('display', 'block')
             .parent()
-            .zoom();
+            .zoom(); 
+
+            $('.owl-carousel').owlCarousel({
+                loop:true,
+                margin:10,
+                autoplay: true,
+                nav: true,
+                autoplayTimeOut: 1000,
+                autoplayHoverPause: true,
+                responsive:{
+                    0:{
+                        items:3
+                    },
+                    600:{
+                        items:3
+                    },
+                    1000:{
+                        items:5
+                    }
+                },
+                onInitialized: updateImageHeader,
+                onResized: updateImageHeader
+            })
         });
+
+        function updateImageHeader(){
+            $('.owl-carousel .item img').click(function(event) {
+                $('#magnificier').trigger('zoom.destroy');
+                $('.img-header').attr('src', $(this).attr('src'));
+                $('#magnificier')
+                    .css('display', 'block')
+                    .parent()
+                    .zoom();
+            });
+        }
     </script>
 @endsection

@@ -1,4 +1,4 @@
-@extends('appearance::general.'.$theme_public->value.'.templates.parent')
+@extends('appearance::general.classic.templates.parent')
 
 @section('title')
     {{(!empty($post) && !empty($post->postMeta->where('meta_key', 'meta_title')->first()) && $post->postMeta->where('meta_key', 'meta_title')->first()->meta_value != null) ? $post->postMeta->where('meta_key', 'meta_title')->first()->meta_value : (!empty($settings->where('name','global')->flatten()[0]->value['meta_title']) ? $settings->where('name','global')->flatten()[0]->value['meta_title'] : 'SpardaCMS')}}
@@ -43,8 +43,8 @@
                     </div>
                 </div>
                 <div class="col-lg-5">
-                    @include('appearance::general.'.$theme_public->value.'.partials.recent_post')
-                    @include('appearance::general.'.$theme_public->value.'.partials.category_widget')
+                    @include('appearance::general.classic.partials.recent_post')
+                    @include('appearance::general.classic.partials.category_widget')
                 </div>
             </div>
         </div>
@@ -52,7 +52,7 @@
 @endsection
 
 @section('page_level_js')
-    {{Html::script(module_asset_url('appearance:resources/views/general/'.$theme_public->value.'/js/plugin/jquery.zoom.min.js'))}}
+    {{Html::script(module_asset_url('appearance:resources/views/general/classic/js/plugin/jquery.zoom.min.js'))}}
 @endsection
 
 @section('page_script_js')
