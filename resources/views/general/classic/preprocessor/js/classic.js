@@ -14,9 +14,12 @@ $(document).ready(function() {
 
 function affix() {
 	navbar_height = $(".navbar-spy").height();
-    if ($(document).scrollTop() > (navbar_height+20)) {
+    $(".nav-space").css('min-height', navbar_height+30+'px');
+    if ($(document).scrollTop() > (navbar_height+100)) {
+        $(".nav-space").removeClass("d-none");
         $(".navbar-fixed-top").addClass("top-nav-collapse");
     } else {
+        $(".nav-space").addClass("d-none");
         $(".navbar-fixed-top").removeClass("top-nav-collapse");
     }
 }
