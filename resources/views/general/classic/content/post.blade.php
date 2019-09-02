@@ -14,14 +14,14 @@
                     </div>
                     <div class="my-2 border-top border-bottom">
                         <div class="row px-2 py-1">
-                            <div class="col-1">
+                            <div class="mx-3">
                                 @if(empty($post->author->profile_image_url))
-                                    <img src="{{module_asset_url('core:assets/images/atomix_user31.png')}}" class="img-fluid" alt="" />
+                                    <img src="{{module_asset_url('core:assets/images/atomix_user31.png')}}" style="max-width: 20px" alt="" />
                                 @else
-                                    <img src="{{url('public/storage/'.$post->author->profile_image_url)}}" class="img-fluid" alt=""> 
+                                    <img src="{{url('public/storage/'.$post->author->profile_image_url)}}" style="max-width: 20px" alt=""> 
                                 @endif
                             </div>
-                            <div class="col">
+                            <div class="col pl-0">
                                 <span class="text-dark">{{$post->author->name}}</span> | <span class="text-dark"><i class="fa fa-clock"></i> {{$post->created_at}}</span>
                             </div>
                         </div>
