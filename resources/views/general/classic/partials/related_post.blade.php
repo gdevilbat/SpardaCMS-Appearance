@@ -8,10 +8,16 @@
 	        <div class="blog-list-image d-flex">
 	        	@if(!empty($related_post) && !empty($related_post->postMeta->where('meta_key', 'feature_image')->first()) && $related_post->postMeta->where('meta_key', 'feature_image')->first()->meta_value != null)
 	        		<div class="w-100 transparent-layer" style="background-image: url({{url('public/storage/'.$related_post->postMeta->where('meta_key', 'feature_image')->first()->meta_value)}})">
-                        <a href="{{url($related_post->post_type.'/'.$related_post->post_slug)}}" title="{{$related_post->post_title}}">
-                            <img src="{{module_asset_url('appearance:assets/images/square-layer.png')}}" class="w-100 align-self-center" alt=""> 
-                        </a> 
-                    </div>
+	                    @if($related_post->post_type == 'post')
+	                        <a href="{{url($related_post->created_at->format('Y').'/'.$related_post->created_at->format('m').'/'.$related_post->post_slug.'.html')}}">
+	                            <img src="{{module_asset_url('appearance:assets/images/square-layer.png')}}" class="w-100" alt="{{$related_post->post_title}}"> 
+	                        </a>
+	                    @else
+	                        <a href="{{url($related_post->post_type.'/'.$related_post->post_slug)}}">
+	                            <img src="{{module_asset_url('appearance:assets/images/square-layer.png')}}" class="w-100" alt="{{$related_post->post_title}}"> 
+	                        </a>
+	                    @endif
+	                </div>
 	            @endif
 	        </div>
 	        <div class="ellipsis mb-2" style="font-size: 1.3rem">
