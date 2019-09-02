@@ -69,7 +69,9 @@
                     </div>
                 </div>
                 <div class="col-lg-5">
+                    @include('appearance::general.classic.partials.related_product')
                     @include('appearance::general.classic.partials.recent_product')
+                    @include('appearance::general.classic.partials.recomended_product')
                     @include('appearance::general.classic.partials.category_widget')
                 </div>
             </div>
