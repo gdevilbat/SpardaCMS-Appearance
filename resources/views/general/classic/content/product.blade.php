@@ -70,7 +70,7 @@
                     <div class="my-2 d-flex">
                         <span>TAGS : </span>
                         @foreach ($post_tags as $tag)
-                            <a href="{{url($tag->taxonomy.'/'.$tag->full_slug)}}" title=""><span class="badge badge-warning mx-1">{{$tag->term->name}}</span></a>
+                            <a href="{{url('product-tag'.'/'.$tag->full_slug)}}" title=""><span class="badge badge-warning mx-1">{{$tag->term->name}}</span></a>
                         @endforeach
                     </div>
                 </div>
