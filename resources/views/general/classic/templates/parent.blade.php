@@ -15,13 +15,13 @@
       <meta property="og:description" content="{{!empty($settings->where('name','global')->flatten()[0]->value['fb_share_description']) ? $settings->where('name','global')->flatten()[0]->value['fb_share_description'] : 'Simple And Elegant CMS Laravel'}}" />
       <meta property="og:image" content="{{!empty($settings->where('name','global')->flatten()[0]->value['fb_share_image']) ? asset($settings->where('name','global')->flatten()[0]->value['fb_share_image']) : asset('public/img/LOGO_1024X1024.jpg')}}"/>
       <meta property="og:image:alt" content="{{!empty($settings->where('name','global')->flatten()[0]->value['fb_share_title']) ? $settings->where('name','global')->flatten()[0]->value['fb_share_title'] : env('APP_NAME')}}" />
-      <meta property="og:url"           content="{{url()->full()}}" />
-      <meta property="og:image:width" content="1024" />
-      <meta property="og:image:height" content="1024" />
-      <meta property="webcrawlers" content="all" />
-      <meta property="spiders" content="all" />
-      <meta property="robots" content="all" />
     @show
+    <meta property="og:image:width" content="1024" />
+    <meta property="og:image:height" content="1024" />
+    <meta property="og:url"           content="{{url()->full()}}" />
+    <meta property="webcrawlers" content="all" />
+    <meta property="spiders" content="all" />
+    <meta property="robots" content="all" />
     <link rel="icon" type="image/png" sizes="1024x1024" href="{{asset(!empty($settings->where('name','global')->flatten()->first()->value['favicon']) ? $settings->where('name','global')->flatten()->first()->value['favicon'] : config('app.name'))}}">
     <meta name="google-site-verification" content="{{!empty($settings->where('name','global')->flatten()->first()->value['google_site_verification']) ? $settings->where('name','global')->flatten()->first()->value['google_site_verification'] : ''}}" />
 
