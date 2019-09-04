@@ -31,25 +31,15 @@
                                         <div class="blog-image">
                                             @if(!empty($post) && !empty($post->postMeta->where('meta_key', 'feature_image')->first()) && $post->postMeta->where('meta_key', 'feature_image')->first()->meta_value != null)
                                                 <div class="w-100 transparent-layer" style="background-image: url({{url('public/storage/'.$post->postMeta->where('meta_key', 'feature_image')->first()->meta_value)}})">
-                                                    @if($post->post_type == 'post')
-                                                        <a href="{{url($post->created_at->format('Y').'/'.$post->created_at->format('m').'/'.$post->post_slug.'.html')}}">
-                                                            <img src="{{module_asset_url('appearance:assets/images/rectangle-50-25.png')}}" class="w-100" alt="{{$post->post_title}}"> 
-                                                        </a>
-                                                    @else
-                                                        <a href="{{url($post->post_type.'/'.$post->post_slug)}}">
-                                                            <img src="{{module_asset_url('appearance:assets/images/rectangle-50-25.png')}}" class="w-100" alt="{{$post->post_title}}"> 
-                                                        </a>
-                                                    @endif
+                                                    <a href="{{url($post->post_type.'/'.$post->post_slug)}}">
+                                                        <img src="{{module_asset_url('appearance:assets/images/rectangle-50-25.png')}}" class="w-100" alt="{{$post->post_title}}"> 
+                                                    </a>
                                                 </div>
                                             @endif
                                         </div>
                                         <div class="blog-details">
                                             <h4>
-                                                @if($post->post_type == 'post')
-                                                    <a href="{{url($post->created_at->format('Y').'/'.$post->created_at->format('m').'/'.$post->post_slug.'.html')}}">{{$post->post_title}}</a>
-                                                @else
-                                                    <a href="{{url($post->post_type.'/'.$post->post_slug)}}">{{$post->post_title}}</a>
-                                                @endif
+                                                <a href="{{url($post->post_type.'/'.$post->post_slug)}}">{{$post->post_title}}</a>
                                             </h4>
                                             <div class="mb-1"><i class="fa fa-money-bill-wave"></i> Rp. {{number_format($post->productMeta->product_price)}}</div>
                                             <p>{{$post->post_excerpt}}</p>
@@ -66,24 +56,14 @@
                                         <div class="blog-list-image">
                                             @if(!empty($post) && !empty($post->postMeta->where('meta_key', 'feature_image')->first()) && $post->postMeta->where('meta_key', 'feature_image')->first()->meta_value != null)
                                                 <div class="w-100 transparent-layer" style="background-image: url({{url('public/storage/'.$post->postMeta->where('meta_key', 'feature_image')->first()->meta_value)}})">
-                                                    @if($post->post_type == 'post')
-                                                        <a href="{{url($post->created_at->format('Y').'/'.$post->created_at->format('m').'/'.$post->post_slug.'.html')}}">
-                                                            <img src="{{module_asset_url('appearance:assets/images/square-layer.png')}}" class="w-100" alt=""> 
-                                                        </a>
-                                                    @else
-                                                        <a href="{{url($post->post_type.'/'.$post->post_slug)}}">
-                                                            <img src="{{module_asset_url('appearance:assets/images/square-layer.png')}}" class="w-100" alt=""> 
-                                                        </a>
-                                                    @endif
+                                                    <a href="{{url($post->post_type.'/'.$post->post_slug)}}">
+                                                        <img src="{{module_asset_url('appearance:assets/images/square-layer.png')}}" class="w-100" alt=""> 
+                                                    </a>
                                                 </div>
                                             @endif
                                         </div>
                                         <div class="ellipsis mb-2" style="font-size: 1.3rem">
-                                            @if($post->post_type == 'post')
-                                                <a href="{{url($post->created_at->format('Y').'/'.$post->created_at->format('m').'/'.$post->post_slug.'.html')}}">{{$post->post_title}}</a>
-                                            @else
-                                                <a href="{{url($post->post_type.'/'.$post->post_slug)}}">{{$post->post_title}}</a>
-                                            @endif
+                                            <a href="{{url($post->post_type.'/'.$post->post_slug)}}">{{$post->post_title}}</a>
                                         </div>
                                         <div class="blog-list-meta"> <i class="fa fa-money-bill-wave"></i> Rp. {{number_format($post->productMeta->product_price)}}</div>
                                         <p>{{$post->post_excerpt}}</p>
@@ -105,25 +85,15 @@
                                         <div class="blog-image">
                                             @if(!empty($post) && !empty($post->postMeta->where('meta_key', 'feature_image')->first()) && $post->postMeta->where('meta_key', 'feature_image')->first()->meta_value != null)
                                                 <div class="w-100 transparent-layer" style="background-image: url({{url('public/storage/'.$post->postMeta->where('meta_key', 'feature_image')->first()->meta_value)}})">
-                                                    @if($post->post_type == 'post')
-                                                        <a href="{{url($post->created_at->format('Y').'/'.$post->created_at->format('m').'/'.$post->post_slug.'.html')}}">
-                                                            <img src="{{module_asset_url('appearance:assets/images/rectangle-50-25.png')}}" class="w-100" alt="{{$post->post_title}}"> 
-                                                        </a>
-                                                    @else
-                                                        <a href="{{url($post->post_type.'/'.$post->post_slug)}}">
-                                                            <img src="{{module_asset_url('appearance:assets/images/rectangle-50-25.png')}}" class="w-100" alt="{{$post->post_title}}"> 
-                                                        </a>
-                                                    @endif
+                                                    <a href="{{url($post->post_type.'/'.$post->post_slug)}}">
+                                                        <img src="{{module_asset_url('appearance:assets/images/rectangle-50-25.png')}}" class="w-100" alt="{{$post->post_title}}"> 
+                                                    </a>
                                                 </div>
                                             @endif
                                         </div>
                                         <div class="blog-details">
                                             <h4>
-                                                @if($post->post_type == 'post')
-                                                    <a href="{{url($post->created_at->format('Y').'/'.$post->created_at->format('m').'/'.$post->post_slug.'.html')}}">{{$post->post_title}}</a>
-                                                @else
-                                                    <a href="{{url($post->post_type.'/'.$post->post_slug)}}">{{$post->post_title}}</a>
-                                                @endif
+                                                <a href="{{url($post->post_type.'/'.$post->post_slug)}}">{{$post->post_title}}</a>
                                             </h4>
                                             <div class="mb-1"><i class="fa fa-money-bill-wave"></i> Rp. {{number_format($post->productMeta->product_price)}}</div>
                                             <p>{{$post->post_excerpt}}</p>
@@ -140,24 +110,14 @@
                                         <div class="blog-list-image">
                                             @if(!empty($post) && !empty($post->postMeta->where('meta_key', 'feature_image')->first()) && $post->postMeta->where('meta_key', 'feature_image')->first()->meta_value != null)
                                                 <div class="w-100 transparent-layer" style="background-image: url({{url('public/storage/'.$post->postMeta->where('meta_key', 'feature_image')->first()->meta_value)}})">
-                                                    @if($post->post_type == 'post')
-                                                        <a href="{{url($post->created_at->format('Y').'/'.$post->created_at->format('m').'/'.$post->post_slug.'.html')}}">
-                                                            <img src="{{module_asset_url('appearance:assets/images/square-layer.png')}}" class="w-100" alt="{{$post->post_title}}"> 
-                                                        </a>
-                                                    @else
-                                                        <a href="{{url($post->post_type.'/'.$post->post_slug)}}">
-                                                            <img src="{{module_asset_url('appearance:assets/images/square-layer.png')}}" class="w-100" alt="{{$post->post_title}}"> 
-                                                        </a>
-                                                    @endif
+                                                    <a href="{{url($post->post_type.'/'.$post->post_slug)}}">
+                                                        <img src="{{module_asset_url('appearance:assets/images/square-layer.png')}}" class="w-100" alt=""> 
+                                                    </a>
                                                 </div>
                                             @endif
                                         </div>
                                         <div class="ellipsis mb-2" style="font-size: 1.3rem">
-                                            @if($post->post_type == 'post')
-                                                <a href="{{url($post->created_at->format('Y').'/'.$post->created_at->format('m').'/'.$post->post_slug.'.html')}}">{{$post->post_title}}</a>
-                                            @else
-                                                <a href="{{url($post->post_type.'/'.$post->post_slug)}}">{{$post->post_title}}</a>
-                                            @endif
+                                            <a href="{{url($post->post_type.'/'.$post->post_slug)}}">{{$post->post_title}}</a>
                                         </div>
                                         <div class="blog-list-meta"> <i class="fa fa-money-bill-wave"></i> Rp. {{number_format($post->productMeta->product_price)}}</div>
                                         <p>{{$post->post_excerpt}}</p>
