@@ -43,5 +43,5 @@
     </div>
   </div>
 </nav>
-<div class="w-100 nav-space d-none">
+<div class="w-100 nav-space">
 </div>
