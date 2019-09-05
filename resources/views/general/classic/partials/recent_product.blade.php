@@ -8,24 +8,14 @@
 	        <div class="blog-list-image d-flex">
 	        	@if(!empty($recent_post) && !empty($recent_post->postMeta->where('meta_key', 'feature_image')->first()) && $recent_post->postMeta->where('meta_key', 'feature_image')->first()->meta_value != null)
 	        		<div class="w-100 transparent-layer" style="background-image: url({{url('public/storage/'.$recent_post->postMeta->where('meta_key', 'feature_image')->first()->meta_value)}})">
-                        @if($recent_post->post_type == 'post')
-                            <a href="{{url($recent_post->created_at->format('Y').'/'.$recent_post->created_at->format('m').'/'.$recent_post->post_slug.'.html')}}">
-                                <img src="{{module_asset_url('appearance:assets/images/square-layer.png')}}" class="w-100" alt="{{$recent_post->post_title}}"> 
-                            </a>
-                        @else
-                            <a href="{{url($recent_post->post_type.'/'.$recent_post->post_slug)}}">
-                                <img src="{{module_asset_url('appearance:assets/images/square-layer.png')}}" class="w-100" alt="{{$recent_post->post_title}}"> 
-                            </a>
-                        @endif
+                        <a href="{{url($recent_post->post_type.'/'.$recent_post->post_slug)}}">
+                            <img src="{{module_asset_url('appearance:assets/images/square-layer.png')}}" class="w-100" alt="{{$recent_post->post_title}}"> 
+                        </a>
                     </div>
 	            @endif
 	        </div>
 	        <div class="ellipsis mb-2" style="font-size: 1.3rem">
-	        	@if($recent_post->post_type == 'post')
-		        	<a href="{{url($recent_post->created_at->format('Y').'/'.$recent_post->created_at->format('m').'/'.$recent_post->post_slug.'.html')}}">{{strtoupper($recent_post->post_title)}}</a>
-	        	@else
-		        	<a href="{{url($recent_post->post_type.'/'.$recent_post->post_slug)}}">{{strtoupper($recent_post->post_title)}}</a>
-	        	@endif
+	        	<a href="{{url($recent_post->post_type.'/'.$recent_post->post_slug)}}">{{strtoupper($recent_post->post_title)}}</a>
 	        </div>
 	        <div class="blog-list-meta"> <i class="fa fa-money-bill-wave"></i> Rp. {{number_format($recent_post->productMeta->product_price)}}</div>
 	        {!!$recent_post->post_excerpt!!}

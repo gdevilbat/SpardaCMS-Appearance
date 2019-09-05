@@ -8,24 +8,14 @@
 	        <div class="blog-list-image d-flex">
 	        	@if(!empty($related_post) && !empty($related_post->postMeta->where('meta_key', 'feature_image')->first()) && $related_post->postMeta->where('meta_key', 'feature_image')->first()->meta_value != null)
 	        		<div class="w-100 transparent-layer" style="background-image: url({{url('public/storage/'.$related_post->postMeta->where('meta_key', 'feature_image')->first()->meta_value)}})">
-	                    @if($related_post->post_type == 'post')
-	                        <a href="{{url($related_post->created_at->format('Y').'/'.$related_post->created_at->format('m').'/'.$related_post->post_slug.'.html')}}">
-	                            <img src="{{module_asset_url('appearance:assets/images/square-layer.png')}}" class="w-100" alt="{{$related_post->post_title}}"> 
-	                        </a>
-	                    @else
-	                        <a href="{{url($related_post->post_type.'/'.$related_post->post_slug)}}">
-	                            <img src="{{module_asset_url('appearance:assets/images/square-layer.png')}}" class="w-100" alt="{{$related_post->post_title}}"> 
-	                        </a>
-	                    @endif
+                        <a href="{{url($related_post->created_at->format('Y').'/'.$related_post->created_at->format('m').'/'.$related_post->post_slug.'.html')}}">
+                            <img src="{{module_asset_url('appearance:assets/images/square-layer.png')}}" class="w-100" alt="{{$related_post->post_title}}"> 
+                        </a>
 	                </div>
 	            @endif
 	        </div>
 	        <div class="ellipsis mb-2" style="font-size: 1.3rem">
-	        	@if($related_post->post_type == 'post')
-		        	<a href="{{url($related_post->created_at->format('Y').'/'.$related_post->created_at->format('m').'/'.$related_post->post_slug.'.html')}}">{{$related_post->post_title}}</a>
-	        	@else
-		        	<a href="{{url($related_post->post_type.'/'.$related_post->post_slug)}}">{{$related_post->post_title}}</a>
-	        	@endif
+	        	<a href="{{url($related_post->created_at->format('Y').'/'.$related_post->created_at->format('m').'/'.$related_post->post_slug.'.html')}}">{{$related_post->post_title}}</a>
 	        </div class="ellipsis mb-2" style="font-size: 1.3rem">
 	        <div class="blog-list-meta"> <i class="icofont icofont-ui-calendar"></i> {{$related_post->created_at->format('d/M/Y')}}</div>
 	        {!!$related_post->post_excerpt!!}

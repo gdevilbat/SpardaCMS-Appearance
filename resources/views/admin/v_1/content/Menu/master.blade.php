@@ -84,7 +84,7 @@
                                             <option data-post-id="{{$post->id}}" value="{{$post->post_title}}">{{$post->post_title}} -- Post/Page</option>
                                         @endforeach
                                         @foreach ($taxonomies as $taxonomy)
-                                            <option data-term-id="{{$taxonomy->term_id}}" data-parent-id="{{$taxonomy->parent_id}}" value="{{$taxonomy->term->name}}">{{$taxonomy->term->name}} -- Taxonomy</option>
+                                            <option data-term-id="{{$taxonomy->term_id}}" data-parent-id="{{$taxonomy->parent_id}}" value="{{$taxonomy->term->name}}">{{$taxonomy->term->name}} -- {{$taxonomy->taxonomy}}/Taxonomy</option>
                                             @if(Route::current()->getController()->getChild($taxonomy)->taxonomyChildrens->count() > 0)
                                                 @include('appearance::admin.'.$theme_cms->value.'.partials.taxonomy_child', ['taxonomy' => $taxonomy])
                                             @endif
