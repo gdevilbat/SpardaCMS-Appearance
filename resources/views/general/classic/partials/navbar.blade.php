@@ -10,7 +10,9 @@
         </div>
         <div class="col-12">
           <div class="d-flex float-lg-left">
-            <img class="img-logo" src="{{empty($settings->where('name','global')->flatten()->first()->value['logo']) ? module_asset_url('core:assets/images/Spartan.png') : url($settings->where('name','global')->flatten()->first()->value['logo'])}}" alt="logo">
+            <a href="{{url('/')}}" title="homepage">
+              <img class="img-logo" src="{{empty($settings->where('name','global')->flatten()->first()->value['logo']) ? module_asset_url('core:assets/images/Spartan.png') : url($settings->where('name','global')->flatten()->first()->value['logo'])}}" alt="logo">
+            </a>
             <div class="d-flex align-items-center ml-auto">
 	            <a class="nav-link float-left text-white d-lg-none" href="#search-box" data-toggle="collapse"><i class="icofont icofont-search-alt-2"></i></a>
 	            <button class="navbar-toggler text-light" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
