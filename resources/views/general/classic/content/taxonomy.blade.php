@@ -52,7 +52,7 @@
                                                 @endif
                                             </h4>
                                             <div class="mb-1"> <i class="icofont icofont-ui-calendar"></i> {{$post->created_at->format('d M Y')}}</div>
-                                            <p>{{$post->post_excerpt}}</p>
+                                            <p>{!!$post->post_excerpt!!}</p>
                                         </div>
                                     </div>
                             @endforeach
@@ -86,7 +86,7 @@
                                             @endif
                                         </div>
                                         <div class="blog-list-meta"> <i class="icofont icofont-ui-calendar"></i> {{$post->created_at->format('d M Y')}}</div>
-                                        <p>{{$post->post_excerpt}}</p>
+                                        <p>{!!$post->post_excerpt!!}</p>
                                     </div>
                                 </div>
                             @endforeach
@@ -126,7 +126,7 @@
                                                 @endif
                                             </h4>
                                             <div class="mb-1"> <i class="icofont icofont-ui-calendar"></i> {{$post->created_at->format('d M Y')}}</div>
-                                            <p>{{$post->post_excerpt}}</p>
+                                            <p>{!!$post->post_excerpt!!}</p>
                                         </div>
                                     </div>
                             @endforeach
@@ -160,7 +160,7 @@
                                             @endif
                                         </div>
                                         <div class="blog-list-meta"> <i class="icofont icofont-ui-calendar"></i> {{$post->created_at->format('d M Y')}}</div>
-                                        <p>{{$post->post_excerpt}}</p>
+                                        <p>{!!$post->post_excerpt!!}</p>
                                     </div>
                                 </div>
                             @endforeach

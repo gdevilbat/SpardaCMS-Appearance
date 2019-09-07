@@ -42,7 +42,7 @@
                                                 <a href="{{url($post->post_type.'/'.$post->post_slug)}}">{{$post->post_title}}</a>
                                             </h4>
                                             <div class="mb-1"><i class="fa fa-money-bill-wave"></i> Rp. {{number_format($post->productMeta->product_price)}}</div>
-                                            <p>{{$post->post_excerpt}}</p>
+                                            <p>{!!$post->post_excerpt!!}</p>
                                         </div>
                                     </div>
                             @endforeach
@@ -66,7 +66,7 @@
                                             <a href="{{url($post->post_type.'/'.$post->post_slug)}}">{{$post->post_title}}</a>
                                         </div>
                                         <div class="blog-list-meta"> <i class="fa fa-money-bill-wave"></i> Rp. {{number_format($post->productMeta->product_price)}}</div>
-                                        <p>{{$post->post_excerpt}}</p>
+                                        <p>{!!$post->post_excerpt!!}</p>
                                     </div>
                                 </div>
                             @endforeach
@@ -96,7 +96,7 @@
                                                 <a href="{{url($post->post_type.'/'.$post->post_slug)}}">{{$post->post_title}}</a>
                                             </h4>
                                             <div class="mb-1"><i class="fa fa-money-bill-wave"></i> Rp. {{number_format($post->productMeta->product_price)}}</div>
-                                            <p>{{$post->post_excerpt}}</p>
+                                            <p>{!!$post->post_excerpt!!}</p>
                                         </div>
                                     </div>
                             @endforeach
@@ -120,7 +120,7 @@
                                             <a href="{{url($post->post_type.'/'.$post->post_slug)}}">{{$post->post_title}}</a>
                                         </div>
                                         <div class="blog-list-meta"> <i class="fa fa-money-bill-wave"></i> Rp. {{number_format($post->productMeta->product_price)}}</div>
-                                        <p>{{$post->post_excerpt}}</p>
+                                        <p>{!!$post->post_excerpt!!}</p>
                                     </div>
                                 </div>
                             @endforeach
