@@ -1,7 +1,19 @@
+@php
+    $posts_paginate = $posts_builder->paginate(8);
+    $group_posts = $posts_paginate->chunk(4)
+@endphp
+
 @extends('appearance::general.classic.templates.parent')
 
 @section('title')
     {{!empty($taxonomy->term->name) ? $taxonomy->term->name : (!empty($settings->where('name','global')->flatten()[0]->value['meta_title']) ? $settings->where('name','global')->flatten()[0]->value['meta_title'] : 'SpardaCMS')}}
+@endsection
+
+@section('meta_tag')
+    @parent
+    @if(count(Request::input()) > 0)
+        <link rel="canonical" href="{{url()->current()}}" />
+    @endif
 @endsection
 
 @section('content')
@@ -18,7 +30,6 @@
         </div>
     </header>
     <!-- Blog-area -->
-    <?php $group_posts = $posts->chunk(4) ?>
     @foreach ($group_posts as $posts)
         @if($loop->iteration % 2 > 0)
             <section id="blog-area" class="py-2">
@@ -130,5 +141,10 @@
             </section>
         @endif
     @endforeach
+    <section>
+        <div class="container">
+            {{ $posts_paginate->links('appearance::general.classic.pagination.simple') }}
+        </div>
+    </section>
     <!-- Blog-area / -->
 @endsection
