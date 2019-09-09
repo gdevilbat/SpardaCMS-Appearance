@@ -1,5 +1,5 @@
 @php
-    $posts_paginate = $posts_builder->paginate(8);
+    $posts_paginate = $posts_builder->paginate(16);
     $group_posts = $posts_paginate->chunk(4)
 @endphp
 
@@ -136,7 +136,9 @@
     @endforeach
     <section>
         <div class="container">
-            {{ $posts_paginate->links('appearance::general.classic.pagination.simple') }}
+            <div class="row justify-content-center">
+                {{ $posts_paginate->links('appearance::general.classic.pagination.simple') }}
+            </div>
         </div>
     </section>
     <!-- Blog-area / -->
