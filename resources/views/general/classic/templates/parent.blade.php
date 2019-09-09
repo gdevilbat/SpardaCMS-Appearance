@@ -19,6 +19,9 @@
     <meta property="og:image:width" content="1024" />
     <meta property="og:image:height" content="1024" />
     <meta property="og:url"           content="{{url()->full()}}" />
+    @if(count(Request::input()) > 0)
+        <link rel="canonical" href="{{url()->current()}}" />
+    @endif
     <meta property="webcrawlers" content="all" />
     <meta property="spiders" content="all" />
     <meta property="robots" content="all" />

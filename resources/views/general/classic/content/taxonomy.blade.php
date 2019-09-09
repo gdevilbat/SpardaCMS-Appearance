@@ -9,13 +9,6 @@
     {{!empty($taxonomy->term->name) ? $taxonomy->term->name : (!empty($settings->where('name','global')->flatten()[0]->value['meta_title']) ? $settings->where('name','global')->flatten()[0]->value['meta_title'] : 'SpardaCMS')}}
 @endsection
 
-@section('meta_tag')
-    @parent
-    @if(count(Request::input()) > 0)
-        <link rel="canonical" href="{{url()->current()}}" />
-    @endif
-@endsection
-
 @section('content')
     <header>
         <div class="container">
