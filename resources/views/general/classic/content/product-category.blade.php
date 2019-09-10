@@ -29,7 +29,7 @@
                 <div class="container">
                     <div class="row">
                         <?php $recent_post = $posts->take(1); ?>
-                        <div class="col-xs-12 col-md-6 wow fadeInUp">
+                        <div class="col-xs-12 col-md-6 wow fadeInUp position-relative">
                             @foreach ($recent_post as $post)
                                     <div class="blog-box">
                                         <div class="blog-image">
@@ -45,9 +45,18 @@
                                             <h4>
                                                 <a href="{{url($post->post_type.'/'.$post->post_slug)}}">{{$post->post_title}}</a>
                                             </h4>
-                                            <div class="mb-1"><i class="fa fa-money-bill-wave"></i> Rp. {{number_format($post->productMeta->product_price)}}</div>
+                                            @if($post->productMeta->discount > 0)
+                                                <i class="fa fa-money-bill-wave"></i> <s class="font-italic">Rp. {{number_format($post->productMeta->product_sale)}}</s>
+                                                <br>
+                                                <i class="fa fa-money-bill-wave"></i> Rp. {{number_format($post->productMeta->product_price)}}
+                                            @else
+                                                <i class="fa fa-money-bill-wave"></i> Rp. {{number_format($post->productMeta->product_price)}}
+                                            @endif
                                             <p>{!!$post->post_excerpt!!}</p>
                                         </div>
+                                        @if($post->productMeta->discount > 0)
+                                            <div class="ribbon"><span>{{$post->productMeta->discount}}% Off</span></div>
+                                        @endif
                                     </div>
                             @endforeach
                         </div>
@@ -55,7 +64,7 @@
                         <?php $recent_post = $posts->slice(1); ?>
                         <div class="col-xs-12 col-md-6 wow fadeInUp">
                             @foreach ($recent_post as $post)
-                                <div class="blog-lists">
+                                <div class="blog-lists position-relative">
                                     <div class="blog-list wow fadeInUp" data-wow-delay="0.2s">
                                         <div class="blog-list-image">
                                             @if(!empty($post) && !empty($post->postMeta->where('meta_key', 'feature_image')->first()) && $post->postMeta->where('meta_key', 'feature_image')->first()->meta_value != null)
@@ -69,9 +78,20 @@
                                         <div class="ellipsis mb-2" style="font-size: 1.3rem">
                                             <a href="{{url($post->post_type.'/'.$post->post_slug)}}">{{$post->post_title}}</a>
                                         </div>
-                                        <div class="blog-list-meta"> <i class="fa fa-money-bill-wave"></i> Rp. {{number_format($post->productMeta->product_price)}}</div>
+                                        <div class="blog-list-meta"> 
+                                            @if($post->productMeta->discount > 0)
+                                                <i class="fa fa-money-bill-wave"></i> <s class="font-italic">Rp. {{number_format($post->productMeta->product_sale)}}</s>
+                                                <br>
+                                                <i class="fa fa-money-bill-wave"></i> Rp. {{number_format($post->productMeta->product_price)}}
+                                            @else
+                                                <i class="fa fa-money-bill-wave"></i> Rp. {{number_format($post->productMeta->product_price)}}
+                                            @endif
+                                        </div>
                                         <p>{!!$post->post_excerpt!!}</p>
                                     </div>
+                                    @if($post->productMeta->discount > 0)
+                                        <div class="ribbon"><span>{{$post->productMeta->discount}}% Off</span></div>
+                                    @endif
                                 </div>
                             @endforeach
                         </div>
@@ -83,7 +103,7 @@
                 <div class="container">
                     <div class="row flex-row-reverse">
                         <?php $recent_post = $posts->take(1); ?>
-                        <div class="col-xs-12 col-md-6 wow fadeInUp">
+                        <div class="col-xs-12 col-md-6 wow fadeInUp position-relative">
                             @foreach ($recent_post as $post)
                                     <div class="blog-box">
                                         <div class="blog-image">
@@ -99,9 +119,18 @@
                                             <h4>
                                                 <a href="{{url($post->post_type.'/'.$post->post_slug)}}">{{$post->post_title}}</a>
                                             </h4>
-                                            <div class="mb-1"><i class="fa fa-money-bill-wave"></i> Rp. {{number_format($post->productMeta->product_price)}}</div>
+                                            @if($post->productMeta->discount > 0)
+                                                <i class="fa fa-money-bill-wave"></i> <s class="font-italic">Rp. {{number_format($post->productMeta->product_sale)}}</s>
+                                                <br>
+                                                <i class="fa fa-money-bill-wave"></i> Rp. {{number_format($post->productMeta->product_price)}}
+                                            @else
+                                                <i class="fa fa-money-bill-wave"></i> Rp. {{number_format($post->productMeta->product_price)}}
+                                            @endif
                                             <p>{!!$post->post_excerpt!!}</p>
                                         </div>
+                                        @if($post->productMeta->discount > 0)
+                                            <div class="ribbon"><span>{{$post->productMeta->discount}}% Off</span></div>
+                                        @endif
                                     </div>
                             @endforeach
                         </div>
@@ -109,7 +138,7 @@
                         <?php $recent_post = $posts->slice(1); ?>
                         <div class="col-xs-12 col-md-6 wow fadeInUp">
                             @foreach ($recent_post as $post)
-                                <div class="blog-lists">
+                                <div class="blog-lists position-relative">
                                     <div class="blog-list wow fadeInUp" data-wow-delay="0.2s">
                                         <div class="blog-list-image">
                                             @if(!empty($post) && !empty($post->postMeta->where('meta_key', 'feature_image')->first()) && $post->postMeta->where('meta_key', 'feature_image')->first()->meta_value != null)
@@ -123,9 +152,20 @@
                                         <div class="ellipsis mb-2" style="font-size: 1.3rem">
                                             <a href="{{url($post->post_type.'/'.$post->post_slug)}}">{{$post->post_title}}</a>
                                         </div>
-                                        <div class="blog-list-meta"> <i class="fa fa-money-bill-wave"></i> Rp. {{number_format($post->productMeta->product_price)}}</div>
+                                        <div class="blog-list-meta"> 
+                                            @if($post->productMeta->discount > 0)
+                                                <i class="fa fa-money-bill-wave"></i> <s class="font-italic">Rp. {{number_format($post->productMeta->product_sale)}}</s>
+                                                <br>
+                                                <i class="fa fa-money-bill-wave"></i> Rp. {{number_format($post->productMeta->product_price)}}
+                                            @else
+                                                <i class="fa fa-money-bill-wave"></i> Rp. {{number_format($post->productMeta->product_price)}}
+                                            @endif
+                                        </div>
                                         <p>{!!$post->post_excerpt!!}</p>
                                     </div>
+                                    @if($post->productMeta->discount > 0)
+                                        <div class="ribbon"><span>{{$post->productMeta->discount}}% Off</span></div>
+                                    @endif
                                 </div>
                             @endforeach
                         </div>

@@ -4,7 +4,7 @@
 	</div>
     <hr class="w-75 ml-1">
 	@foreach($recomended_posts as $recomended_post)
-	    <div class="blog-list wow fadeInUp" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
+	    <div class="blog-list wow fadeInUp position-relative" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
 	        <div class="blog-list-image d-flex">
 	        	@if(!empty($recomended_post) && !empty($recomended_post->postMeta->where('meta_key', 'feature_image')->first()) && $recomended_post->postMeta->where('meta_key', 'feature_image')->first()->meta_value != null)
 	        		<div class="w-100 transparent-layer" style="background-image: url({{url('public/storage/'.$recomended_post->postMeta->where('meta_key', 'feature_image')->first()->meta_value)}})">
@@ -17,8 +17,19 @@
 	        <div class="ellipsis mb-2" style="font-size: 1.3rem">
 	        	<a href="{{url($recomended_post->post_type.'/'.$recomended_post->post_slug)}}">{{strtoupper($recomended_post->post_title)}}</a>
 	        </div>
-	        <div class="blog-list-meta"> <i class="fa fa-money-bill-wave"></i> Rp. {{number_format($recomended_post->productMeta->product_price)}}</div>
+	        <div class="blog-list-meta"> 
+                @if($recomended_post->productMeta->discount > 0)
+                    <i class="fa fa-money-bill-wave"></i> <s class="font-italic">Rp. {{number_format($recomended_post->productMeta->product_sale)}}</s>
+                    <br>
+                    <i class="fa fa-money-bill-wave"></i> Rp. {{number_format($recomended_post->productMeta->product_price)}}
+                @else
+                    <i class="fa fa-money-bill-wave"></i> Rp. {{number_format($recomended_post->productMeta->product_price)}}
+                @endif
+            </div>
 	        {!!$recomended_post->post_excerpt!!}
+	        @if($recomended_post->productMeta->discount > 0)
+                <div class="ribbon"><span>{{$recomended_post->productMeta->discount}}% Off</span></div>
+            @endif
 	    </div>
     @endforeach
 </div>

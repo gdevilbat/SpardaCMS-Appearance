@@ -55,7 +55,19 @@
                         </div>
                     <hr>
                     <div class="d-flex w-100">
-                        <h3 class="amount font-italic">Rp. {{number_format($post->productMeta->product_price)}}</h3>
+                        @if($post->productMeta->discount > 0)
+                            <div >
+                                <h3 class="amount mb-0">
+                                    <span style="font-size: .7em;" class="font-italic"><s>Rp. {{number_format($post->productMeta->product_sale)}}</s></span>
+                                    <span class="text-danger" style="font-size: .8em;">{{$post->productMeta->discount}}%</span>
+                                </h3>
+                                <h3 class="amount">
+                                    <span class="font-italic">Rp. {{number_format($post->productMeta->product_price)}}</span>
+                                </h3>
+                            </div>
+                        @else
+                            <h3 class="amount font-italic">Rp. {{number_format($post->productMeta->product_price)}}</h3>
+                        @endif
                         <div class="btn-group ml-auto" role="group">
                             @if(!empty($post->tokopedia_slug))
                                 <a href="{{url('https://tokopedia.com/sparda-store/'.$post->tokopedia_slug)}}" class="text-reset" title="" target="_blank">
