@@ -19,7 +19,7 @@
 	        </div>
 	        <div class="blog-list-meta"> 
                 @if($related_post->productMeta->discount > 0)
-                    <i class="fa fa-money-bill-wave"></i> <s class="font-italic">Rp. {{number_format($related_post->productMeta->product_sale)}}</s>
+                    <i class="fa fa-tags"></i> <s class="font-italic">Rp. {{number_format($related_post->productMeta->product_sale)}}</s>
                     <br>
                     <i class="fa fa-money-bill-wave"></i> Rp. {{number_format($related_post->productMeta->product_price)}}
                 @else
