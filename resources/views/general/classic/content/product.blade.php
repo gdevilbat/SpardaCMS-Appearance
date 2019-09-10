@@ -58,11 +58,11 @@
                         @if($post->productMeta->discount > 0)
                             <div >
                                 <h3 class="amount mb-0">
-                                    <span style="font-size: .7em;" class="font-italic"><s>Rp. {{number_format($post->productMeta->product_sale)}}</s></span>
-                                    <span class="text-danger" style="font-size: .8em;">{{$post->productMeta->discount}}%</span>
+                                    <span style="font-size: .7em;" class="font-italic"><s>Rp. {{number_format($post->productMeta->product_price)}}</s></span>
+                                    <span class="text-danger" style="font-size: .8em;">-{{$post->productMeta->discount}}%</span>
                                 </h3>
                                 <h3 class="amount">
-                                    <span class="font-italic">Rp. {{number_format($post->productMeta->product_price)}}</span>
+                                    <span class="font-italic">Rp. {{number_format($post->productMeta->product_sale)}}</span>
                                 </h3>
                             </div>
                         @else

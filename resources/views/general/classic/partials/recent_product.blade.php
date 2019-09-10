@@ -19,9 +19,9 @@
 	        </div>
 	        <div class="blog-list-meta"> 
                 @if($recent_post->productMeta->discount > 0)
-                    <i class="fa fa-tags"></i> <s class="font-italic">Rp. {{number_format($recent_post->productMeta->product_sale)}}</s>
+                    <i class="fa fa-tags"></i> <s class="font-italic">Rp. {{number_format($recent_post->productMeta->product_price)}}</s>
                     <br>
-                    <i class="fa fa-money-bill-wave"></i> Rp. {{number_format($recent_post->productMeta->product_price)}}
+                    <i class="fa fa-money-bill-wave"></i> Rp. {{number_format($recent_post->productMeta->product_sale)}}
                 @else
                     <i class="fa fa-money-bill-wave"></i> Rp. {{number_format($recent_post->productMeta->product_price)}}
                 @endif

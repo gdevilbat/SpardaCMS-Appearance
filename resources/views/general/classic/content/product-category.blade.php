@@ -46,9 +46,9 @@
                                                 <a href="{{url($post->post_type.'/'.$post->post_slug)}}">{{$post->post_title}}</a>
                                             </h4>
                                             @if($post->productMeta->discount > 0)
-                                                <i class="fa fa-tags"></i> <s class="font-italic">Rp. {{number_format($post->productMeta->product_sale)}}</s>
+                                                <i class="fa fa-tags"></i> <s class="font-italic">Rp. {{number_format($post->productMeta->product_price)}}</s>
                                                 <br>
-                                                <i class="fa fa-money-bill-wave"></i> Rp. {{number_format($post->productMeta->product_price)}}
+                                                <i class="fa fa-money-bill-wave"></i> Rp. {{number_format($post->productMeta->product_sale)}}
                                             @else
                                                 <i class="fa fa-money-bill-wave"></i> Rp. {{number_format($post->productMeta->product_price)}}
                                             @endif
@@ -80,9 +80,9 @@
                                         </div>
                                         <div class="blog-list-meta"> 
                                             @if($post->productMeta->discount > 0)
-                                                <i class="fa fa-tags"></i> <s class="font-italic">Rp. {{number_format($post->productMeta->product_sale)}}</s>
+                                                <i class="fa fa-tags"></i> <s class="font-italic">Rp. {{number_format($post->productMeta->product_price)}}</s>
                                                 <br>
-                                                <i class="fa fa-money-bill-wave"></i> Rp. {{number_format($post->productMeta->product_price)}}
+                                                <i class="fa fa-money-bill-wave"></i> Rp. {{number_format($post->productMeta->product_sale)}}
                                             @else
                                                 <i class="fa fa-money-bill-wave"></i> Rp. {{number_format($post->productMeta->product_price)}}
                                             @endif
@@ -120,9 +120,9 @@
                                                 <a href="{{url($post->post_type.'/'.$post->post_slug)}}">{{$post->post_title}}</a>
                                             </h4>
                                             @if($post->productMeta->discount > 0)
-                                                <i class="fa fa-tags"></i> <s class="font-italic">Rp. {{number_format($post->productMeta->product_sale)}}</s>
+                                                <i class="fa fa-tags"></i> <s class="font-italic">Rp. {{number_format($post->productMeta->product_price)}}</s>
                                                 <br>
-                                                <i class="fa fa-money-bill-wave"></i> Rp. {{number_format($post->productMeta->product_price)}}
+                                                <i class="fa fa-money-bill-wave"></i> Rp. {{number_format($post->productMeta->product_sale)}}
                                             @else
                                                 <i class="fa fa-money-bill-wave"></i> Rp. {{number_format($post->productMeta->product_price)}}
                                             @endif
@@ -154,9 +154,9 @@
                                         </div>
                                         <div class="blog-list-meta"> 
                                             @if($post->productMeta->discount > 0)
-                                                <i class="fa fa-tags"></i> <s class="font-italic">Rp. {{number_format($post->productMeta->product_sale)}}</s>
+                                                <i class="fa fa-tags"></i> <s class="font-italic">Rp. {{number_format($post->productMeta->product_price)}}</s>
                                                 <br>
-                                                <i class="fa fa-money-bill-wave"></i> Rp. {{number_format($post->productMeta->product_price)}}
+                                                <i class="fa fa-money-bill-wave"></i> Rp. {{number_format($post->productMeta->product_sale)}}
                                             @else
                                                 <i class="fa fa-money-bill-wave"></i> Rp. {{number_format($post->productMeta->product_price)}}
                                             @endif
