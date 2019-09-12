@@ -18,72 +18,90 @@
     <section>
         <div class="container">
             <div class="row py-2">
-                <div class="col-lg-7 py-2">
-                    <div>
-                          <h3 class="upper">{{$post->post_title}} </h3> 
-                    </div>
-                    <div class="my-2 border-top border-bottom">
-                        <div class="row px-2 py-1">
-                            <div class="mx-3">
-                                @if(empty($post->author->profile_image_url))
-                                    <img src="{{module_asset_url('core:assets/images/atomix_user31.png')}}" style="max-width: 20px" alt="" />
-                                @else
-                                    <img src="{{url('public/storage/'.$post->author->profile_image_url)}}" style="max-width: 20px" alt=""> 
-                                @endif
-                            </div>
-                            <div class="col pl-0">
-                                <span class="text-dark">{{$post->author->name}}</span></span>
+                <div class="col-lg-7 py-2" itemscope itemtype="http://schema.org/Store">
+                    <meta itemprop="image" content="{{(module_asset_url('appearance:assets/images/default_v3-shopnophoto.png'))}}">
+                    <meta itemprop="name" content="{{env('APP_NAME')}}">
+                    <div class="w-100" itemscope itemtype="http://schema.org/Product">
+                        <meta itemprop="productID" content="{{env('APP_NAME').'_product_'.$post->getKey()}}">
+                        <div>
+                              <h3 class="upper" itemprop="name">{{$post->post_title}} </h3> 
+                        </div>
+                        <div class="my-2 border-top border-bottom">
+                            <div class="row px-2 py-1">
+                                <div class="mx-3">
+                                    @if(empty($post->author->profile_image_url))
+                                        <img src="{{module_asset_url('core:assets/images/atomix_user31.png')}}" style="max-width: 20px" alt="" />
+                                    @else
+                                        <img src="{{url('public/storage/'.$post->author->profile_image_url)}}" style="max-width: 20px" alt=""> 
+                                    @endif
+                                </div>
+                                <div class="col pl-0">
+                                    <span class="text-dark">{{$post->author->name}}</span></span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="my-1">
-                        @foreach ($post_categories as $category)
-                            <a href="{{url($category->taxonomy.'/'.$category->full_slug)}}" title=""><span class="badge badge-danger mx-1">{{$category->term->name}}</span></a>
-                        @endforeach
-                    </div>
-                    @if(!empty($post) && !empty($post->postMeta->where('meta_key', 'feature_image')->first()) && $post->postMeta->where('meta_key', 'feature_image')->first()->meta_value != null)
-                        <img class="img-header d-none d-lg-block" id="magnificier" src="{{url('public/storage/'.$post->postMeta->where('meta_key', 'feature_image')->first()->meta_value)}}" alt=""> 
-                        <img class="img-header d-lg-none" id="magnificier" src="{{url('public/storage/'.$post->postMeta->where('meta_key', 'feature_image')->first()->meta_value)}}" alt=""> 
-                    @endif
-                    <hr>
-                        <div class="col-12">
-                            <div class="owl-carousel owl-theme">
-                                @foreach ($post->galleries as $gallery)
-                                    <div class="item"><img class="img-fluid" src="{{url($gallery->photo)}}" alt=""> </div>
-                                @endforeach
-                            </div>
+                        <div class="my-1">
+                            @foreach ($post_categories as $category)
+                                <a href="{{url($category->taxonomy.'/'.$category->full_slug)}}" title=""><span class="badge badge-danger mx-1">{{$category->term->name}}</span></a>
+                            @endforeach
                         </div>
-                    <hr>
-                    <div class="d-flex w-100">
-                        @if($post->productMeta->discount > 0)
-                            <div >
-                                <h3 class="amount mb-0">
-                                    <span style="font-size: .7em;" class="font-italic"><s>Rp. {{number_format($post->productMeta->product_price)}}</s></span>
-                                    <span class="text-danger" style="font-size: .8em;">-{{$post->productMeta->discount}}%</span>
-                                </h3>
-                                <h3 class="amount">
-                                    <span class="font-italic">Rp. {{number_format($post->productMeta->product_sale)}}</span>
-                                </h3>
-                            </div>
-                        @else
-                            <h3 class="amount font-italic">Rp. {{number_format($post->productMeta->product_price)}}</h3>
+                        @if(!empty($post) && !empty($post->postMeta->where('meta_key', 'feature_image')->first()) && $post->postMeta->where('meta_key', 'feature_image')->first()->meta_value != null)
+                            <img class="img-header d-none d-lg-block" id="magnificier" src="{{url('public/storage/'.$post->postMeta->where('meta_key', 'feature_image')->first()->meta_value)}}" alt="" itemprop="image"> 
+                            <img class="img-header d-lg-none" id="magnificier" src="{{url('public/storage/'.$post->postMeta->where('meta_key', 'feature_image')->first()->meta_value)}}" alt="" itemprop="image"> 
                         @endif
-                        <div class="btn-group ml-auto" role="group">
-                            @if(!empty($post->tokopedia_slug))
-                                <a href="{{url('https://tokopedia.com/sparda-store/'.$post->tokopedia_slug)}}" class="text-reset" title="" target="_blank">
-                                    <button id="btnGroupDrop1" type="button" class="btn btn-danger p-1 rounded btn-shop" aria-haspopup="true" aria-expanded="false" style="height: 40px; font-size: .9em">
-                                      <i class="fas fa-shopping-cart"></i> Buy Now
-                                    </button>
-                                </a>
+                        <hr>
+                            <div class="col-12">
+                                <div class="owl-carousel owl-theme">
+                                    @foreach ($post->galleries as $gallery)
+                                        <div class="item"><img class="img-fluid" src="{{url($gallery->photo)}}" alt=""> </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        <hr>
+                        <div class="d-flex w-100" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+                            <meta itemprop="priceCurrency" content="IDR">
+                            <link itemprop="availability" href="{{$post->productMeta->schema_availability}}"/>
+                            <link itemprop="itemCondition" href="{{$post->productMeta->schema_condition}}"/>
+                            @if($post->productMeta->discount > 0)
+                                <div >
+                                    <h3 class="amount mb-0">
+                                        <span style="font-size: .7em;" class="font-italic"><s>Rp. {{number_format($post->productMeta->product_price)}}</s></span>
+                                        <span class="text-danger" style="font-size: .8em;" itemprop="price" content="{{$post->productMeta->discount}}">-{{$post->productMeta->discount}}%</span>
+                                    </h3>
+                                    <h3 class="amount">
+                                        <span class="font-italic">Rp. {{number_format($post->productMeta->product_sale)}}</span>
+                                    </h3>
+                                </div>
+                            @else
+                                <h3 class="amount font-italic" itemprop="price" content="{{$post->productMeta->product_price}}">Rp. {{number_format($post->productMeta->product_price)}}</h3>
                             @endif
-                       </div>
-                    </div>
-                    {!!$post->post_content!!}
-                    <div class="my-2 d-flex">
-                        <span>TAGS : </span>
-                        @foreach ($post_tags as $tag)
-                            <a href="{{url($tag->taxonomy.'/'.$tag->full_slug)}}" title=""><span class="badge badge-warning mx-1">{{$tag->term->name}}</span></a>
-                        @endforeach
+                            <div class="btn-group ml-auto d-flex align-items-center" role="group">
+                                @if(!empty($post->tokopedia_slug))
+                                    @if($post->productMeta->availability == 'in stock')
+                                        <a href="{{url('https://tokopedia.com/sparda-store/'.$post->tokopedia_slug)}}" class="text-reset" title="" target="_blank">
+                                            <button id="btnGroupDrop1" type="button" class="btn btn-danger p-1 rounded btn-shop" aria-haspopup="true" aria-expanded="false" style="height: 40px; font-size: .9em">
+                                              <i class="fas fa-shopping-cart"></i> Buy Now
+                                            </button>
+                                        </a>
+                                    @else
+                                        <a href="javascript:void(0)" class="text-reset" title="" >
+                                            <button id="btnGroupDrop1" type="button" class="btn btn-dark p-1 rounded btn-shop" aria-haspopup="true" aria-expanded="false" style="height: 40px; font-size: .9em">
+                                              {{ucwords($post->productMeta->availability)}}
+                                            </button>
+                                        </a>
+                                    @endif
+                                @endif
+                           </div>
+                        </div>
+                        <div itemprop="description">
+                            {!!$post->post_content!!}
+                        </div>
+                        <div class="my-2 d-flex">
+                            <span>TAGS : </span>
+                            @foreach ($post_tags as $tag)
+                                <a href="{{url($tag->taxonomy.'/'.$tag->full_slug)}}" title=""><span class="badge badge-warning mx-1">{{$tag->term->name}}</span></a>
+                            @endforeach
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-5">
