@@ -58,7 +58,7 @@
                                 </div>
                             </div>
                         <hr>
-                        <div class="d-flex w-100" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+                        <div class="d-flex w-100 mb-2" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
                             <meta itemprop="priceCurrency" content="IDR">
                             <link itemprop="availability" href="{{$post->productMeta->schema_availability}}"/>
                             <link itemprop="itemCondition" href="{{$post->productMeta->schema_condition}}"/>
