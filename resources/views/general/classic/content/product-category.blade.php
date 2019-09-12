@@ -32,12 +32,17 @@
                         <div class="col-xs-12 col-md-6 wow fadeInUp position-relative">
                             @foreach ($recent_post as $post)
                                     <div class="blog-box">
-                                        <div class="blog-image">
+                                        <div class="blog-image position-relative">
                                             @if(!empty($post) && !empty($post->postMeta->where('meta_key', 'feature_image')->first()) && $post->postMeta->where('meta_key', 'feature_image')->first()->meta_value != null)
                                                 <div class="w-100 transparent-layer" style="background-image: url({{url('public/storage/'.$post->postMeta->where('meta_key', 'feature_image')->first()->meta_value)}})">
                                                     <a href="{{url($post->post_type.'/'.$post->post_slug)}}">
                                                         <img src="{{module_asset_url('appearance:assets/images/rectangle-50-25.png')}}" class="w-100" alt="{{$post->post_title}}"> 
                                                     </a>
+                                                </div>
+                                            @endif
+                                            @if($post->productMeta->availability != 'in stock')
+                                                <div class="position-absolute w-100 h-100 not-ready-stock d-flex justify-content-center align-items-center">
+                                                    <span>{{ucwords($post->productMeta->availability)}}</span>
                                                 </div>
                                             @endif
                                         </div>
@@ -66,12 +71,17 @@
                             @foreach ($recent_post as $post)
                                 <div class="blog-lists position-relative">
                                     <div class="blog-list wow fadeInUp" data-wow-delay="0.2s">
-                                        <div class="blog-list-image">
+                                        <div class="blog-list-image position-relative">
                                             @if(!empty($post) && !empty($post->postMeta->where('meta_key', 'feature_image')->first()) && $post->postMeta->where('meta_key', 'feature_image')->first()->meta_value != null)
                                                 <div class="w-100 transparent-layer" style="background-image: url({{url('public/storage/'.$post->postMeta->where('meta_key', 'feature_image')->first()->meta_value)}})">
                                                     <a href="{{url($post->post_type.'/'.$post->post_slug)}}">
                                                         <img src="{{module_asset_url('appearance:assets/images/square-layer.png')}}" class="w-100" alt=""> 
                                                     </a>
+                                                </div>
+                                            @endif
+                                            @if($post->productMeta->availability != 'in stock')
+                                                <div class="position-absolute w-100 h-100 not-ready-stock d-flex justify-content-center align-items-center">
+                                                    <span>{{ucwords($post->productMeta->availability)}}</span>
                                                 </div>
                                             @endif
                                         </div>
@@ -106,12 +116,17 @@
                         <div class="col-xs-12 col-md-6 wow fadeInUp position-relative">
                             @foreach ($recent_post as $post)
                                     <div class="blog-box">
-                                        <div class="blog-image">
+                                        <div class="blog-image position-relative">
                                             @if(!empty($post) && !empty($post->postMeta->where('meta_key', 'feature_image')->first()) && $post->postMeta->where('meta_key', 'feature_image')->first()->meta_value != null)
                                                 <div class="w-100 transparent-layer" style="background-image: url({{url('public/storage/'.$post->postMeta->where('meta_key', 'feature_image')->first()->meta_value)}})">
                                                     <a href="{{url($post->post_type.'/'.$post->post_slug)}}">
                                                         <img src="{{module_asset_url('appearance:assets/images/rectangle-50-25.png')}}" class="w-100" alt="{{$post->post_title}}"> 
                                                     </a>
+                                                </div>
+                                            @endif
+                                            @if($post->productMeta->availability != 'in stock')
+                                                <div class="position-absolute w-100 h-100 not-ready-stock d-flex justify-content-center align-items-center">
+                                                    <span>{{ucwords($post->productMeta->availability)}}</span>
                                                 </div>
                                             @endif
                                         </div>
@@ -140,12 +155,17 @@
                             @foreach ($recent_post as $post)
                                 <div class="blog-lists position-relative">
                                     <div class="blog-list wow fadeInUp" data-wow-delay="0.2s">
-                                        <div class="blog-list-image">
+                                        <div class="blog-list-image position-relative">
                                             @if(!empty($post) && !empty($post->postMeta->where('meta_key', 'feature_image')->first()) && $post->postMeta->where('meta_key', 'feature_image')->first()->meta_value != null)
                                                 <div class="w-100 transparent-layer" style="background-image: url({{url('public/storage/'.$post->postMeta->where('meta_key', 'feature_image')->first()->meta_value)}})">
                                                     <a href="{{url($post->post_type.'/'.$post->post_slug)}}">
                                                         <img src="{{module_asset_url('appearance:assets/images/square-layer.png')}}" class="w-100" alt=""> 
                                                     </a>
+                                                </div>
+                                            @endif
+                                            @if($post->productMeta->availability != 'in stock')
+                                                <div class="position-absolute w-100 h-100 not-ready-stock d-flex justify-content-center align-items-center">
+                                                    <span>{{ucwords($post->productMeta->availability)}}</span>
                                                 </div>
                                             @endif
                                         </div>
