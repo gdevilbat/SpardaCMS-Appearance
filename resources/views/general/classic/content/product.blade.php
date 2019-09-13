@@ -75,7 +75,7 @@
                                 </div>
                             @else
                                 <meta itemprop="price" content="{{$post->productMeta->product_price}}">
-                                <h3 class="amount font-italic" itemprop="price" content="{{$post->productMeta->product_price}}">Rp. {{number_format($post->productMeta->product_price)}}</h3>
+                                <h3 class="amount font-italic">Rp. {{number_format($post->productMeta->product_price)}}</h3>
                             @endif
                             <div class="btn-group ml-auto d-flex align-items-center" role="group">
                                 @if(!empty($post->tokopedia_slug))
