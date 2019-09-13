@@ -63,16 +63,18 @@
                             <link itemprop="availability" href="{{$post->productMeta->schema_availability}}"/>
                             <link itemprop="itemCondition" href="{{$post->productMeta->schema_condition}}"/>
                             @if($post->productMeta->discount > 0)
+                                <meta itemprop="price" content="{{$post->productMeta->product_sale}}">
                                 <div >
                                     <h3 class="amount mb-0">
                                         <span style="font-size: .7em;" class="font-italic"><s>Rp. {{number_format($post->productMeta->product_price)}}</s></span>
-                                        <span class="text-danger" style="font-size: .8em;" itemprop="price" content="{{$post->productMeta->discount}}">-{{$post->productMeta->discount}}%</span>
+                                        <span class="text-danger" style="font-size: .8em;">-{{$post->productMeta->discount}}%</span>
                                     </h3>
                                     <h3 class="amount">
                                         <span class="font-italic">Rp. {{number_format($post->productMeta->product_sale)}}</span>
                                     </h3>
                                 </div>
                             @else
+                                <meta itemprop="price" content="{{$post->productMeta->product_price}}">
                                 <h3 class="amount font-italic" itemprop="price" content="{{$post->productMeta->product_price}}">Rp. {{number_format($post->productMeta->product_price)}}</h3>
                             @endif
                             <div class="btn-group ml-auto d-flex align-items-center" role="group">
