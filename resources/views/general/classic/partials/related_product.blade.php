@@ -5,7 +5,7 @@
     <hr class="w-75 ml-1">
 	@foreach($related_posts as $related_post)
 	    <div class="blog-list wow fadeInUp position-relative" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
-	        <div class="blog-list-image d-flex">
+	        <div class="blog-list-image d-flex position-relative">
 	        	@if(!empty($related_post) && !empty($related_post->postMeta->where('meta_key', 'feature_image')->first()) && $related_post->postMeta->where('meta_key', 'feature_image')->first()->meta_value != null)
 	        		<div class="w-100 transparent-layer" style="background-image: url({{url('public/storage/'.$related_post->postMeta->where('meta_key', 'feature_image')->first()->meta_value)}})">
                         <a href="{{url($related_post->post_type.'/'.$related_post->post_slug)}}">
@@ -13,6 +13,11 @@
                         </a>
                     </div>
 	            @endif
+	            @if($related_post->productMeta->availability != 'in stock')
+                    <div class="position-absolute w-100 h-100 not-ready-stock d-flex justify-content-center align-items-center">
+                        <span>{{ucwords($related_post->productMeta->availability)}}</span>
+                    </div>
+                @endif
 	        </div>
 	        <div class="ellipsis mb-2" style="font-size: 1.3rem">
 	        	<a href="{{url($related_post->post_type.'/'.$related_post->post_slug)}}">{{strtoupper($related_post->post_title)}}</a>
