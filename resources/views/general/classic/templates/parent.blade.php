@@ -91,6 +91,8 @@
     <!--Vendor-JS-->
     {{Html::script(module_asset_url('appearance:assets/js/app.js'))}}
     {{Html::script(module_asset_url('appearance:assets/fontawesome/js/all.min.js'))}}
+    {{Html::script(module_asset_url('appearance:assets/plugins/lazy/jquery.lazy.min.js'))}}
+    {{Html::script(module_asset_url('appearance:assets/plugins/lazy/jquery.lazy.plugins.min.js'))}}
     <!--Plugin-JS-->
 
     @include('appearance::general/classic/partials/page_script')

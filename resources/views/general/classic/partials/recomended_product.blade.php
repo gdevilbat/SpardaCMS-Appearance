@@ -7,7 +7,7 @@
 	    <div class="blog-list wow fadeInUp position-relative" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
 	        <div class="blog-list-image d-flex position-relative">
 	        	@if(!empty($recomended_post) && !empty($recomended_post->postMeta->where('meta_key', 'feature_image')->first()) && $recomended_post->postMeta->where('meta_key', 'feature_image')->first()->meta_value != null)
-	        		<div class="w-100 transparent-layer" style="background-image: url({{url('public/storage/'.$recomended_post->postMeta->where('meta_key', 'feature_image')->first()->meta_value)}})">
+	        		<div class="w-100 transparent-layer lazy-bg" data-src="{{url('public/storage/'.$recomended_post->postMeta->where('meta_key', 'feature_image')->first()->meta_value)}}">
                         <a href="{{url($recomended_post->post_type.'/'.$recomended_post->post_slug)}}">
                             <img src="{{module_asset_url('appearance:assets/images/square-layer.png')}}" class="w-100" alt="{{$recomended_post->post_title}}"> 
                         </a>

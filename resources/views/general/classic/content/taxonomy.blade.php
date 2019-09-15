@@ -34,7 +34,7 @@
                                     <div class="blog-box">
                                         <div class="blog-image">
                                             @if(!empty($post) && !empty($post->postMeta->where('meta_key', 'feature_image')->first()) && $post->postMeta->where('meta_key', 'feature_image')->first()->meta_value != null)
-                                                <div class="w-100 transparent-layer" style="background-image: url({{url('public/storage/'.$post->postMeta->where('meta_key', 'feature_image')->first()->meta_value)}})">
+                                                <div class="w-100 transparent-layer lazy-bg" data-src="{{url('public/storage/'.$post->postMeta->where('meta_key', 'feature_image')->first()->meta_value)}}">
                                                     @if($post->post_type == 'post')
                                                         <a href="{{url($post->created_at->format('Y').'/'.$post->created_at->format('m').'/'.$post->post_slug.'.html')}}">
                                                             <img src="{{module_asset_url('appearance:assets/images/rectangle-50-25.png')}}" class="w-100" alt="{{$post->post_title}}"> 
@@ -69,14 +69,14 @@
                                     <div class="blog-list wow fadeInUp" data-wow-delay="0.2s">
                                         <div class="blog-list-image">
                                             @if(!empty($post) && !empty($post->postMeta->where('meta_key', 'feature_image')->first()) && $post->postMeta->where('meta_key', 'feature_image')->first()->meta_value != null)
-                                                <div class="w-100 transparent-layer" style="background-image: url({{url('public/storage/'.$post->postMeta->where('meta_key', 'feature_image')->first()->meta_value)}})">
+                                                <div class="w-100 transparent-layer lazy-bg" data-src="{{url('public/storage/'.$post->postMeta->where('meta_key', 'feature_image')->first()->meta_value)}}">
                                                     @if($post->post_type == 'post')
                                                         <a href="{{url($post->created_at->format('Y').'/'.$post->created_at->format('m').'/'.$post->post_slug.'.html')}}">
-                                                            <img src="{{module_asset_url('appearance:assets/images/square-layer.png')}}" class="w-100" alt=""> 
+                                                            <img src="{{module_asset_url('appearance:assets/images/square-layer.png')}}" class="w-100" alt="{{$post->post_title}}"> 
                                                         </a>
                                                     @else
                                                         <a href="{{url($post->post_type.'/'.$post->post_slug)}}">
-                                                            <img src="{{module_asset_url('appearance:assets/images/square-layer.png')}}" class="w-100" alt=""> 
+                                                            <img src="{{module_asset_url('appearance:assets/images/square-layer.png')}}" class="w-100" alt="{{$post->post_title}}"> 
                                                         </a>
                                                     @endif
                                                 </div>
@@ -108,7 +108,7 @@
                                     <div class="blog-box">
                                         <div class="blog-image">
                                             @if(!empty($post) && !empty($post->postMeta->where('meta_key', 'feature_image')->first()) && $post->postMeta->where('meta_key', 'feature_image')->first()->meta_value != null)
-                                                <div class="w-100 transparent-layer" style="background-image: url({{url('public/storage/'.$post->postMeta->where('meta_key', 'feature_image')->first()->meta_value)}})">
+                                                <div class="w-100 transparent-layer lazy-bg" data-src="{{url('public/storage/'.$post->postMeta->where('meta_key', 'feature_image')->first()->meta_value)}}">
                                                     @if($post->post_type == 'post')
                                                         <a href="{{url($post->created_at->format('Y').'/'.$post->created_at->format('m').'/'.$post->post_slug.'.html')}}">
                                                             <img src="{{module_asset_url('appearance:assets/images/rectangle-50-25.png')}}" class="w-100" alt="{{$post->post_title}}"> 
@@ -143,7 +143,7 @@
                                     <div class="blog-list wow fadeInUp" data-wow-delay="0.2s">
                                         <div class="blog-list-image">
                                             @if(!empty($post) && !empty($post->postMeta->where('meta_key', 'feature_image')->first()) && $post->postMeta->where('meta_key', 'feature_image')->first()->meta_value != null)
-                                                <div class="w-100 transparent-layer" style="background-image: url({{url('public/storage/'.$post->postMeta->where('meta_key', 'feature_image')->first()->meta_value)}})">
+                                                <div class="w-100 transparent-layer lazy-bg" data-src="{{url('public/storage/'.$post->postMeta->where('meta_key', 'feature_image')->first()->meta_value)}}">
                                                     @if($post->post_type == 'post')
                                                         <a href="{{url($post->created_at->format('Y').'/'.$post->created_at->format('m').'/'.$post->post_slug.'.html')}}">
                                                             <img src="{{module_asset_url('appearance:assets/images/square-layer.png')}}" class="w-100" alt="{{$post->post_title}}"> 
