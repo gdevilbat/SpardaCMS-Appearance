@@ -8,6 +8,10 @@
     Search Result
 @endsection
 
+@section('meta_tag')
+    <link rel="canonical" href="{{url('/')}}" />
+@endsection
+
 @section('content')
     <header>
         <div class="container">
