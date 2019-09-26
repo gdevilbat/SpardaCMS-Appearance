@@ -85,8 +85,12 @@
                                               <i class="fas fa-shopping-cart"></i> Buy Now
                                             </button>
                                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="btnGroupDrop1">
-                                              <a class="dropdown-item" href="{{url('https://tokopedia.com/'.$post->tokopedia_store.'/'.$post->tokopedia_slug)}}" target="_blank">Tokopedia</a>
-                                              <a class="dropdown-item" href="{{url('https://shopee.com/'.$post->shopee_slug)}}" target="_blank">Shopee</a>
+                                              @if(!empty($post->tokopedia_supplier) && !empty($post->tokopedia_slug))
+                                                  <a class="dropdown-item" href="{{url('https://tokopedia.com/'.$post->tokopedia_store.'/'.$post->tokopedia_slug)}}" target="_blank">Tokopedia</a>
+                                              @endif
+                                              @if(!empty($post->shopee_slug))
+                                                  <a class="dropdown-item" href="{{url('https://shopee.com/'.$post->shopee_slug)}}" target="_blank">Shopee</a>
+                                              @endif
                                             </div>
                                         </div>
                                     @else
