@@ -78,20 +78,30 @@
                                 <h3 class="amount font-italic">Rp. {{number_format($post->productMeta->product_price)}}</h3>
                             @endif
                             <div class="btn-group ml-auto d-flex align-items-center" role="group">
-                                @if(!empty($post->tokopedia_slug))
-                                    @if($post->productMeta->availability == 'in stock')
-                                        <a href="{{url('https://tokopedia.com/sparda-store/'.$post->tokopedia_slug)}}" class="text-reset" title="" target="_blank">
-                                            <button id="btnGroupDrop1" type="button" class="btn btn-danger p-1 rounded btn-shop" aria-haspopup="true" aria-expanded="false" style="height: 40px; font-size: .9em">
+                                @if($post->productMeta->availability == 'in stock')
+                                    @if((!empty($post->tokopedia_supplier) && !empty($post->tokopedia_slug)) || !empty($post->shopee_slug))
+                                        <div class="btn-group" role="group">
+                                            <button id="btnGroupDrop1" type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                               <i class="fas fa-shopping-cart"></i> Buy Now
                                             </button>
-                                        </a>
+                                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="btnGroupDrop1">
+                                              <a class="dropdown-item" href="{{url('https://tokopedia.com/'.$post->tokopedia_store.'/'.$post->tokopedia_slug)}}" target="_blank">Tokopedia</a>
+                                              <a class="dropdown-item" href="{{url('https://shopee.com/'.$post->shopee_slug)}}" target="_blank">Shopee</a>
+                                            </div>
+                                        </div>
                                     @else
                                         <a href="javascript:void(0)" class="text-reset" title="" >
                                             <button id="btnGroupDrop1" type="button" class="btn btn-dark p-1 rounded btn-shop" aria-haspopup="true" aria-expanded="false" style="height: 40px; font-size: .9em">
-                                              {{ucwords($post->productMeta->availability)}}
+                                              Unavailable
                                             </button>
                                         </a>
                                     @endif
+                                @else
+                                    <a href="javascript:void(0)" class="text-reset" title="" >
+                                        <button id="btnGroupDrop1" type="button" class="btn btn-dark p-1 rounded btn-shop" aria-haspopup="true" aria-expanded="false" style="height: 40px; font-size: .9em">
+                                          {{ucwords($post->productMeta->availability)}}
+                                        </button>
+                                    </a>
                                 @endif
                            </div>
                         </div>
