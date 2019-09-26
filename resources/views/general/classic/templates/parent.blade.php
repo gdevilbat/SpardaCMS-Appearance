@@ -13,7 +13,7 @@
       <meta property="og:type" content="website" />
       <meta property="og:title" content="{{!empty($settings->where('name','global')->flatten()[0]->value['fb_share_title']) ? $settings->where('name','global')->flatten()[0]->value['fb_share_title'] : (!empty($settings->where('name','global')->flatten()[0]->value['meta_title']) ? $settings->where('name','global')->flatten()[0]->value['meta_title'] : 'SpardaCMS'). ' | '.env('APP_NAME')}}"/>
       <meta property="og:description" content="{{!empty($settings->where('name','global')->flatten()[0]->value['fb_share_description']) ? $settings->where('name','global')->flatten()[0]->value['fb_share_description'] : (!empty($settings->where('name','global')->flatten()[0]->value['meta_description']) ? $settings->where('name','global')->flatten()[0]->value['meta_description'] : 'SpardaCMS for Connecting Business and Technology')}}" />
-      <meta property="og:image" content="{{!empty($settings->where('name','global')->flatten()[0]->value['fb_share_image']) ? asset($settings->where('name','global')->flatten()[0]->value['fb_share_image']) : asset('public/img/LOGO_1024X1024.jpg')}}"/>
+      <meta property="og:image" content="{{!empty($settings->where('name','global')->flatten()[0]->value['fb_share_image']) ? asset($settings->where('name','global')->flatten()[0]->value['fb_share_image']) : ''}}"/>
       <meta property="og:image:alt" content="{{!empty($settings->where('name','global')->flatten()[0]->value['fb_share_title']) ? $settings->where('name','global')->flatten()[0]->value['fb_share_title'] : env('APP_NAME')}}" />
     @show
     <meta property="og:image:width" content="1024" />
@@ -25,7 +25,7 @@
     <meta property="webcrawlers" content="all" />
     <meta property="spiders" content="all" />
     <meta property="robots" content="all" />
-    <link rel="icon" type="image/png" sizes="1024x1024" href="{{asset(!empty($settings->where('name','global')->flatten()->first()->value['favicon']) ? $settings->where('name','global')->flatten()->first()->value['favicon'] : config('app.name'))}}">
+    <link rel="icon" type="image/png" sizes="1024x1024" href="{{!empty($settings->where('name','global')->flatten()->first()->value['favicon']) ? asset($settings->where('name','global')->flatten()->first()->value['favicon']) : ''}}">
     <meta name="google-site-verification" content="{{!empty($settings->where('name','global')->flatten()->first()->value['google_site_verification']) ? $settings->where('name','global')->flatten()->first()->value['google_site_verification'] : ''}}" />
 
     <!-- Place favicon.ico in the root directory -->
