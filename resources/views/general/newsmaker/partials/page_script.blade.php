@@ -1,0 +1,1 @@
+{{Html::script(module_asset_url('appearance:assets/plugins/slick/js/slick.min.js'))}}
