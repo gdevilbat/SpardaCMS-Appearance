@@ -58,7 +58,11 @@
                     </div>
                     <div class="list-content list-img">
                         <a href="{{url($post->created_at->format('Y').'/'.$post->created_at->format('m').'/'.$post->post_slug.'.html')}}">
-                            <img src="https://dummyimage.com/600x200/084494/fff" alt="Judul Berita">
+                             @if(!empty($post) && !empty($post->postMeta->where('meta_key', 'cover_image')->first()) && $post->postMeta->where('meta_key', 'cover_image')->first()->meta_value['file'] != null)
+                                <img src="{{generate_storage_url($post->postMeta->where('meta_key', 'cover_image')->first()->meta_value['file'])}}" alt=""> 
+                            @else
+                                <img src="https://dummyimage.com/600x200/084494/fff" alt="Judul Berita">
+                            @endif
                         </a>
                     </div>
                 </div>

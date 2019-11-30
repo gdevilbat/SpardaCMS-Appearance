@@ -62,8 +62,8 @@
                         <div class="blog-lists">
                             <div class="blog-list wow fadeInUp" data-wow-delay="0.2s">
                                 <div class="blog-list-image col-12">
-                                    @if(!empty($post) && !empty($post->postMeta->where('meta_key', 'feature_image')->first()) && $post->postMeta->where('meta_key', 'feature_image')->first()->meta_value != null)
-                                        <div class="w-100 transparent-layer lazy-bg" data-src="{{generate_storage_url($post->postMeta->where('meta_key', 'feature_image')->first()->meta_value)}}">
+                                    @if(!empty($post) && !empty($post->postMeta->where('meta_key', 'cover_image')->first()) && $post->postMeta->where('meta_key', 'cover_image')->first()->meta_value['file'] != null)
+                                        <div class="w-100 transparent-layer lazy-bg" data-src="{{generate_storage_url($post->postMeta->where('meta_key', 'cover_image')->first()->meta_value['file'])}}">
                                             @if($post->post_type == 'post')
                                                 <a href="{{url($post->created_at->format('Y').'/'.$post->created_at->format('m').'/'.$post->post_slug.'.html')}}">
                                                     <img src="{{module_asset_url('appearance:assets/images/square-layer.png')}}" class="w-100" alt="{{$post->post_title}}"> 

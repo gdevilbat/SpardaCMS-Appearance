@@ -34,8 +34,8 @@
 	    </div>
 	    <div class="list-content list-img">
 	        <a href="{{url($related_post->created_at->format('Y').'/'.$related_post->created_at->format('m').'/'.$related_post->post_slug.'.html')}}">
-	        	@if(!empty($related_post) && !empty($related_post->postMeta->where('meta_key', 'feature_image')->first()) && $related_post->postMeta->where('meta_key', 'feature_image')->first()->meta_value != null)
-		            <img src="{{url('public/storage/'.$related_post->postMeta->where('meta_key', 'feature_image')->first()->meta_value)}}" alt="Judul Berita">
+	        	@if(!empty($post) && !empty($post->postMeta->where('meta_key', 'cover_image')->first()) && $post->postMeta->where('meta_key', 'cover_image')->first()->meta_value['file'] != null)
+		            <img src="{{generate_storage_url($post->postMeta->where('meta_key', 'cover_image')->first()->meta_value['file'])}}" alt="Judul Berita">
 	            @else
 		            <img src="https://dummyimage.com/600x200/084494/fff" alt="Judul Berita">
 	            @endif

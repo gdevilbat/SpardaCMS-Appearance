@@ -6,13 +6,13 @@
 	@foreach($recomended_posts as $recomended_post)
 	    <div class="blog-list wow fadeInUp position-relative" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
 	        <div class="blog-list-image d-flex position-relative">
-	        	@if(!empty($recomended_post) && !empty($recomended_post->postMeta->where('meta_key', 'feature_image')->first()) && $recomended_post->postMeta->where('meta_key', 'feature_image')->first()->meta_value != null)
-	        		<div class="w-100 transparent-layer lazy-bg" data-src="{{generate_storage_url($recomended_post->postMeta->where('meta_key', 'feature_image')->first()->meta_value)}}">
+	        	@if(!empty($recomended_post) && !empty($recomended_post->postMeta->where('meta_key', 'cover_image')->first()) && $recomended_post->postMeta->where('meta_key', 'cover_image')->first()->meta_value['file'] != null)
+                    <div class="w-100 transparent-layer lazy-bg" data-src="{{generate_storage_url($recomended_post->postMeta->where('meta_key', 'cover_image')->first()->meta_value['file'])}}">
                         <a href="{{url($recomended_post->post_type.'/'.$recomended_post->post_slug)}}">
                             <img src="{{module_asset_url('appearance:assets/images/square-layer.png')}}" class="w-100" alt="{{$recomended_post->post_title}}"> 
                         </a>
                     </div>
-	            @endif
+                @endif
 	            @if($recomended_post->productMeta->availability != 'in stock')
                     <div class="position-absolute w-100 h-100 not-ready-stock d-flex justify-content-center align-items-center">
                         <span>{{ucwords($recomended_post->productMeta->availability)}}</span>

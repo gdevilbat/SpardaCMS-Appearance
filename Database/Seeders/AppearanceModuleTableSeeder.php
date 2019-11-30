@@ -22,7 +22,7 @@ class AppearanceModuleTableSeeder extends Seeder
             [
                 'name' => 'Appearance',
                 'slug' => 'appearance',
-                'scope' => json_encode(array('menu', 'create', 'read', 'update', 'delete')),
+                'scope' => json_encode(array('menu', 'create', 'read', 'update', 'delete', 'permission')),
                 'is_scanable' => '1',
                 'created_at' => \Carbon\Carbon::now()
             ]

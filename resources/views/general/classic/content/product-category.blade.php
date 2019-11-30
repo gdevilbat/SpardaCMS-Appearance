@@ -33,9 +33,8 @@
                             @foreach ($recent_post as $post)
                                     <div class="blog-box">
                                         <div class="blog-image position-relative">
-                                            @if(!empty($post) && !empty($post->postMeta->where('meta_key', 'feature_image')->first()) && $post->postMeta->where('meta_key', 'feature_image')->first()->meta_value != null)
-                                                <div class="w-100 transparent-layer lazy-bg" data-src="{{generate_storage_url($post->postMeta->where('meta_key', 'feature_image')->first()->meta_value)}}">
-                                                    <a href="{{url($post->post_type.'/'.$post->post_slug)}}">
+                                            @if(!empty($post) && !empty($post->postMeta->where('meta_key', 'cover_image')->first()) && $post->postMeta->where('meta_key', 'cover_image')->first()->meta_value['file'] != null)
+                                                <div class="w-100 transparent-layer lazy-bg" data-src="{{generate_storage_url($post->postMeta->where('meta_key', 'cover_image')->first()->meta_value['file'])}}">
                                                         <img src="{{module_asset_url('appearance:assets/images/rectangle-50-25.png')}}" class="w-100" alt="{{$post->post_title}}"> 
                                                     </a>
                                                 </div>
@@ -72,9 +71,8 @@
                                 <div class="blog-lists position-relative">
                                     <div class="blog-list wow fadeInUp" data-wow-delay="0.2s">
                                         <div class="blog-list-image position-relative">
-                                            @if(!empty($post) && !empty($post->postMeta->where('meta_key', 'feature_image')->first()) && $post->postMeta->where('meta_key', 'feature_image')->first()->meta_value != null)
-                                                <div class="w-100 transparent-layer lazy-bg" data-src="{{generate_storage_url($post->postMeta->where('meta_key', 'feature_image')->first()->meta_value)}}">
-                                                    <a href="{{url($post->post_type.'/'.$post->post_slug)}}">
+                                            @if(!empty($post) && !empty($post->postMeta->where('meta_key', 'cover_image')->first()) && $post->postMeta->where('meta_key', 'cover_image')->first()->meta_value['file'] != null)
+                                                <div class="w-100 transparent-layer lazy-bg" data-src="{{generate_storage_url($post->postMeta->where('meta_key', 'cover_image')->first()->meta_value['file'])}}">
                                                         <img src="{{module_asset_url('appearance:assets/images/square-layer.png')}}" class="w-100" alt="{{$post->post_title}}"> 
                                                     </a>
                                                 </div>
@@ -117,9 +115,8 @@
                             @foreach ($recent_post as $post)
                                     <div class="blog-box">
                                         <div class="blog-image position-relative">
-                                            @if(!empty($post) && !empty($post->postMeta->where('meta_key', 'feature_image')->first()) && $post->postMeta->where('meta_key', 'feature_image')->first()->meta_value != null)
-                                                <div class="w-100 transparent-layer lazy-bg" data-src="{{generate_storage_url($post->postMeta->where('meta_key', 'feature_image')->first()->meta_value)}}">
-                                                    <a href="{{url($post->post_type.'/'.$post->post_slug)}}">
+                                            @if(!empty($post) && !empty($post->postMeta->where('meta_key', 'cover_image')->first()) && $post->postMeta->where('meta_key', 'cover_image')->first()->meta_value['file'] != null)
+                                                <div class="w-100 transparent-layer lazy-bg" data-src="{{generate_storage_url($post->postMeta->where('meta_key', 'cover_image')->first()->meta_value['file'])}}">
                                                         <img src="{{module_asset_url('appearance:assets/images/rectangle-50-25.png')}}" class="w-100" alt="{{$post->post_title}}"> 
                                                     </a>
                                                 </div>
@@ -156,9 +153,8 @@
                                 <div class="blog-lists position-relative">
                                     <div class="blog-list wow fadeInUp" data-wow-delay="0.2s">
                                         <div class="blog-list-image position-relative">
-                                            @if(!empty($post) && !empty($post->postMeta->where('meta_key', 'feature_image')->first()) && $post->postMeta->where('meta_key', 'feature_image')->first()->meta_value != null)
-                                                <div class="w-100 transparent-layer lazy-bg" data-src="{{generate_storage_url($post->postMeta->where('meta_key', 'feature_image')->first()->meta_value)}}">
-                                                    <a href="{{url($post->post_type.'/'.$post->post_slug)}}">
+                                            @if(!empty($post) && !empty($post->postMeta->where('meta_key', 'cover_image')->first()) && $post->postMeta->where('meta_key', 'cover_image')->first()->meta_value['file'] != null)
+                                                <div class="w-100 transparent-layer lazy-bg" data-src="{{generate_storage_url($post->postMeta->where('meta_key', 'cover_image')->first()->meta_value['file'])}}">
                                                         <img src="{{module_asset_url('appearance:assets/images/square-layer.png')}}" class="w-100" alt="{{$post->post_title}}"> 
                                                     </a>
                                                 </div>
