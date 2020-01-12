@@ -23,17 +23,19 @@ class MenuController extends CoreController
 {
     protected $taxonomy_menu;
 
+    const TAXONOMY_NAVBAR_SLUG = 'navbar';
+
     public function __construct()
     {
         parent::__construct();
         $this->terms_m = new Terms_m;
-        $this->terms_repository = new Repository(new Terms_m);
+        $this->terms_repository = new Repository(new Terms_m, resolve(\Gdevilbat\SpardaCMS\Modules\Role\Repositories\Contract\AuthenticationRepository::class));
         $this->term_meta_m = new TermMeta_m;
-        $this->term_meta_repository = new Repository(new TermMeta_m);
+        $this->term_meta_repository = new Repository(new TermMeta_m, resolve(\Gdevilbat\SpardaCMS\Modules\Role\Repositories\Contract\AuthenticationRepository::class));
         $this->term_taxonomy_m = new TermTaxonomy_m;
-        $this->term_taxonomy_repository = new Repository(new TermTaxonomy_m);
+        $this->term_taxonomy_repository = new Repository(new TermTaxonomy_m, resolve(\Gdevilbat\SpardaCMS\Modules\Role\Repositories\Contract\AuthenticationRepository::class));
         $this->setting_m = new Setting_m;
-        $this->setting_repository = new Repository(new Setting_m);
+        $this->setting_repository = new Repository(new Setting_m, resolve(\Gdevilbat\SpardaCMS\Modules\Role\Repositories\Contract\AuthenticationRepository::class));
 
         $taxonomy_menu = $this->setting_repository->findByAttributes(['name' => 'taxonomy_menu'])->value;
         $this->taxonomy_menu = explode(',', $taxonomy_menu);
@@ -55,7 +57,7 @@ class MenuController extends CoreController
                                 ->where(function($query){
                                     $query->whereIn('taxonomy', $this->taxonomy_menu);                                        
                                 })
-                                ->whereDoesntHave('taxonomyParents', function($query){
+                                ->whereDoesntHave('parent', function($query){
                                     $query->whereIn('taxonomy', $this->taxonomy_menu);                                        
                                 })
                                 ->get();
@@ -74,7 +76,7 @@ class MenuController extends CoreController
     {
         $menus = $request->input('menu');
 
-        $taxonomy = $this->term_taxonomy_m->where('taxonomy', 'navbar')->delete();
+        $taxonomy = $this->term_taxonomy_m->where('taxonomy', SELF::TAXONOMY_NAVBAR_SLUG)->delete();
 
         if(!empty($menus))
         {
@@ -86,9 +88,9 @@ class MenuController extends CoreController
                 
                     if(!empty($value['term_id']))
                     {
-                        if(empty($value['parent_id']))
+                        if(empty($value['parent_id']) || (array_key_exists('parent_id', $value) && TermTaxonomy_m::find($value['parent_id'])->taxonomy != SELF::TAXONOMY_NAVBAR_SLUG))
                         {
-                            $taxonomy = $this->term_taxonomy_m->where(['term_id' => $value['term_id'], 'taxonomy' => 'navbar'])->first();
+                            $taxonomy = $this->term_taxonomy_m->where([TermTaxonomy_m::getPrimaryKey() => $value[TermTaxonomy_m::getPrimaryKey()], 'taxonomy' => SELF::TAXONOMY_NAVBAR_SLUG])->first();
                             if(empty($taxonomy))
                             {
                                 $taxonomy = new $this->term_taxonomy_m;
@@ -96,8 +98,8 @@ class MenuController extends CoreController
                             }
 
                             $taxonomy->term_id = $value['term_id'];
-                            $taxonomy->taxonomy = 'navbar';
-                            $taxonomy->parent_id = null;
+                            $taxonomy->taxonomy = SELF::TAXONOMY_NAVBAR_SLUG;
+                            $taxonomy->parent_id = $value['taxonomy_parent_id'];
                             $taxonomy->modified_by = Auth::id();
                             $taxonomy->save();
 
@@ -120,7 +122,7 @@ class MenuController extends CoreController
 
                             if(array_key_exists('children', $value))
                             {
-                                $this->saveChildren($value['children'], $taxonomy->term_id);
+                                $this->saveChildren($value['children'], $taxonomy->getKey());
                             }
                         }
                     }
@@ -174,9 +176,9 @@ class MenuController extends CoreController
             
                 if(!empty($value['term_id']))
                 {
-                    if($parent_id == $value['parent_id'])
+                    if($this->isCorrectParent($parent_id, $value))
                     {
-                        $taxonomy = $this->term_taxonomy_m->where(['term_id' => $value['term_id'], 'taxonomy' => 'navbar'])->first();
+                        $taxonomy = $this->term_taxonomy_m->where([TermTaxonomy_m::getPrimaryKey() => $value[TermTaxonomy_m::getPrimaryKey()], 'taxonomy' => SELF::TAXONOMY_NAVBAR_SLUG])->first();
                         if(empty($taxonomy))
                         {
                             $taxonomy = new $this->term_taxonomy_m;
@@ -184,7 +186,7 @@ class MenuController extends CoreController
                         }
 
                         $taxonomy->term_id = $value['term_id'];
-                        $taxonomy->taxonomy = 'navbar';
+                        $taxonomy->taxonomy = SELF::TAXONOMY_NAVBAR_SLUG;
                         $taxonomy->parent_id = $parent_id;
                         $taxonomy->modified_by = Auth::id();
                         $taxonomy->save();
@@ -208,7 +210,7 @@ class MenuController extends CoreController
 
                         if(array_key_exists('children', $value))
                         {
-                            $this->saveChildren($value['children'], $taxonomy->term_id);
+                            $this->saveChildren($value['children'], $taxonomy->getKey());
                         }
                     }
                 }
@@ -218,24 +220,21 @@ class MenuController extends CoreController
         }
     }
 
-    /**
-     * Show the specified resource.
-     * @param int $id
-     * @return Response
-     */
-    public function show($id)
+    private function isCorrectParent($parent_id, $children)
     {
-        return view('appearance::show');
-    }
+        $taxonomy = TermTaxonomy_m::select('term_id')->find($parent_id);
+        $checkchildren = TermTaxonomy_m::whereHas('childrens', function($query) use ($children){
+                                        $query->where('taxonomy', '!=', SELF::TAXONOMY_NAVBAR_SLUG)
+                                              ->where('term_id', $children['term_id']);
+                                    })
+                                    ->where('term_id', $taxonomy->term_id)
+                                    ->with('childrens')
+                                    ->get();
 
-    /**
-     * Remove the specified resource from storage.
-     * @param int $id
-     * @return Response
-     */
-    public function destroy($id)
-    {
-        //
+        if($checkchildren->count()> 0)
+            return true;
+
+        return false;
     }
 
     public function updateTaxonomyMenu(Request $request)
@@ -284,9 +283,9 @@ class MenuController extends CoreController
 
     public function getChild($object)
     {
-        $model = $object->load(['taxonomyChildrens' => function($query){
+        $model = $object->load(['childrens' => function($query){
                     $query->whereIn('taxonomy', $this->taxonomy_menu);
-                }, 'taxonomyChildrens.parent','taxonomyChildrens.term']);
+                }, 'childrens.parent','childrens.term']);
 
         return $model;
     }
@@ -314,9 +313,11 @@ class MenuController extends CoreController
 
         $navbar = [];
 
-        foreach ($model->taxonomyChildrens as $key_parent => $value_parent) 
+        foreach ($model->childrens as $key_parent => $value_parent) 
         {
             $navbar[$key_parent]['text'] = !empty($value_parent->term->termMeta->where('meta_key', 'menu_text')->first()) ? $value_parent->term->termMeta->where('meta_key', 'menu_text')->first()->meta_value : $value_parent->term->name;
+            $navbar[$key_parent][TermTaxonomy_m::getPrimaryKey()] = $value_parent->getKey();
+            $navbar[$key_parent]['taxonomy_parent_id'] = $value_parent->parent_id;
             $navbar[$key_parent]['term_id'] = $value_parent->term_id;
             $navbar[$key_parent]['parent_id'] = $value_parent->parent_id;
             $navbar[$key_parent]['slug'] = $this->getTaxonomyType($parent_slug.'/'.$value_parent->term->slug).'/'.$parent_slug.'/'.$value_parent->term->slug;
@@ -326,7 +327,7 @@ class MenuController extends CoreController
 
             $object_parent = $this->loadNavbarChild($value_parent);
 
-            if($object_parent->taxonomyChildrens->count() > 0)
+            if($object_parent->childrens->count() > 0)
             {
                 $navbar[$key_parent]['children'] = $this->getNavbarsChild($object_parent, $parent_slug.'/'.$value_parent->term->slug);
             }
@@ -337,9 +338,9 @@ class MenuController extends CoreController
 
     private function loadNavbarChild($object)
     {
-        $model = $object->load(['taxonomyChildrens' => function($query){
-                    $query->where('taxonomy', 'navbar');
-                },'taxonomyChildrens.term.termMeta']);
+        $model = $object->load(['childrens' => function($query){
+                    $query->where('taxonomy', SELF::TAXONOMY_NAVBAR_SLUG);
+                },'childrens.term.termMeta']);
 
         return $model;
     }
@@ -349,9 +350,9 @@ class MenuController extends CoreController
         if(empty(Config::get('TAXONOMY_NAVBAR')))
         {
             $model = TermTaxonomy_m::with('term.termMeta')
-                                    ->where('taxonomy', 'navbar')
-                                    ->whereDoesntHave('taxonomyParents', function($query){
-                                        $query->where('taxonomy', 'navbar');
+                                    ->where('taxonomy', SELF::TAXONOMY_NAVBAR_SLUG)
+                                    ->whereDoesntHave('parent', function($query){
+                                        $query->where('taxonomy', SELF::TAXONOMY_NAVBAR_SLUG);
                                     })
                                     ->get();
 
@@ -360,6 +361,8 @@ class MenuController extends CoreController
             foreach ($model as $key_parent => $value_parent) 
             {
                 $taxonomy[$key_parent]['text'] = !empty($value_parent->term->termMeta->where('meta_key', 'menu_text')->first()) ? $value_parent->term->termMeta->where('meta_key', 'menu_text')->first()->meta_value : $value_parent->term->name;
+                $taxonomy[$key_parent][TermTaxonomy_m::getPrimaryKey()] = $value_parent->getKey();
+                $taxonomy[$key_parent]['taxonomy_parent_id'] = $value_parent->parent_id;
                 $taxonomy[$key_parent]['term_id'] = $value_parent->term_id;
                 $taxonomy[$key_parent]['parent_id'] = $value_parent->parent_id;
                 $taxonomy[$key_parent]['slug'] = $this->getTaxonomyType($value_parent->term->slug).'/'.$value_parent->term->slug;
@@ -369,18 +372,18 @@ class MenuController extends CoreController
 
                 $object_parent = $this->loadNavbarChild($value_parent);
 
-                if($object_parent->taxonomyChildrens->count() > 0)
+                if($object_parent->childrens->count() > 0)
                 {
                     $taxonomy[$key_parent]['children'] = $this->getNavbarsChild($object_parent, $value_parent->term->slug);
                 }
             }
 
             $taxonomy = collect($taxonomy)->sortBy('menu_order')->toArray();
-            Config::get('TAXONOMY_NAVBAR', $taxonomy);
+            Config::set('TAXONOMY_NAVBAR', $taxonomy);
         }
         else
         {
-            $taxonomy = Config::set('TAXONOMY_NAVBAR');
+            $taxonomy = Config::get('TAXONOMY_NAVBAR');
         }
 
         return array_values($taxonomy);
@@ -442,7 +445,7 @@ class MenuController extends CoreController
 
             foreach ($slug_array as $key => $value) 
             {
-                array_push($parent, 'taxonomyParents');
+                array_push($parent, 'parent');
             }
 
             $parent = implode('.', $parent);

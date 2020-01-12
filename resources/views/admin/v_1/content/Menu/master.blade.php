@@ -84,8 +84,8 @@
                                             <option data-post-id="{{$post->id}}" value="{{$post->post_title}}">{{$post->post_title}} -- Post/Page</option>
                                         @endforeach
                                         @foreach ($taxonomies as $taxonomy)
-                                            <option data-term-id="{{$taxonomy->term_id}}" data-parent-id="{{$taxonomy->parent_id}}" value="{{$taxonomy->term->name}}">{{$taxonomy->term->name}} -- {{$taxonomy->taxonomy}}/Taxonomy</option>
-                                            @if(Route::current()->getController()->getChild($taxonomy)->taxonomyChildrens->count() > 0)
+                                            <option data-id="{{$taxonomy->getKey()}}" data-taxonomy-parent-id="{{$taxonomy->getKey()}}" data-term-id="{{$taxonomy->term_id}}" data-parent-id="{{$taxonomy->parent_id}}" value="{{$taxonomy->term->name}}">{{$taxonomy->term->name}} -- {{$taxonomy->taxonomy}}/Taxonomy</option>
+                                            @if(Route::current()->getController()->getChild($taxonomy)->childrens->count() > 0)
                                                 @include('appearance::admin.'.$theme_cms->value.'.partials.taxonomy_child', ['taxonomy' => $taxonomy])
                                             @endif
                                         @endforeach
@@ -123,6 +123,11 @@
                                     <label for="title">Tooltip</label>
                                     <input type="text" name="title" class="form-control item-menu" id="title" placeholder="Tooltip">
                                 </div>
+                                <div class="form-group">
+                                    <label for="{{\Gdevilbat\SpardaCMS\Modules\Taxonomy\Entities\TermTaxonomy::getPrimaryKey()}}">Id Taxonomy</label>
+                                    <input type="text" name="{{\Gdevilbat\SpardaCMS\Modules\Taxonomy\Entities\TermTaxonomy::getPrimaryKey()}}" class="form-control item-menu" id="{{\Gdevilbat\SpardaCMS\Modules\Taxonomy\Entities\TermTaxonomy::getPrimaryKey()}}" readonly>
+                                </div>
+                                <input type="hidden" name="taxonomy_parent_id" class="form-control item-menu" id="taxonomy_parent_id" readonly>
                                 <div class="form-group">
                                     <label for="term_id">Term ID</label>
                                     <input type="text" name="term_id" class="form-control item-menu" id="term_id" readonly>
@@ -231,6 +236,8 @@
             $('#btnEditItem').click(function(event) {
                 editor.resetForm();
                 $("#text").val($("[name='taxonomy']").val());
+                $("#{{\Gdevilbat\SpardaCMS\Modules\Taxonomy\Entities\TermTaxonomy::getPrimaryKey()}}").val($("#taxonomy option:selected").attr('data-id'));
+                $("#taxonomy_parent_id").val($("#taxonomy option:selected").attr('data-taxonomy-parent-id'));
                 $("#term_id").val($("#taxonomy option:selected").attr('data-term-id'));
                 $("#parent_id").val($("#taxonomy option:selected").attr('data-parent-id'));
                 $("#post_id").val($("#taxonomy option:selected").attr('data-post-id'));

@@ -75,7 +75,9 @@ class MenuControllerTest extends TestCase
                          ->json('POST', action('\Gdevilbat\SpardaCMS\Modules\Appearance\Http\Controllers\MenuController@store'), [
                                 'menu' => [
                                     [
+                                        'id_term_taxonomy' => $category->getKey(),
                                         'text' => $category->term->name,
+                                        'taxonomy_parent_id' => null,
                                         'term_id' => $category->term->getKey(),
                                         'target' => '_self',
                                         'slug' => $category->taxonomy.'/'.$category->slug,
