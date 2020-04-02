@@ -44,7 +44,7 @@
 
     <link rel="stylesheet" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="{{module_asset_url('appearance:resources/views/general/classic/css/responsive.css')}}">
 
-    {{Html::style(module_asset_url('appearance:resources/views/general/classic/css/classic.css').'?id='.filemtime(module_asset_path('appearance:resources/views/general/classic/css/classic.css')))}}
+    <link rel="stylesheet" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="{{module_asset_url('appearance:resources/views/general/classic/css/classic.css'.'?id='.filemtime(module_asset_path('appearance:resources/views/general/classic/css/classic.css')))}}">
     @yield('page_style_css')
 
 
