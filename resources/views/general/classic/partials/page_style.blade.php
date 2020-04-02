@@ -4,3 +4,4 @@
 <link rel="stylesheet" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="{{module_asset_url('appearance:resources/views/general/classic/css/icofont.css')}}">
 <link rel="stylesheet" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="{{module_asset_url('appearance:resources/views/general/classic/css/magnific-popup.css')}}">
 <link rel="stylesheet" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="{{module_asset_url('appearance:resources/views/general/classic/css/animate.css')}}">
+<link rel="stylesheet" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="{{module_asset_url('appearance:assets/fontawesome/css/all.min.css')}}">
