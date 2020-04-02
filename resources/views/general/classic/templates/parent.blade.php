@@ -38,6 +38,9 @@
     <!-- Main-Stylesheets -->
     @yield('page_level_css')
 
+    <link rel="stylesheet" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+        integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
     {{Html::style(module_asset_url('appearance:resources/views/general/classic/css/normalize.css'))}}
     {{Html::style(module_asset_url('appearance:resources/views/general/classic/css/style.css'))}}
     {{Html::style(module_asset_url('appearance:resources/views/general/classic/css/responsive.css'))}}
@@ -90,7 +93,6 @@
 
     <!--Vendor-JS-->
     {{Html::script(module_asset_url('appearance:assets/js/app.js'))}}
-    {{Html::script(module_asset_url('appearance:assets/fontawesome/js/all.min.js'))}}
     {{Html::script(module_asset_url('appearance:assets/plugins/lazy/jquery.lazy.min.js'))}}
     {{Html::script(module_asset_url('appearance:assets/plugins/lazy/jquery.lazy.plugins.min.js'))}}
     <!--Plugin-JS-->
