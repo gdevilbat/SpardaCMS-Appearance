@@ -14,7 +14,7 @@
               <img class="img-logo" src="{{empty($settings->where('name','global')->flatten()->first()->value['logo']) ? module_asset_url('core:assets/images/Spartan.png') : generate_storage_url($settings->where('name','global')->flatten()->first()->value['logo'])}}" alt="logo">
             </a>
             <div class="d-flex align-items-center ml-auto">
-	            <a class="nav-link float-left text-white d-lg-none" href="#search-box" data-toggle="collapse"><i class="icofont icofont-search-alt-2"></i></a>
+	            <a class="nav-link float-left text-white d-lg-none" href="#search-box" data-toggle="collapse"><i class="fa fa-search"></i></a>
 	            <button class="navbar-toggler text-light" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 	              <i class="fas fa-bars"></i>
 	            </button>
@@ -38,7 +38,7 @@
                     </li>
                   @endif
                 @endforeach
-                <li class="d-none d-lg-block"><a class="nav-link" href="#search-box" data-toggle="collapse"><i class="icofont icofont-search-alt-2"></i></a></li>
+                <li class="d-none d-lg-block"><a class="nav-link" href="#search-box" data-toggle="collapse"><i class="fa fa-search"></i></a></li>
             </ul>
           </div>
       </div>
