@@ -26,9 +26,9 @@
                         <div class="row px-2 py-1">
                             <div class="mx-3">
                                 @if(empty($post->author->profile_image_url))
-                                    <img src="{{module_asset_url('core:assets/images/atomix_user31.png')}}" style="max-width: 20px" alt="" />
+                                    <img src="{{module_asset_url('core:assets/images/atomix_user31.png')}}" style="max-width: 20px" alt="avatar" />
                                 @else
-                                    <img src="{{generate_storage_url($post->author->profile_image_url)}}" style="max-width: 20px" alt=""> 
+                                    <img src="{{generate_storage_url($post->author->profile_image_url)}}" style="max-width: 20px" alt="avatar"> 
                                 @endif
                             </div>
                             <div class="col pl-0">
@@ -43,7 +43,7 @@
                     </div>
                     <div class="w-100 justify-content-center">
 	                    @if(!empty($post) && !empty($post->postMeta->where('meta_key', 'cover_image')->first()) && $post->postMeta->where('meta_key', 'cover_image')->first()->meta_value['file'] != null)
-	                        <img class="magnificier" src="{{generate_storage_url($post->postMeta->where('meta_key', 'cover_image')->first()->meta_value['file'])}}" alt=""> 
+	                        <img class="magnificier" src="{{generate_storage_url($post->postMeta->where('meta_key', 'cover_image')->first()->meta_value['file'])}}" alt="cover-{{$post->post_slug}}"> 
 	                    @endif
                     </div>
                     {!!$post->post_content!!}
