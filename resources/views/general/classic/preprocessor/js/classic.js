@@ -6,27 +6,62 @@ jQuery.fn.exists = function(){return this.length>0;}
 //jQuery to collapse the navbar on scroll
 /*$(window).scroll(function() {
 	affix();
-});*/
+});
 
 $(window).resize(function(event) {
-    //affix();
+    affix();
 });
 
 $(".navbar").ready(function() {
-	//affix();
+	affix();
 });
 
 function affix() {
 	navbar_height = $(".navbar-spy").height();
     $(".nav-space").css('min-height', navbar_height+30+'px');
-    /*if ($(document).scrollTop() > (navbar_height+100)) {
+    if ($(document).scrollTop() > (navbar_height+100)) {
         $(".nav-space").removeClass("d-none");
         $(".navbar-fixed-top").addClass("top-nav-collapse");
     } else {
         $(".nav-space").addClass("d-none");
         $(".navbar-fixed-top").removeClass("top-nav-collapse");
-    }*/
-}
+    }
+}*/
+
+
+// Sticky navbar
+// =========================
+$(document).ready(function () {
+    // Custom function which toggles between sticky class (is-sticky)
+    var stickyToggle = function (sticky, stickyWrapper, scrollElement) {
+        var stickyHeight = sticky.outerHeight();
+        var stickyTop = stickyWrapper.offset().top;
+        if (scrollElement.scrollTop() > stickyTop) {
+            stickyWrapper.height(stickyHeight);
+            sticky.addClass("is-sticky");
+        }
+        else {
+            sticky.removeClass("is-sticky");
+            stickyWrapper.height('auto');
+        }
+    };
+
+    // Find all data-toggle="sticky-onscroll" elements
+    $('[data-toggle="sticky-onscroll"]').each(function () {
+        var sticky = $(this);
+        var stickyWrapper = $('<div>').addClass('sticky-wrapper'); // insert hidden element to maintain actual top offset on page
+        sticky.before(stickyWrapper);
+        sticky.addClass('sticky');
+
+        // Scroll & resize events
+        $(window).on('scroll.sticky-onscroll resize.sticky-onscroll', function () {
+            stickyToggle(sticky, stickyWrapper, $(this));
+        });
+
+        // On page load
+        stickyToggle(sticky, stickyWrapper, $(window));
+    });
+});
 
 $('.scroll_to').click(function(e){
     var jump = $(this).attr('href');
