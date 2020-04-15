@@ -62,9 +62,11 @@
                 </div>
                 <div class="col-lg-5">
                     @include('appearance::general.classic.partials.related_post')
-                    @include('appearance::general.classic.partials.recent_post')
-                    @include('appearance::general.classic.partials.recomended_post')
-                    @include('appearance::general.classic.partials.category_widget')
+                	<div class="left-side sticky-top">
+	                    @include('appearance::general.classic.partials.recent_post')
+	                    @include('appearance::general.classic.partials.recomended_post')
+	                    @include('appearance::general.classic.partials.category_widget')
+                	</div>
                 </div>
             </div>
         </div>
