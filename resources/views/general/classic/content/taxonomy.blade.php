@@ -15,7 +15,7 @@
             <div class="row py-2">
                 <div class="col-12">
                     <div>
-                          <center><h2 class="title">{{$taxonomy->term->name}}</h2></center>
+                          <center><h1 class="title">{{$taxonomy->term->name}}</h1></center>
                           <center><p>{{$taxonomy->description}}</p></center>
                     </div>
                 </div>
@@ -48,13 +48,13 @@
                                             @endif
                                         </div>
                                         <div class="blog-details">
-                                            <h4>
+                                            <h2>
                                                 @if($post->post_type == 'post')
                                                     <a href="{{url($post->created_at->format('Y').'/'.$post->created_at->format('m').'/'.$post->post_slug.'.html')}}">{{$post->post_title}}</a>
                                                 @else
                                                     <a href="{{url($post->post_type.'/'.$post->post_slug)}}">{{$post->post_title}}</a>
                                                 @endif
-                                            </h4>
+                                            </h2>
                                             <div class="mb-1"> <i class="icofont icofont-ui-calendar"></i> {{$post->created_at->format('d M Y')}}</div>
                                             <p>{!!$post->post_excerpt!!}</p>
                                         </div>
@@ -83,11 +83,13 @@
                                             @endif
                                         </div>
                                         <div class="ellipsis mb-2" style="font-size: 1.3rem">
-                                            @if($post->post_type == 'post')
-                                                <a href="{{url($post->created_at->format('Y').'/'.$post->created_at->format('m').'/'.$post->post_slug.'.html')}}">{{$post->post_title}}</a>
-                                            @else
-                                                <a href="{{url($post->post_type.'/'.$post->post_slug)}}">{{$post->post_title}}</a>
-                                            @endif
+                                            <h2 class="header-text">
+                                                @if($post->post_type == 'post')
+                                                    <a href="{{url($post->created_at->format('Y').'/'.$post->created_at->format('m').'/'.$post->post_slug.'.html')}}">{{$post->post_title}}</a>
+                                                @else
+                                                    <a href="{{url($post->post_type.'/'.$post->post_slug)}}">{{$post->post_title}}</a>
+                                                @endif
+                                            </h2>
                                         </div>
                                         <div class="blog-list-meta"> <i class="icofont icofont-ui-calendar"></i> {{$post->created_at->format('d M Y')}}</div>
                                         <p>{!!$post->post_excerpt!!}</p>
@@ -122,13 +124,13 @@
                                             @endif
                                         </div>
                                         <div class="blog-details">
-                                            <h4>
+                                            <h2>
                                                 @if($post->post_type == 'post')
                                                     <a href="{{url($post->created_at->format('Y').'/'.$post->created_at->format('m').'/'.$post->post_slug.'.html')}}">{{$post->post_title}}</a>
                                                 @else
                                                     <a href="{{url($post->post_type.'/'.$post->post_slug)}}">{{$post->post_title}}</a>
                                                 @endif
-                                            </h4>
+                                            </h2>
                                             <div class="mb-1"> <i class="icofont icofont-ui-calendar"></i> {{$post->created_at->format('d M Y')}}</div>
                                             <p>{!!$post->post_excerpt!!}</p>
                                         </div>
@@ -157,11 +159,13 @@
                                             @endif
                                         </div>
                                         <div class="ellipsis mb-2" style="font-size: 1.3rem">
-                                            @if($post->post_type == 'post')
-                                                <a href="{{url($post->created_at->format('Y').'/'.$post->created_at->format('m').'/'.$post->post_slug.'.html')}}">{{$post->post_title}}</a>
-                                            @else
-                                                <a href="{{url($post->post_type.'/'.$post->post_slug)}}">{{$post->post_title}}</a>
-                                            @endif
+                                            <h2 class="header-text">
+                                                @if($post->post_type == 'post')
+                                                    <a href="{{url($post->created_at->format('Y').'/'.$post->created_at->format('m').'/'.$post->post_slug.'.html')}}">{{$post->post_title}}</a>
+                                                @else
+                                                    <a href="{{url($post->post_type.'/'.$post->post_slug)}}">{{$post->post_title}}</a>
+                                                @endif
+                                            </h2>
                                         </div>
                                         <div class="blog-list-meta"> <i class="icofont icofont-ui-calendar"></i> {{$post->created_at->format('d M Y')}}</div>
                                         <p>{!!$post->post_excerpt!!}</p>

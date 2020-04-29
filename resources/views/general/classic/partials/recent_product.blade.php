@@ -20,7 +20,7 @@
                 @endif
 	        </div>
 	        <div class="ellipsis mb-2" style="font-size: 1.3rem">
-	        	<a href="{{url($recent_post->post_type.'/'.$recent_post->post_slug)}}">{{strtoupper($recent_post->post_title)}}</a>
+	        	<h2 class="header-text"><a href="{{url($recent_post->post_type.'/'.$recent_post->post_slug)}}">{{strtoupper($recent_post->post_title)}}</a></h2>
 	        </div>
 	        <div class="blog-list-meta"> 
                 @if($recent_post->productMeta->discount > 0)

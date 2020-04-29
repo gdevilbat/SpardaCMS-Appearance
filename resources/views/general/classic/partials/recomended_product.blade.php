@@ -20,7 +20,7 @@
                 @endif
 	        </div>
 	        <div class="ellipsis mb-2" style="font-size: 1.3rem">
-	        	<a href="{{url($recomended_post->post_type.'/'.$recomended_post->post_slug)}}">{{strtoupper($recomended_post->post_title)}}</a>
+	        	<h2 class="header-text"><a href="{{url($recomended_post->post_type.'/'.$recomended_post->post_slug)}}">{{strtoupper($recomended_post->post_title)}}</a></h2>
 	        </div>
 	        <div class="blog-list-meta"> 
                 @if($recomended_post->productMeta->discount > 0)

@@ -15,7 +15,7 @@
             <div class="row py-2">
                 <div class="col-12">
                     <div>
-                          <center><h2 class="title">{{$taxonomy->term->name}}</h2></center>
+                          <center><h1 class="title">{{$taxonomy->term->name}}</h1></center>
                           <center><p>{{$taxonomy->description}}</p></center>
                     </div>
                 </div>
@@ -46,9 +46,9 @@
                                             @endif
                                         </div>
                                         <div class="blog-details">
-                                            <h4>
+                                            <h2>
                                                 <a href="{{url($post->post_type.'/'.$post->post_slug)}}">{{$post->post_title}}</a>
-                                            </h4>
+                                            </h2>
                                             @if($post->productMeta->discount > 0)
                                                 <i class="fa fa-tags"></i> <s class="font-italic">Rp. {{number_format($post->productMeta->product_price)}}</s>
                                                 <br>
@@ -84,7 +84,9 @@
                                             @endif
                                         </div>
                                         <div class="ellipsis mb-2" style="font-size: 1.3rem">
-                                            <a href="{{url($post->post_type.'/'.$post->post_slug)}}">{{$post->post_title}}</a>
+                                            <h2 class="header-text">
+                                                <a href="{{url($post->post_type.'/'.$post->post_slug)}}">{{$post->post_title}}</a>
+                                            </h2>
                                         </div>
                                         <div class="blog-list-meta"> 
                                             @if($post->productMeta->discount > 0)
@@ -128,9 +130,9 @@
                                             @endif
                                         </div>
                                         <div class="blog-details">
-                                            <h4>
+                                            <h2>
                                                 <a href="{{url($post->post_type.'/'.$post->post_slug)}}">{{$post->post_title}}</a>
-                                            </h4>
+                                            </h2>
                                             @if($post->productMeta->discount > 0)
                                                 <i class="fa fa-tags"></i> <s class="font-italic">Rp. {{number_format($post->productMeta->product_price)}}</s>
                                                 <br>
@@ -166,7 +168,9 @@
                                             @endif
                                         </div>
                                         <div class="ellipsis mb-2" style="font-size: 1.3rem">
-                                            <a href="{{url($post->post_type.'/'.$post->post_slug)}}">{{$post->post_title}}</a>
+                                            <h2 class="header-text">
+                                                <a href="{{url($post->post_type.'/'.$post->post_slug)}}">{{$post->post_title}}</a>
+                                            </h2>
                                         </div>
                                         <div class="blog-list-meta"> 
                                             @if($post->productMeta->discount > 0)

@@ -15,7 +15,7 @@
 	            @endif
 	        </div>
 	        <div class="ellipsis mb-2" style="font-size: 1.3rem">
-	        	<a href="{{url($related_post->created_at->format('Y').'/'.$related_post->created_at->format('m').'/'.$related_post->post_slug.'.html')}}">{{$related_post->post_title}}</a>
+	        	<h2 class="header-text"><a href="{{url($related_post->created_at->format('Y').'/'.$related_post->created_at->format('m').'/'.$related_post->post_slug.'.html')}}">{{$related_post->post_title}}</a></h2>
 	        </div class="ellipsis mb-2" style="font-size: 1.3rem">
 	        <div class="blog-list-meta"> <i class="icofont icofont-ui-calendar"></i> {{$related_post->created_at->format('d/M/Y')}}</div>
 	        {!!$related_post->post_excerpt!!}

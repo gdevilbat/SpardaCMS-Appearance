@@ -20,7 +20,7 @@
             <div class="row py-2">
                 <div class="col-lg-7 py-2">
                     <div>
-                          <h3 class="upper">{{$post->post_title}} </h3> 
+                          <h1 class="upper">{{$post->post_title}} </h1> 
                     </div>
                     <div class="my-2 border-top border-bottom">
                         <div class="row px-2 py-1">
@@ -46,7 +46,9 @@
 	                        <img class="magnificier" src="{{generate_storage_url($post->postMeta->where('meta_key', 'cover_image')->first()->meta_value['file'])}}" alt="cover-{{$post->post_slug}}"> 
 	                    @endif
                     </div>
-                    {!!$post->post_content!!}
+                    <article>
+	                    {!!$post->post_content!!}
+                    </article>
                     <div class="my-2 d-flex">
                         <span>TAGS : </span>
                         @foreach ($post_tags as $tag)

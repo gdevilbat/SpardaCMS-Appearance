@@ -24,7 +24,7 @@
                     <div class="w-100" itemscope itemtype="http://schema.org/Product">
                         <meta itemprop="productID" content="{{env('APP_NAME').'_product_'.$post->getKey()}}">
                         <div>
-                              <h3 class="upper" itemprop="name">{{$post->post_title}} </h3> 
+                              <h1 class="upper" itemprop="name">{{$post->post_title}} </h1> 
                         </div>
                         <div class="my-2 border-top border-bottom">
                             <div class="row px-2 py-1">
@@ -111,9 +111,9 @@
                                 @endif
                            </div>
                         </div>
-                        <div itemprop="description">
+                        <article itemprop="description">
                             {!!$post->post_content!!}
-                        </div>
+                        </article>
                         <div class="my-2 d-flex">
                             <span>TAGS : </span>
                             @foreach ($post_tags as $tag)
