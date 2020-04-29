@@ -46,7 +46,7 @@
                                             @endif
                                         </div>
                                         <div class="blog-details">
-                                            <h2>
+                                            <h2 class="header-text">
                                                 <a href="{{url($post->post_type.'/'.$post->post_slug)}}">{{$post->post_title}}</a>
                                             </h2>
                                             @if($post->productMeta->discount > 0)
@@ -130,7 +130,7 @@
                                             @endif
                                         </div>
                                         <div class="blog-details">
-                                            <h2>
+                                            <h2 class="header-text">
                                                 <a href="{{url($post->post_type.'/'.$post->post_slug)}}">{{$post->post_title}}</a>
                                             </h2>
                                             @if($post->productMeta->discount > 0)

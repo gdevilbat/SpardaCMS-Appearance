@@ -48,7 +48,7 @@
                                             @endif
                                         </div>
                                         <div class="blog-details">
-                                            <h2>
+                                            <h2 class="header-text">
                                                 @if($post->post_type == 'post')
                                                     <a href="{{url($post->created_at->format('Y').'/'.$post->created_at->format('m').'/'.$post->post_slug.'.html')}}">{{$post->post_title}}</a>
                                                 @else
@@ -124,7 +124,7 @@
                                             @endif
                                         </div>
                                         <div class="blog-details">
-                                            <h2>
+                                            <h2 class="header-text">
                                                 @if($post->post_type == 'post')
                                                     <a href="{{url($post->created_at->format('Y').'/'.$post->created_at->format('m').'/'.$post->post_slug.'.html')}}">{{$post->post_title}}</a>
                                                 @else
