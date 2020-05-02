@@ -82,11 +82,14 @@
 @section('page_script_js')
     <script type="text/javascript">
         $(document).ready(function(){
-          $('img.magnificier')
-            .wrap('<span style="display:inline-block"></span>')
+          magnificier()
+        });
+
+        function magnificier() {
+            $('img.magnificier')
             .css('display', 'block')
             .parent()
             .zoom();
-        });
+        }
     </script>
 @endsection
