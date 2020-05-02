@@ -82,14 +82,28 @@
 @section('page_script_js')
     <script type="text/javascript">
         $(document).ready(function(){
-          magnificier()
+          magnificier();
         });
 
         function magnificier() {
-            $('img.magnificier')
-            .css('display', 'block')
-            .parent()
-            .zoom();
+            $('img.magnificier').each(function(index, item) {
+               if($(this).parent('span').length == 0)
+                {
+                    $(item)
+                    .wrap('<span style="display:inline-block"></span>')
+                    .css('display', 'block')
+                    .parent()
+                    .zoom();
+                }
+                else
+                {
+                    $(item).trigger('zoom.destroy');
+                    $(item)
+                    .css('display', 'block')
+                    .parent()
+                    .zoom();
+                }
+            });
         }
     </script>
 @endsection
