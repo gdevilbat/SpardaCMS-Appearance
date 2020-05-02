@@ -127,3 +127,36 @@ $('.scroll_to').click(function(e){
     $('.lazy-bg').lazy();
 
 /*=====  End of Lazy Load Image  ======*/
+
+/*=================================
+=            Shortcode            =
+=================================*/
+
+    var ShortcodePost = {
+        parsingCode: function(){
+            $("shortcodepost").each(function(index, item) {
+                let text = $(item).html();
+
+                if($(item).find('.read-also').length == 0)
+                {
+                    $.ajax({
+                        url: base+'/api/get-shortcode-post',
+                        type: 'POST',
+                        data: {id: $(item).attr('data-id')},
+                    })
+                    .done(function(response) {
+                        $(item).html("<div class='read-also'><a href='"+response+"'>"+text+"</a></div>")
+                    });
+                    
+                }
+            });
+        }
+    }
+    window.ShortcodePost = ShortcodePost;
+
+    $(document).ready(function() {
+        ShortcodePost.parsingCode();
+    });
+
+/*=====  End of Shortcode  ======*/
+
