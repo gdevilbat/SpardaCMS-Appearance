@@ -21,7 +21,7 @@
                 <div class="col-lg-7 py-2" itemscope itemtype="http://schema.org/Store">
                     <meta itemprop="image" content="{{(module_asset_url('appearance:assets/images/default_v3-shopnophoto.png'))}}">
                     <meta itemprop="name" content="{{env('APP_NAME')}}">
-                    <div class="w-100" itemscope itemtype="http://schema.org/Product">
+                    <div class="w-100 my-3" itemscope itemtype="http://schema.org/Product">
                         <meta itemprop="productID" content="{{env('APP_NAME').'_product_'.$post->getKey()}}">
                         <div>
                               <h1 class="upper" itemprop="name">{{$post->post_title}} </h1> 
