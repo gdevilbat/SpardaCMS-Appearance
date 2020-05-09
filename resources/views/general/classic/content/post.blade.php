@@ -24,15 +24,28 @@
                     </div>
                     <div class="my-2 border-top border-bottom">
                         <div class="row px-2 py-1">
-                            <div class="mx-3">
+                            <div class="d-flex align-items-center ml-3 mr-1">
                                 @if(empty($post->author->profile_image_url))
                                     <img src="{{module_asset_url('core:assets/images/atomix_user31.png')}}" style="max-width: 20px" alt="avatar" />
                                 @else
                                     <img src="{{generate_storage_url($post->author->profile_image_url)}}" style="max-width: 20px" alt="avatar"> 
                                 @endif
                             </div>
-                            <div class="col pl-0">
-                                <span class="text-dark">{{$post->author->name}}</span> | <span class="text-dark"><i class="fa fa-clock"></i> {{$post->created_at}}</span>
+                            <div class="d-flex align-items-center pl-0">
+                                <span class="text-dark">{{$post->author->name}}</span>&nbsp;|&nbsp;<span class="text-dark"><i class="fa fa-clock"></i> {{$post->created_at->format('Y-m-d')}}</span>
+                            </div>
+                            <div class="col ml-auto text-right">
+                                <span class="text-dark">Share : 
+                                    <a href="https://www.facebook.com/sharer/sharer.php?{{http_build_query(['u' => request()->url()])}}" target="_blank" title="">
+                                        <img src="{{module_asset_url('appearance:assets/images/facebook-icon.png')}}" style="max-width: 30px" alt="icon-facebook-share">
+                                    </a>
+                                    <a href="https://twitter.com/intent/tweet?{{http_build_query(['url' => request()->url()])}}"  target="_blank"title="">
+                                        <img src="{{module_asset_url('appearance:assets/images/twitter-icon.png')}}" style="max-width: 30px" alt="icon-twitter-share">
+                                    </a>
+                                    <a href="whatsapp://send/?text={{urlencode(request()->url())}}" data-action="share/whatsapp/share" target="_blank" title="">
+                                        <img src="{{module_asset_url('appearance:assets/images/social-whatsapp.png')}}" style="max-width: 30px" alt="icon-whatsapp-share">
+                                    </a>
+                                </span>
                             </div>
                         </div>
                     </div>

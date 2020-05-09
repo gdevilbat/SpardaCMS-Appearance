@@ -28,15 +28,25 @@
                         </div>
                         <div class="my-2 border-top border-bottom">
                             <div class="row px-2 py-1">
-                                <div class="mx-3">
+                                <div class="d-flex align-items-center ml-3 mr-1">
                                     @if(empty($post->author->profile_image_url))
-                                        <img src="{{module_asset_url('core:assets/images/atomix_user31.png')}}" style="max-width: 20px" alt="" />
+                                        <img src="{{module_asset_url('core:assets/images/atomix_user31.png')}}" style="max-width: 20px" alt="avatar" />
                                     @else
-                                        <img src="{{generate_storage_url($post->author->profile_image_url)}}" style="max-width: 20px" alt=""> 
+                                        <img src="{{generate_storage_url($post->author->profile_image_url)}}" style="max-width: 20px" alt="avatar"> 
                                     @endif
                                 </div>
-                                <div class="col pl-0">
-                                    <span class="text-dark">{{$post->author->name}}</span></span>
+                                <div class="col ml-auto text-right">
+                                    <span class="text-dark">Share : 
+                                        <a href="https://www.facebook.com/sharer/sharer.php?{{http_build_query(['u' => request()->url()])}}" target="_blank" title="">
+                                            <img src="{{module_asset_url('appearance:assets/images/facebook-icon.png')}}" style="max-width: 30px" alt="icon-facebook-share">
+                                        </a>
+                                        <a href="https://twitter.com/intent/tweet?{{http_build_query(['url' => request()->url()])}}"  target="_blank"title="">
+                                            <img src="{{module_asset_url('appearance:assets/images/twitter-icon.png')}}" style="max-width: 30px" alt="icon-twitter-share">
+                                        </a>
+                                        <a href="whatsapp://send/?text={{urlencode(request()->url())}}" data-action="share/whatsapp/share" target="_blank" title="">
+                                            <img src="{{module_asset_url('appearance:assets/images/social-whatsapp.png')}}" style="max-width: 30px" alt="icon-whatsapp-share">
+                                        </a>
+                                    </span>
                                 </div>
                             </div>
                         </div>
@@ -67,24 +77,24 @@
                             @if($post->productMeta->discount > 0)
                                 <meta itemprop="price" content="{{$post->productMeta->product_sale}}">
                                 <div >
-                                    <h3 class="amount mb-0">
+                                    <h5 class="amount mb-0">
                                         <span style="font-size: .7em;" class="font-italic"><s>Rp. {{number_format($post->productMeta->product_price)}}</s></span>
                                         <span class="text-danger" style="font-size: .8em;">-{{$post->productMeta->discount}}%</span>
-                                    </h3>
-                                    <h3 class="amount">
+                                    </h5>
+                                    <h5 class="amount">
                                         <span class="font-italic">Rp. {{number_format($post->productMeta->product_sale)}}</span>
-                                    </h3>
+                                    </h5>
                                 </div>
                             @else
                                 <meta itemprop="price" content="{{$post->productMeta->product_price}}">
-                                <h3 class="amount font-italic">Rp. {{number_format($post->productMeta->product_price)}}</h3>
+                                <h5 class="amount font-italic">Rp. {{number_format($post->productMeta->product_price)}}</h5>
                             @endif
                             <div class="btn-group ml-auto d-flex align-items-center" role="group">
                                 @if($post->productMeta->availability == 'in stock')
                                     @if((!empty($post->tokopedia_supplier) && !empty($post->tokopedia_slug)) || !empty($post->shopee_slug))
                                         <div class="btn-group" role="group">
-                                            <button id="btnGroupDrop1" type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                              <i class="fas fa-shopping-cart"></i> Buy Now
+                                            <button id="btnGroupDrop1" type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size: 1em;">
+                                              <i class="fas fa-shopping-cart"></i> Pilih Marketplace
                                             </button>
                                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="btnGroupDrop1">
                                               @if(!empty($post->tokopedia_supplier) && !empty($post->tokopedia_slug))
@@ -97,7 +107,7 @@
                                         </div>
                                     @else
                                         <a href="javascript:void(0)" class="text-reset" title="" >
-                                            <button id="btnGroupDrop1" type="button" class="btn btn-dark p-1 rounded btn-shop" aria-haspopup="true" aria-expanded="false" style="height: 40px; font-size: .9em">
+                                            <button id="btnGroupDrop1" type="button" class="btn btn-dark p-1 rounded btn-shop" aria-haspopup="true" aria-expanded="false" style="height: 40px; font-size: 1em">
                                               Unavailable
                                             </button>
                                         </a>
