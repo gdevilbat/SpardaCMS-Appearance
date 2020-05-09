@@ -36,7 +36,7 @@
                                     @endif
                                 </div>
                                 <div class="d-flex align-items-center pl-0">
-                                    <span class="text-dark">{{$post->author->name}}</span>&nbsp;|&nbsp;<span class="text-dark"><i class="fa fa-clock"></i></span>
+                                    <span class="text-dark">{{$post->author->name}}</span>
                                 </div>
                                 <div class="col ml-auto text-right">
                                     <span class="text-dark">Share : 
