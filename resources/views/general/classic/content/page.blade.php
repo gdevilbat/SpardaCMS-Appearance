@@ -22,7 +22,9 @@
                     @if(!empty($post) && !empty($post->postMeta->where('meta_key', 'cover_image')->first()) && $post->postMeta->where('meta_key', 'cover_image')->first()->meta_value['file'] != null)
                         <img src="{{generate_storage_url($post->postMeta->where('meta_key', 'cover_image')->first()->meta_value['file'])}}" alt=""> 
                     @endif
-                    {!!$post->post_content!!}
+                    <article>
+	                    {!!$post->post_content!!}
+                    </article>
                 </div>
             </div>
         </div>

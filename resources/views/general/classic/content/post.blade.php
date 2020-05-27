@@ -76,10 +76,10 @@
                     @endif
                 </div>
                 <div class="col-lg-5">
-                    @include('appearance::general.classic.partials.related_post')
+                    @include('appearance::general.classic.partials.widget_post', ['widget_title' => 'Related Post', 'widget_posts' => $related_posts])
                 	<div class="left-side sticky-top">
-	                    @include('appearance::general.classic.partials.recent_post')
-	                    @include('appearance::general.classic.partials.recomended_post')
+                        @include('appearance::general.classic.partials.widget_post', ['widget_title' => 'Latest Post', 'widget_posts' => $recent_posts])
+                        @include('appearance::general.classic.partials.widget_post', ['widget_title' => 'Recomended Post', 'widget_posts' => $recomended_posts])
 	                    @include('appearance::general.classic.partials.category_widget')
                 	</div>
                 </div>

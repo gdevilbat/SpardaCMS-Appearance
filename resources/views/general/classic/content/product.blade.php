@@ -142,10 +142,10 @@
                     </div>
                 </div>
                 <div class="col-lg-5">
-                    @include('appearance::general.classic.partials.related_product')
+                    @include('appearance::general.classic.partials.widget_product', ['widget_title' => 'Related Product', 'widget_posts' => $related_posts])
                     <div class="left-side sticky-top">
-	                    @include('appearance::general.classic.partials.recent_product')
-	                    @include('appearance::general.classic.partials.recomended_product')
+	                   @include('appearance::general.classic.partials.widget_product', ['widget_title' => 'Latest Product', 'widget_posts' => $recent_posts])
+                        @include('appearance::general.classic.partials.widget_product', ['widget_title' => 'Recomended Product', 'widget_posts' => $recomended_posts])
 	                    @include('appearance::general.classic.partials.category_widget')
 	                </div>
                 </div>
