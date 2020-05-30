@@ -23,6 +23,7 @@
                     <meta itemprop="name" content="{{env('APP_NAME')}}">
                     <div class="w-100 my-3" itemscope itemtype="http://schema.org/Product">
                         <meta itemprop="productID" content="{{env('APP_NAME').'_product_'.$post->getKey()}}">
+                        <meta itemprop="brand" content="{{$post_categories->first()->term->name}}">
                         <div>
                               <h1 class="upper" itemprop="name">{{$post->post_title}} </h1> 
                         </div>
