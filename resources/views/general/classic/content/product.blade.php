@@ -62,14 +62,14 @@
                         <div class="w-100 d-flex justify-content-center">
                             @if(!empty($post) && !empty($post->postMeta->where('meta_key', 'cover_image')->first()) && $post->postMeta->where('meta_key', 'cover_image')->first()->meta_value['file'] != null)
                                 <img class="img-header d-none d-lg-block" id="magnificier" src="{{generate_storage_url($post->postMeta->where('meta_key', 'cover_image')->first()->meta_value['file'])}}" alt="cover-{{$post->post_slug}}" itemprop="image"> 
-                                <img class="img-header d-lg-none" id="magnificier" src="{{generate_storage_url($post->postMeta->where('meta_key', 'cover_image')->first()->meta_value['file'])}}" alt="cover-{{$post->post_slug}}" itemprop="image"> 
+                                <img class="img-header d-lg-none" id="magnificier" src="{{generate_storage_url($post->postMeta->where('meta_key', 'cover_image')->first()->meta_value['file'])}}" alt="cover-{{$post->post_slug}}"> 
                             @endif
                         </div>
                         <hr>
                             <div class="col-12">
                                 <div class="owl-carousel owl-theme">
                                     @foreach ($post->galleries as $gallery)
-                                        <div class="item"><img class="img-fluid" src="{{generate_storage_url($gallery->photo)}}" alt="gallery-{{$post->post_slug}}-{{$loop->iteration}}"> </div>
+                                        <div class="item"><img class="img-fluid" src="{{generate_storage_url($gallery->photo)}}" alt="gallery-{{$post->post_slug}}-{{$loop->iteration}}"itemprop="image"> </div>
                                     @endforeach
                                 </div>
                             </div>
