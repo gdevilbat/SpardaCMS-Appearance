@@ -40,7 +40,7 @@
                                                     </a>
                                                 </div>
                                             @endif
-                                            @if($post->productMeta->availability != 'in stock')
+                                            @if($widget_post->productMeta->availability == 'out of stock' || $widget_post->productMeta->availability == 'discontinued')
                                                 <div class="position-absolute w-100 h-100 not-ready-stock d-flex justify-content-center align-items-center">
                                                     <span>{{ucwords($post->productMeta->availability)}}</span>
                                                 </div>
@@ -79,7 +79,7 @@
                                                     </a>
                                                 </div>
                                             @endif
-                                            @if($post->productMeta->availability != 'in stock')
+                                            @if($widget_post->productMeta->availability == 'out of stock' || $widget_post->productMeta->availability == 'discontinued')
                                                 <div class="position-absolute w-100 h-100 not-ready-stock d-flex justify-content-center align-items-center">
                                                     <span>{{ucwords($post->productMeta->availability)}}</span>
                                                 </div>
@@ -126,7 +126,7 @@
                                                     </a>
                                                 </div>
                                             @endif
-                                            @if($post->productMeta->availability != 'in stock')
+                                            @if($widget_post->productMeta->availability == 'out of stock' || $widget_post->productMeta->availability == 'discontinued')
                                                 <div class="position-absolute w-100 h-100 not-ready-stock d-flex justify-content-center align-items-center">
                                                     <span>{{ucwords($post->productMeta->availability)}}</span>
                                                 </div>
@@ -165,7 +165,7 @@
                                                     </a>
                                                 </div>
                                             @endif
-                                            @if($post->productMeta->availability != 'in stock')
+                                            @if($widget_post->productMeta->availability == 'out of stock' || $widget_post->productMeta->availability == 'discontinued')
                                                 <div class="position-absolute w-100 h-100 not-ready-stock d-flex justify-content-center align-items-center">
                                                     <span>{{ucwords($post->productMeta->availability)}}</span>
                                                 </div>
