@@ -160,3 +160,16 @@ $('.scroll_to').click(function(e){
 
 /*=====  End of Shortcode  ======*/
 
+window.formValidation = function(event) {
+    isValidForm = $(event.target).parents('form').get(0).checkValidity();
+    if(isValidForm)
+    {
+        $(event.target).parents('form').get(0).submit();
+    }
+    else
+    {
+        alert('Masukkan Kata Pencarian');
+        return false;
+    }
+}
+
