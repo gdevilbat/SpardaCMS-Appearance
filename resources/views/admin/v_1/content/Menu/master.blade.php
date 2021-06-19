@@ -138,7 +138,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="post_id">Post ID</label>
-                                    <input type="text" name="post_id" class="form-control item-menu" id="post_id" readonly>
+                                    <input type="text" name="{{ \Gdevilbat\SpardaCMS\Modules\Post\Entities\Post::FOREIGN_KEY }}" class="form-control item-menu" id="{{ \Gdevilbat\SpardaCMS\Modules\Post\Entities\Post::FOREIGN_KEY }}" readonly>
                                 </div>
                             </form>
                         </div>
@@ -240,7 +240,7 @@
                 $("#taxonomy_parent_id").val($("#taxonomy option:selected").attr('data-taxonomy-parent-id'));
                 $("#term_id").val($("#taxonomy option:selected").attr('data-term-id'));
                 $("#parent_id").val($("#taxonomy option:selected").attr('data-parent-id'));
-                $("#post_id").val($("#taxonomy option:selected").attr('data-post-id'));
+                $("#<?=\Gdevilbat\SpardaCMS\Modules\Post\Entities\Post::FOREIGN_KEY?>").val($("#taxonomy option:selected").attr('data-post-id'));
             });
             /* ====================================== */
 

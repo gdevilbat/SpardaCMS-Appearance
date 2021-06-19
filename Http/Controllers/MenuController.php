@@ -133,9 +133,9 @@ class MenuController extends CoreController
                 =            Post Menu            =
                 =================================*/
                 
-                    if(!empty($value['post_id']))
+                    if(!empty($value[Post_m::FOREIGN_KEY]))
                     {
-                        $post = Post_m::find($value['post_id']);
+                        $post = Post_m::find($value[Post_m::FOREIGN_KEY]);
                         $post->menu_order = $key;
                         $post->save();
 
@@ -143,7 +143,7 @@ class MenuController extends CoreController
 
                         foreach ($metas as $key_meta => $value_meta) 
                         {
-                            $post = PostMeta_m::where(['post_id' => $value['post_id'], 'meta_key' => $key_meta])->first();
+                            $post = PostMeta_m::where([Post_m::FOREIGN_KEY => $value[Post_m::FOREIGN_KEY], 'meta_key' => $key_meta])->first();
                             if(empty($post))
                             {
                                 $post = new PostMeta_m;
@@ -151,7 +151,7 @@ class MenuController extends CoreController
 
                             $post->meta_key = $key_meta;
                             $post->meta_value = $value_meta;
-                            $post->post_id = $value['post_id'];
+                            $post[Post_m::FOREIGN_KEY] = $value[Post_m::FOREIGN_KEY];
                             $post->save();
                         }
                     }
@@ -405,7 +405,7 @@ class MenuController extends CoreController
             foreach ($model as $key_parent => $value_parent) 
             {
                 $page[$key_parent]['text'] = !empty($value_parent->postMeta->where('meta_key', 'menu_text')->first()) ? $value_parent->postMeta->where('meta_key', 'menu_text')->first()->meta_value : $value_parent->post_title;
-                $page[$key_parent]['post_id'] = $value_parent->getKey();
+                $page[$key_parent][Post_m::FOREIGN_KEY] = $value_parent->getKey();
                 $page[$key_parent]['slug'] = $value_parent->post_slug;
                 $page[$key_parent]['menu_order'] = $value_parent->menu_order;
                 $page[$key_parent]['title'] = !empty($value_parent->postMeta->where('meta_key', 'menu_title')->first()) ? $value_parent->postMeta->where('meta_key', 'menu_title')->first()->meta_value : '';
