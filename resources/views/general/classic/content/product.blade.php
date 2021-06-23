@@ -106,10 +106,10 @@
                                             </button>
                                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="btnGroupDrop1">
                                               @if(!empty($tokopedia_store))
-                                                  <a class="dropdown-item" href="{{url('https://tokopedia.com/'.$tokopedia_store['merchant'].'/'.$tokopedia_store['slug'])}}" target="_blank">Tokopedia</a>
+                                                  <a class="dropdown-item" href="{{url('https://tokopedia.com/'.$tokopedia_store->merchant.'/'.$tokopedia_store->slug)}}" target="_blank">Tokopedia</a>
                                               @endif
                                               @if(!empty($shopee_store))
-                                                  <a class="dropdown-item" href="{{url('https://shopee.com/product/'.$shopee_store['shop_id'].'/'.$shopee_store['product_id'])}}" target="_blank">Shopee</a>
+                                                  <a class="dropdown-item" href="{{url('https://shopee.com/product/'.$shopee_store->shop_id.'/'.$shopee_store->product_id)}}" target="_blank">Shopee</a>
                                               @endif
                                             </div>
                                         </div>
