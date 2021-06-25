@@ -99,16 +99,16 @@
                                         $tokopedia_store = $post->meta->getMetaData(\Gdevilbat\SpardaCMS\Modules\Ecommerce\Entities\ProductMeta::TOKPED_STORE);
                                         $shopee_store = $post->meta->getMetaData(\Gdevilbat\SpardaCMS\Modules\Ecommerce\Entities\ProductMeta::SHOPEE_STORE);
                                     @endphp
-                                    @if(!empty($tokopedia_store) || !empty($shopee_store))
+                                    @if((!empty($tokopedia_store) && $tokopedia_store->slug != '') || (!empty($shopee_store) && $shopee_store->shop_id != ''))
                                         <div class="btn-group" role="group">
                                             <button id="btnGroupDrop1" type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size: 1em;">
                                               <i class="fas fa-shopping-cart"></i> Pilih Marketplace
                                             </button>
                                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="btnGroupDrop1">
-                                              @if(!empty($tokopedia_store))
+                                              @if(!empty($tokopedia_store) && $tokopedia_store->slug != '')
                                                   <a class="dropdown-item" href="{{url('https://tokopedia.com/'.$tokopedia_store->merchant.'/'.$tokopedia_store->slug)}}" target="_blank">Tokopedia</a>
                                               @endif
-                                              @if(!empty($shopee_store))
+                                              @if(!empty($shopee_store) && $shopee_store->shop_id != '')
                                                   <a class="dropdown-item" href="{{url('https://shopee.com/product/'.$shopee_store->shop_id.'/'.$shopee_store->product_id)}}" target="_blank">Shopee</a>
                                               @endif
                                             </div>
