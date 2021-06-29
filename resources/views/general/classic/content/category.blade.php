@@ -42,7 +42,9 @@
                                             @endif
                                         </div>
                                         <div class="blog-details">
-                                            <a href="{{$post->post_url}}">{{$post->post_title}}</a>
+                                            <h4>
+                                                <a href="{{$post->post_url}}">{{$post->post_title}}</a>
+                                            </h4>
                                             <p>{!!$post->post_excerpt!!}</p>
                                         </div>
                                     </div>
@@ -64,9 +66,7 @@
                                             @endif
                                         </div>
                                         <div class="ellipsis mb-2" style="font-size: 1.3rem">
-                                            <h4>
-                                                <a href="{{$post->post_url}}">{{$post->post_title}}</a>
-                                            </h4>
+                                            <a href="{{$post->post_url}}">{{$post->post_title}}</a>
                                         </div>
                                         <div class="blog-list-meta"> <i class="icofont icofont-ui-calendar"></i> {{ $post->created_at->format('d M Y') }}</div>
                                         <p>{!!$post->post_excerpt!!}</p>
@@ -95,7 +95,9 @@
                                             @endif
                                         </div>
                                         <div class="blog-details">
-                                            <a href="{{$post->post_url}}">{{$post->post_title}}</a>
+                                            <h4>
+                                                <a href="{{$post->post_url}}">{{$post->post_title}}</a>
+                                            </h4>
                                             <p>{!!$post->post_excerpt!!}</p>
                                         </div>
                                     </div>
@@ -117,9 +119,7 @@
                                             @endif
                                         </div>
                                         <div class="ellipsis mb-2" style="font-size: 1.3rem">
-                                            <h4>
-                                                <a href="{{$post->post_url}}">{{$post->post_title}}</a>
-                                            </h4>
+                                            <a href="{{$post->post_url}}">{{$post->post_title}}</a>
                                         </div>
                                         <div class="blog-list-meta"> <i class="icofont icofont-ui-calendar"></i> {{ $post->created_at->format('d M Y') }}</div>
                                         <p>{!!$post->post_excerpt!!}</p>
