@@ -47,9 +47,9 @@
                                             @endif
                                         </div>
                                         <div class="blog-details">
-                                            <h2 class="header-text">
-                                                <a href="{{url($post->post_type.'/'.$post->post_slug)}}">{{$post->post_title}}</a>
-                                            </h2>
+                                            <h4>
+                                                <a href="{{$post->post_url}}">{{$post->post_title}}</a>
+                                            </h4>
                                             @if($post->productMeta->discount > 0)
                                                 <i class="fa fa-tags"></i> <s class="font-italic">Rp. {{number_format($post->productMeta->product_price)}}</s>
                                                 <br>
@@ -86,9 +86,9 @@
                                             @endif
                                         </div>
                                         <div class="ellipsis mb-2" style="font-size: 1.3rem">
-                                            <h2 class="header-text">
-                                                <a href="{{url($post->post_type.'/'.$post->post_slug)}}">{{$post->post_title}}</a>
-                                            </h2>
+                                            <h4>
+                                                <a href="{{$post->post_url}}">{{$post->post_title}}</a>
+                                            </h4>
                                         </div>
                                         <div class="blog-list-meta"> 
                                             @if($post->productMeta->discount > 0)
@@ -133,9 +133,9 @@
                                             @endif
                                         </div>
                                         <div class="blog-details">
-                                            <h2 class="header-text">
-                                                <a href="{{url($post->post_type.'/'.$post->post_slug)}}">{{$post->post_title}}</a>
-                                            </h2>
+                                            <h4>
+                                                <a href="{{$post->post_url}}">{{$post->post_title}}</a>
+                                            </h4>
                                             @if($post->productMeta->discount > 0)
                                                 <i class="fa fa-tags"></i> <s class="font-italic">Rp. {{number_format($post->productMeta->product_price)}}</s>
                                                 <br>
@@ -172,9 +172,9 @@
                                             @endif
                                         </div>
                                         <div class="ellipsis mb-2" style="font-size: 1.3rem">
-                                            <h2 class="header-text">
-                                                <a href="{{url($post->post_type.'/'.$post->post_slug)}}">{{$post->post_title}}</a>
-                                            </h2>
+                                            <h4>
+                                                <a href="{{$post->post_url}}">{{$post->post_title}}</a>
+                                            </h4>
                                         </div>
                                         <div class="blog-list-meta"> 
                                             @if($post->productMeta->discount > 0)
