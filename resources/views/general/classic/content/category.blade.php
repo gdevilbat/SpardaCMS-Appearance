@@ -42,9 +42,7 @@
                                             @endif
                                         </div>
                                         <div class="blog-details">
-                                            <h4>
-                                                <a href="{{$post->post_url}}">{{$post->post_title}}</a>
-                                            </h4>
+                                            <a href="{{$post->post_url}}">{{$post->post_title}}</a>
                                             <p>{!!$post->post_excerpt!!}</p>
                                         </div>
                                     </div>
@@ -97,9 +95,7 @@
                                             @endif
                                         </div>
                                         <div class="blog-details">
-                                            <h4>
-                                                <a href="{{$post->post_url}}">{{$post->post_title}}</a>
-                                            </h4>
+                                            <a href="{{$post->post_url}}">{{$post->post_title}}</a>
                                             <p>{!!$post->post_excerpt!!}</p>
                                         </div>
                                     </div>
