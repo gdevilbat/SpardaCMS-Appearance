@@ -6,16 +6,16 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="gdevilbat">
-    <title>@yield('title', !empty($settings->where('name','global')->flatten()[0]->value['meta_title']) ? $settings->where('name','global')->flatten()[0]->value['meta_title'] : 'SpardaCMS') | {{env('APP_NAME')}}</title>
+    <title>@yield('title', !empty($settings->where('name','global')->flatten()[0]->value['meta_title']) ? $settings->where('name','global')->flatten()[0]->value['meta_title'] : 'SpardaCMS') | {{config('app.name')}}</title>
     <meta name="author" content="gdevilbat">
     @section('meta_tag')
       <meta name="description" content="{{!empty($settings->where('name','global')->flatten()[0]->value['meta_description']) ? $settings->where('name','global')->flatten()[0]->value['meta_description'] : 'SpardaCMS for Connecting Business and Technology'}}" />
-      <meta name="keywords" content="{{!empty($settings->where('name','global')->flatten()[0]->value['meta_keyword']) ? $settings->where('name','global')->flatten()[0]->value['meta_keyword'] : env('APP_NAME')}}" />
+      <meta name="keywords" content="{{!empty($settings->where('name','global')->flatten()[0]->value['meta_keyword']) ? $settings->where('name','global')->flatten()[0]->value['meta_keyword'] : config('app.name')}}" />
       <meta property="og:type" content="website" />
-      <meta property="og:title" content="{{!empty($settings->where('name','global')->flatten()[0]->value['fb_share_title']) ? $settings->where('name','global')->flatten()[0]->value['fb_share_title'] : (!empty($settings->where('name','global')->flatten()[0]->value['meta_title']) ? $settings->where('name','global')->flatten()[0]->value['meta_title'] : 'SpardaCMS'). ' | '.env('APP_NAME')}}"/>
+      <meta property="og:title" content="{{!empty($settings->where('name','global')->flatten()[0]->value['fb_share_title']) ? $settings->where('name','global')->flatten()[0]->value['fb_share_title'] : (!empty($settings->where('name','global')->flatten()[0]->value['meta_title']) ? $settings->where('name','global')->flatten()[0]->value['meta_title'] : 'SpardaCMS'). ' | '.config('app.name')}}"/>
       <meta property="og:description" content="{{!empty($settings->where('name','global')->flatten()[0]->value['fb_share_description']) ? $settings->where('name','global')->flatten()[0]->value['fb_share_description'] : (!empty($settings->where('name','global')->flatten()[0]->value['meta_description']) ? $settings->where('name','global')->flatten()[0]->value['meta_description'] : 'SpardaCMS for Connecting Business and Technology')}}" />
       <meta property="og:image" content="{{!empty($settings->where('name','global')->flatten()[0]->value['fb_share_image']) ? generate_storage_url($settings->where('name','global')->flatten()[0]->value['fb_share_image']) : ''}}"/>
-      <meta property="og:image:alt" content="{{!empty($settings->where('name','global')->flatten()[0]->value['fb_share_title']) ? $settings->where('name','global')->flatten()[0]->value['fb_share_title'] : env('APP_NAME')}}" />
+      <meta property="og:image:alt" content="{{!empty($settings->where('name','global')->flatten()[0]->value['fb_share_title']) ? $settings->where('name','global')->flatten()[0]->value['fb_share_title'] : config('app.name')}}" />
     @show
     <meta property="og:image:width" content="1024" />
     <meta property="og:image:height" content="1024" />
