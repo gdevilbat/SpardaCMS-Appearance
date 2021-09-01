@@ -1,5 +1,5 @@
-const { mix } = require('laravel-mix');
-
+const mix  = require('laravel-mix');
+mix.setPublicPath('../');
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -11,7 +11,7 @@ const { mix } = require('laravel-mix');
  |
  */
 
-mix.js('js/classic.js', '../../js/classic.js')
-	.less('less/classic.less', '../../css/classic.css').options({
+mix.js('js/classic.js', 'js/classic.js')
+	.less('less/classic.less', 'css/classic.css').options({
       processCssUrls: false
    });
