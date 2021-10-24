@@ -23,9 +23,11 @@
     @if(count(Request::input()) > 0)
         <link rel="canonical" href="{{url()->current()}}" />
     @endif
-    <meta property="webcrawlers" content="all" />
-    <meta property="spiders" content="all" />
-    <meta property="robots" content="all" />
+    @section('robot_tag')
+        <meta property="webcrawlers" content="all" />
+        <meta property="spiders" content="all" />
+        <meta property="robots" content="all" />
+    @show
     <link rel="icon" type="image/png" sizes="1024x1024" href="{{!empty($settings->where('name','global')->flatten()->first()->value['favicon']) ? generate_storage_url($settings->where('name','global')->flatten()->first()->value['favicon']) : ''}}">
     <meta name="google-site-verification" content="{{!empty($settings->where('name','global')->flatten()->first()->value['google_site_verification']) ? $settings->where('name','global')->flatten()->first()->value['google_site_verification'] : ''}}" />
 
