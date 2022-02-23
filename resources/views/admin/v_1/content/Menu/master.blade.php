@@ -1,8 +1,8 @@
 @extends('core::admin.'.$theme_cms->value.'.templates.parent')
 
 @section('page_level_css')
-    {{Html::style(module_asset_url('appearance:assets/plugins/bootstrap-iconpicker/css/bootstrap-iconpicker.min.css'))}}
-    {{Html::style(module_asset_url('core:assets/metronic-v5/global/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css'))}}
+    {{Html::style(module_asset_url('Appearance:assets/plugins/bootstrap-iconpicker/css/bootstrap-iconpicker.min.css'))}}
+    {{Html::style(module_asset_url('Core:assets/metronic-v5/global/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css'))}}
 @endsection
 
 @section('title_dashboard', ' Menu')
@@ -174,10 +174,10 @@
 @endsection
 
 @section('page_level_js')
-    {{Html::script(module_asset_url('appearance:assets/plugins/bootstrap-iconpicker/js/iconset/fontawesome5-3-1.min.js'))}}
-    {{Html::script(module_asset_url('appearance:assets/plugins/bootstrap-iconpicker/js/bootstrap-iconpicker.min.js'))}}
-    {{Html::script(module_asset_url('core:assets/metronic-v5/global/plugins/bootstrap-tagsinput/bootstrap-tagsinput.min.js'))}}
-    {{Html::script(module_asset_url('appearance:assets/plugins/menu-builder/jquery-menu-editor.js').'?v='.filemtime(module_asset_path('appearance:assets/plugins/menu-builder/jquery-menu-editor.js')))}}
+    {{Html::script(module_asset_url('Appearance:assets/plugins/bootstrap-iconpicker/js/iconset/fontawesome5-3-1.min.js'))}}
+    {{Html::script(module_asset_url('Appearance:assets/plugins/bootstrap-iconpicker/js/bootstrap-iconpicker.min.js'))}}
+    {{Html::script(module_asset_url('Core:assets/metronic-v5/global/plugins/bootstrap-tagsinput/bootstrap-tagsinput.min.js'))}}
+    {{Html::script(module_asset_url('Appearance:assets/plugins/menu-builder/jquery-menu-editor.js').'?v='.filemtime(module_asset_path('appearance:assets/plugins/menu-builder/jquery-menu-editor.js')))}}
 @endsection
 
 @section('page_script_js')

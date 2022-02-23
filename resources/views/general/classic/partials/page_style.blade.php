@@ -1,7 +1,7 @@
-{{Html::style(module_asset_url('appearance:assets/css/app.css'))}}
-<link rel="stylesheet" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="{{module_asset_url('appearance:resources/views/general/classic/css/owl.carousel.min.css')}}">
-<link rel="stylesheet" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="{{module_asset_url('appearance:resources/views/general/classic/css/owl.theme.default.min.css')}}">
-<link rel="stylesheet" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="{{module_asset_url('appearance:resources/views/general/classic/css/icofont.css')}}">
-<link rel="stylesheet" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="{{module_asset_url('appearance:resources/views/general/classic/css/magnific-popup.css')}}">
-<link rel="stylesheet" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="{{module_asset_url('appearance:resources/views/general/classic/css/animate.css')}}">
-<link rel="stylesheet" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="{{module_asset_url('appearance:assets/fontawesome/css/all.min.css')}}">
+{{Html::style(module_asset_url('Appearance:assets/css/app.css'))}}
+<link rel="stylesheet" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="{{module_asset_url('Appearance:resources/views/general/classic/css/owl.carousel.min.css')}}">
+<link rel="stylesheet" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="{{module_asset_url('Appearance:resources/views/general/classic/css/owl.theme.default.min.css')}}">
+<link rel="stylesheet" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="{{module_asset_url('Appearance:resources/views/general/classic/css/icofont.css')}}">
+<link rel="stylesheet" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="{{module_asset_url('Appearance:resources/views/general/classic/css/magnific-popup.css')}}">
+<link rel="stylesheet" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="{{module_asset_url('Appearance:resources/views/general/classic/css/animate.css')}}">
+<link rel="stylesheet" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="{{module_asset_url('Appearance:assets/fontawesome/css/all.min.css')}}">
