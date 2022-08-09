@@ -95,7 +95,7 @@
     <section>
         <div class="container">
             <div class="row justify-content-center">
-                {{ $posts_paginate->links('appearance::general.classic.pagination.simple') }}
+                {{ $posts_paginate->appends($_GET)->links('appearance::general.classic.pagination.simple') }}
             </div>
         </div>
     </section>
