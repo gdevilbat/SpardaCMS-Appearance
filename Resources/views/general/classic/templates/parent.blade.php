@@ -41,17 +41,17 @@
     <!-- Main-Stylesheets -->
     @yield('page_level_css')
 
-    <link rel="stylesheet" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="{{module_asset_url('Appearance:resources/views/general/classic/css/normalize.css')}}">
+    <link rel="stylesheet" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="{{module_asset_url('Appearance:Resources/views/general/classic/css/normalize.css')}}">
 
-    <link rel="stylesheet" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="{{module_asset_url('Appearance:resources/views/general/classic/css/style.css')}}">
+    <link rel="stylesheet" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="{{module_asset_url('Appearance:Resources/views/general/classic/css/style.css')}}">
 
-    <link rel="stylesheet" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="{{module_asset_url('Appearance:resources/views/general/classic/css/responsive.css')}}">
+    <link rel="stylesheet" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="{{module_asset_url('Appearance:Resources/views/general/classic/css/responsive.css')}}">
 
-    <link rel="stylesheet" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="{{module_asset_url('Appearance:resources/views/general/classic/css/classic.css').'?id='.filemtime(module_asset_path('appearance:resources/views/general/classic/css/classic.css'))}}">
+    <link rel="stylesheet" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="{{module_asset_url('Appearance:Resources/views/general/classic/css/classic.css').'?id='.filemtime(module_asset_path('appearance:Resources/views/general/classic/css/classic.css'))}}">
     @yield('page_style_css')
 
 
-    {{Html::script(module_asset_url('Appearance:resources/views/general/classic/js/vendor/modernizr-2.8.3.min.js'))}}
+    {{Html::script(module_asset_url('Appearance:Resources/views/general/classic/js/vendor/modernizr-2.8.3.min.js'))}}
 
     <!--[if lt IE 9]>
         <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -104,8 +104,8 @@
     @yield('page_level_js')
     
     <!--Main-active-JS-->
-    {{Html::script(module_asset_url('Appearance:resources/views/general/classic/js/main.js'))}}
-    {{Html::script(module_asset_url('Appearance:resources/views/general/classic/js/classic.js').'?id='.filemtime(module_asset_path('appearance:resources/views/general/classic/js/classic.js')))}}
+    {{Html::script(module_asset_url('Appearance:Resources/views/general/classic/js/main.js'))}}
+    {{Html::script(module_asset_url('Appearance:Resources/views/general/classic/js/classic.js').'?id='.filemtime(module_asset_path('appearance:Resources/views/general/classic/js/classic.js')))}}
 
     @yield('page_script_js')
 </body>

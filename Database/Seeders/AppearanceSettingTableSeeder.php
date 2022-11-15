@@ -23,7 +23,7 @@ class AppearanceSettingTableSeeder extends Seeder
         Setting::firstOrCreate(
             ['name' => 'taxonomy_menu'],
             [
-                'value' => json_encode('category'),
+                'value' => 'category',
             ]
         );
     }
