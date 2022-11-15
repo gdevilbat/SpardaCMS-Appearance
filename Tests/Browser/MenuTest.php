@@ -18,7 +18,7 @@ class MenuTest extends DuskTestCase
      */
     public function testCRUDMenu()
     {
-        $user = \App\User::find(1);
+        $user = \App\Models\User::find(1);
         $faker = \Faker\Factory::create();
 
         $this->browse(function (Browser $browser) use ($user, $faker) {

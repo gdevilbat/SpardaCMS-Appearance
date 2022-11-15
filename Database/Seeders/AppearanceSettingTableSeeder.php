@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 use DB;
 
+use Gdevilbat\SpardaCMS\Modules\Core\Entities\Setting;
+
 class AppearanceSettingTableSeeder extends Seeder
 {
     /**
@@ -18,11 +20,11 @@ class AppearanceSettingTableSeeder extends Seeder
     {
         Model::unguard();
 
-        DB::table('setting')->insert([
+        Setting::firstOrCreate(
+            ['name' => 'taxonomy_menu'],
             [
-                'name' => 'taxonomy_menu',
                 'value' => json_encode('category'),
             ]
-        ]);
+        );
     }
 }

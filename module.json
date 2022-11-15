@@ -3,7 +3,7 @@
     "alias": "appearance",
     "description": "",
     "keywords": [],
-    "active": 1,
+    "priority": 2,
     "order": 0,
     "providers": [
         "Gdevilbat\\SpardaCMS\\Modules\\Appearance\\Providers\\AppearanceServiceProvider"

@@ -16,7 +16,7 @@
                     <meta itemprop="image" content="{{(module_asset_url('appearance:assets/images/default_v3-shopnophoto.png'))}}">
                     <meta itemprop="name" content="{{config('app.name')}}">
                     <div class="w-100 my-3" itemscope itemtype="http://schema.org/Product">
-                        <meta itemprop="productID" content="{{str_slug(config('app.name')).'_product_'.$post->getKey()}}">
+                        <meta itemprop="productID" content="{{\Str::slug(config('app.name')).'_product_'.$post->getKey()}}">
                         <meta itemprop="brand" content="{{$post_categories->first()->term->name}}">
                         <div>
                               <h1 class="upper" itemprop="name">{{$post->post_title}} </h1> 
