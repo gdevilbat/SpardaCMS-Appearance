@@ -1,0 +1,13 @@
+[
+    {
+        "text": "Appearance",
+        "type": "dropdown",
+        "icon": "fa fa-paint-brush",
+        "childrens": [
+            {
+                "text": "Menus",
+                "name": "menu-master"
+            }
+        ]
+    }
+]
